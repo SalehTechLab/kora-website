@@ -1,6 +1,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --kora-navy: #10294e;
+  --kora-burgundy: #b51e32;
+  --kora-off-white: #f7f9fc;
+  --kora-blue-gray: #d0d7e2;
+  --kora-charcoal: #242c38;
+  --kora-white: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,7 +33,7 @@ body {
   flex-direction: column;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

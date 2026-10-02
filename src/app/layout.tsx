@@ -1,26 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { ConfigProvider } from "antd";
+import themeConfig from "@/theme/themeConfig";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Kora",
-  description: "Kora website",
+  title: "Kora Traders",
+  description: "Connect. Trade. Grow. — International sourcing and trading, delivered.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={inter.variable}>
+      <body>
+        <AntdRegistry>
+          <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>
+        </AntdRegistry>
+      </body>
     </html>
   );
 }

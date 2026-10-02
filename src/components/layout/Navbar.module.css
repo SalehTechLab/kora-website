@@ -1,0 +1,131 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: var(--kora-white);
+  border-bottom: 1px solid transparent;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.headerScrolled {
+  box-shadow: 0 4px 24px rgba(16, 41, 78, 0.08);
+  border-bottom-color: var(--kora-blue-gray);
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 76px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.navLinks {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navLink {
+  position: relative;
+  display: inline-block;
+  padding: 8px 4px;
+  margin: 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--kora-navy);
+  white-space: nowrap;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  height: 2px;
+  background: var(--kora-burgundy);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.navLink:hover {
+  color: var(--kora-burgundy);
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.desktopOnly {
+  display: none;
+}
+
+.ctaButton {
+  background: var(--kora-burgundy);
+}
+
+.menuToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--kora-blue-gray);
+  background: var(--kora-white);
+  color: var(--kora-navy);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.drawerLink {
+  display: block;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--kora-navy);
+}
+
+.drawerLink:hover {
+  color: var(--kora-burgundy);
+}
+
+@media (min-width: 992px) {
+  .navLinks {
+    display: flex;
+  }
+
+  .desktopOnly {
+    display: inline-flex;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+}

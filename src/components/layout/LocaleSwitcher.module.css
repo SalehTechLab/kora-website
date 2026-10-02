@@ -1,0 +1,51 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--kora-blue-gray);
+  background: var(--kora-white);
+  color: var(--kora-navy);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.trigger:hover {
+  border-color: var(--kora-navy);
+  background: var(--kora-off-white);
+}
+
+.trigger.block {
+  width: 100%;
+  justify-content: center;
+}
+
+.flag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 2px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.code {
+  line-height: 1;
+}
+
+.chevron {
+  display: inline-flex;
+  font-size: 10px;
+  color: var(--kora-charcoal);
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 0;
+}
