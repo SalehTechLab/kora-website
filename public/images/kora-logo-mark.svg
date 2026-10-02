@@ -1,0 +1,78 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 714" width="640" height="714">
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="m-16-16h672v748h-672z"/>
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp2">
+			<path d="m0.16 0.44h170.28v713.14h-170.28z"/>
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp3">
+			<path d="m0 0h170.67v714.67h-170.67z"/>
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp4">
+			<path d="m0.16 0.44h170.28v713.14h-170.28z"/>
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp5">
+			<path d="m166.67 1.33h473.33v669.21h-473.33z"/>
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp6">
+			<path d="m517.73 215.39l119.09-82.06 2.6-1.82-187.28-129.19v46.1c-59.38 5.1-114.09 26.9-159.28 60.71-45.18 33.81-80.84 79.57-102.41 132.58-9.76 23.84-16.59 49.25-19.98 75.73q-2.73 20.11-2.73 40.85c0 13.74 0.91 27.35 2.73 40.75 3.39 26.32 10.22 51.89 19.98 75.94 36.21 89.34 113.06 159.36 210.92 184.68 9.31 2.4 18.95 4.31 28.72 6.01 16.01 2.48 32.23 3.73 48.37 3.73h0.45c20.2-0.12 40.18-2.04 59.59-5.8v-177.95c-18.5 8.86-38.82 13.41-60.04 13.5-5.01 0-9.53-0.24-14.32-0.79-1.48-0.12-2.94-0.25-4.88-0.58-0.79 0-1.58-0.24-2.94-0.45-5.91-0.91-11.92-2.28-18.62-4.22-5.22-1.49-10.55-3.52-15.89-5.91-51.52-22.35-84.91-73.21-84.91-129.64 0-69.11 49.7-126.67 115.2-139.04v42.03z"/>
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp7">
+			<path d="m166.67 1.33h473.33v669.34h-473.33z"/>
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp8">
+			<path d="m167.68 2.29h472v667.2h-472z"/>
+		</clipPath>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp9">
+			<path d="m517.73 215.39l119.09-82.06 2.6-1.82-187.28-129.19v46.1c-59.38 5.1-114.09 26.9-159.28 60.71-45.18 33.81-80.84 79.57-102.41 132.58-9.76 23.84-16.59 49.25-19.98 75.73q-2.73 20.11-2.73 40.85c0 13.74 0.91 27.35 2.73 40.75 3.39 26.32 10.22 51.89 19.98 75.94 36.21 89.34 113.06 159.36 210.92 184.68 9.31 2.4 18.95 4.31 28.72 6.01 16.01 2.48 32.23 3.73 48.37 3.73h0.45c20.2-0.12 40.18-2.04 59.59-5.8v-177.95c-18.5 8.86-38.82 13.41-60.04 13.5-5.01 0-9.53-0.24-14.32-0.79-1.48-0.12-2.94-0.25-4.88-0.58-0.79 0-1.58-0.24-2.94-0.45-5.91-0.91-11.92-2.28-18.62-4.22-5.22-1.49-10.55-3.52-15.89-5.91-51.52-22.35-84.91-73.21-84.91-129.64 0-69.11 49.7-126.67 115.2-139.04v42.03z"/>
+		</clipPath>
+	</defs>
+	<style>
+		.s0 { fill: #b41f32 } 
+	</style>
+	<g>
+		<g id="Clip-Path" clip-path="url(#cp1)">
+			<g>
+				<g id="Clip-Path" clip-path="url(#cp2)">
+					<g>
+						<g>
+							<g id="Clip-Path" clip-path="url(#cp3)">
+								<g>
+									<g id="Clip-Path" clip-path="url(#cp4)">
+										<g>
+											<path fill-rule="evenodd" class="s0" d="m-1338.88-575.79h3317.76v1866.24h-3317.76z"/>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+				<g id="Clip-Path" clip-path="url(#cp5)">
+					<g>
+						<g id="Clip-Path" clip-path="url(#cp6)">
+							<g>
+								<g>
+									<g id="Clip-Path" clip-path="url(#cp7)">
+										<g>
+											<g id="Clip-Path" clip-path="url(#cp8)">
+												<g>
+													<g id="Clip-Path" clip-path="url(#cp9)">
+														<g>
+															<path fill-rule="evenodd" class="s0" d="m-1338.88-575.79h3317.76v1866.24h-3317.76z"/>
+														</g>
+													</g>
+												</g>
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>
