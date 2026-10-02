@@ -37,13 +37,17 @@ export default function Navbar() {
       className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}
     >
       <div className={styles.inner}>
-        <Link href="/" className={styles.logoLink} aria-label="Kora Traders home">
+        <Link
+          href="/"
+          className={styles.logoLink}
+          aria-label="Kora Traders home"
+        >
           <Image
-            src="/images/kora_logo.png"
+            src="/images/kora-logo-1.svg"
             alt="Kora Traders"
-            width={2800}
-            height={1650}
-            sizes="(max-width: 767px) 120px, 150px"
+            width={547}
+            height={244}
+            sizes="(max-width: 767px) 117px, 135px"
             className={styles.logo}
             priority
           />
@@ -62,7 +66,12 @@ export default function Navbar() {
             <LocaleSwitcher />
           </span>
           <span className={styles.desktopOnly}>
-            <Button type="primary" size="large" className={styles.ctaButton} href="/contact">
+            <Button
+              type="primary"
+              size="large"
+              className={styles.ctaButton}
+              href="/contact"
+            >
               Get a Quote
             </Button>
           </span>
