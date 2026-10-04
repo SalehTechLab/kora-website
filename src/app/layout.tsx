@@ -3,6 +3,7 @@ import { Inter, Source_Serif_4 } from "next/font/google";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import themeConfig from "@/theme/themeConfig";
+import StyledComponentsRegistry from "@/lib/StyledComponentsRegistry";
 import "./globals.css";
 
 const inter = Inter({
@@ -25,9 +26,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
       <body>
-        <AntdRegistry>
-          <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>
-        </AntdRegistry>
+        <StyledComponentsRegistry>
+          <AntdRegistry>
+            <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>
+          </AntdRegistry>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

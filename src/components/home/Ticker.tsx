@@ -3,7 +3,7 @@ import styles from "./Ticker.module.css";
 const ITEMS = [
   "Global Sourcing",
   "International Logistics",
-  "Verified Supplier",
+  "Verified Suppliers",
   "On-Time Delivery",
   "Stress Free Business",
   "Competitive Pricing",
@@ -11,6 +11,8 @@ const ITEMS = [
   "Air. Sea. Rail. Road",
   "Transparency",
   "Compliance",
+  "End-to-End Coordination",
+  "Multilingual Support",
 ];
 
 export default function Ticker() {
