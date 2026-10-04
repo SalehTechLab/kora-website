@@ -23,8 +23,8 @@ const NAV_LINKS = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-// TODO: replace with the real Kora WhatsApp number (international format, digits only)
-const WHATSAPP_URL = "https://wa.me/";
+const WHATSAPP_URL =
+  "https://wa.me/4917668257323?text=Hi%2C%20I%20have%20a%20query%20regarding%20your%20import%2Fexport%20services.%20Could%20you%20please%20assist%20me%3F";
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
