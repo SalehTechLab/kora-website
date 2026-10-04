@@ -4,19 +4,13 @@
   z-index: 100;
   width: 100%;
   background: var(--kora-white);
-  border-bottom: 1px solid transparent;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.headerScrolled {
-  box-shadow: 0 4px 24px rgba(16, 41, 78, 0.08);
-  border-bottom-color: var(--kora-blue-gray);
+  border-bottom: 1px solid var(--kora-blue-gray);
 }
 
 .inner {
   max-width: 1280px;
   margin: 0 auto;
-  height: 76px;
+  height: 72px;
   padding: 0 24px;
   display: flex;
   align-items: center;
@@ -31,13 +25,13 @@
 }
 
 .logo {
-  height: 52px;
+  height: 36px;
   width: auto;
 }
 
 @media (min-width: 768px) {
   .logo {
-    height: 60px;
+    height: 40px;
   }
 }
 
@@ -55,7 +49,7 @@
   padding: 8px 4px;
   margin: 0 10px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--kora-navy);
   white-space: nowrap;
 }
@@ -78,8 +72,13 @@
   color: var(--kora-burgundy);
 }
 
-.navLink:hover::after {
+.navLink:hover::after,
+.navLinkActive::after {
   transform: scaleX(1);
+}
+
+.navLinkActive {
+  color: var(--kora-burgundy);
 }
 
 .actions {
@@ -94,7 +93,32 @@
 }
 
 .ctaButton {
-  background: var(--kora-burgundy);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 4px;
+  background: #25d366;
+  color: var(--kora-white);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.ctaButton:hover {
+  background: #1fbf5b;
+  color: var(--kora-white);
+}
+
+.ctaIcon {
+  font-size: 18px;
+}
+
+.ctaBlock {
+  width: 100%;
 }
 
 .menuToggle {
@@ -103,7 +127,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 4px;
   border: 1px solid var(--kora-blue-gray);
   background: var(--kora-white);
   color: var(--kora-navy);
@@ -118,7 +142,8 @@
   color: var(--kora-navy);
 }
 
-.drawerLink:hover {
+.drawerLink:hover,
+.drawerLinkActive {
   color: var(--kora-burgundy);
 }
 

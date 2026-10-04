@@ -1,11 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Button, Drawer, Space } from "antd";
-import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { Drawer, Space } from "antd";
+import {
+  MenuOutlined,
+  CloseOutlined,
+  WhatsAppOutlined,
+} from "@ant-design/icons";
 import LocaleSwitcher from "./LocaleSwitcher";
 import styles from "./Navbar.module.css";
 
@@ -18,23 +23,22 @@ const NAV_LINKS = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [drawerOpen, setDrawerOpen] = useState(false);
+// TODO: replace with the real Kora WhatsApp number (international format, digits only)
+const WHATSAPP_URL = "https://wa.me/";
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+export default function Navbar() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}
+      className={styles.header}
     >
       <div className={styles.inner}>
         <Link
@@ -43,11 +47,11 @@ export default function Navbar() {
           aria-label="Kora Traders home"
         >
           <Image
-            src="/images/kora-logo-1.svg"
+            src="/images/logo/kora-logo-1.svg"
             alt="Kora Traders"
             width={547}
             height={244}
-            sizes="(max-width: 767px) 117px, 135px"
+            sizes="(max-width: 767px) 81px, 90px"
             className={styles.logo}
             priority
           />
@@ -55,7 +59,12 @@ export default function Navbar() {
 
         <nav className={styles.navLinks} aria-label="Primary">
           {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.navLink}>
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${styles.navLink} ${isActive(link.href) ? styles.navLinkActive : ""}`}
+              aria-current={isActive(link.href) ? "page" : undefined}
+            >
               {link.label}
             </Link>
           ))}
@@ -66,14 +75,15 @@ export default function Navbar() {
             <LocaleSwitcher />
           </span>
           <span className={styles.desktopOnly}>
-            <Button
-              type="primary"
-              size="large"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.ctaButton}
-              href="/contact"
             >
-              Get a Quote
-            </Button>
+              <WhatsAppOutlined className={styles.ctaIcon} />
+              Chat on WhatsApp
+            </a>
           </span>
           <button
             type="button"
@@ -99,16 +109,22 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={styles.drawerLink}
+              className={`${styles.drawerLink} ${isActive(link.href) ? styles.drawerLinkActive : ""}`}
               onClick={() => setDrawerOpen(false)}
             >
               {link.label}
             </Link>
           ))}
           <LocaleSwitcher block />
-          <Button type="primary" size="large" block href="/contact">
-            Get a Quote
-          </Button>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.ctaButton} ${styles.ctaBlock}`}
+          >
+            <WhatsAppOutlined className={styles.ctaIcon} />
+            Chat on WhatsApp
+          </a>
         </Space>
       </Drawer>
     </motion.header>
