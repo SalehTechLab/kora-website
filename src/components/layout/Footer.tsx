@@ -35,7 +35,7 @@ const COMMODITIES = [
 
 const LEGAL_LINKS = [
   { label: "About us", href: "/about" },
-  { label: "Impressum", href: "/impressum" },
+  { label: "Imprint", href: "/imprint" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms" },
 ];
@@ -44,17 +44,17 @@ const LEGAL_LINKS = [
 const SOCIAL_LINKS = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/in/kora_traders",
     icon: <LinkedinFilled />,
   },
   {
     label: "Facebook",
-    href: "https://www.facebook.com/",
+    href: "https://www.facebook.com/kora.traders",
     icon: <FacebookFilled />,
   },
   {
     label: "Instagram",
-    href: "https://www.instagram.com/",
+    href: "https://www.instagram.com/kora_traders",
     icon: <InstagramOutlined />,
   },
 ];
@@ -63,7 +63,7 @@ const OFFICES = [
   {
     name: "Munich Headquarters",
     address: "Leopoldstraße 120, 80802 München, Germany",
-    phone: "+49 (0) 89 2154 7890",
+    phone: "+49 1521 4181175",
   },
   {
     name: "Pakistan Operations",
