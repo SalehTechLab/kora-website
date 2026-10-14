@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { App } from "antd";
 import Navbar from "@/components/layout/Navbar";
-import ContactHero from "@/components/contact/ContactHero";
+import PageHero from "@/components/layout/PageHero";
 import ContactSection from "@/components/contact/ContactSection";
 import Footer from "@/components/layout/Footer";
 
@@ -16,7 +16,12 @@ export default function ContactPage() {
     <main>
       <Navbar />
       <App>
-        <ContactHero />
+        <PageHero
+          id="contact-heading"
+          eyebrow="Contact Us"
+          title="Tell us what you need to move."
+          description="Sourcing a product, arranging freight, or exploring a partnership, we will reply with a straight answer."
+        />
         <ContactSection />
       </App>
       <Footer />

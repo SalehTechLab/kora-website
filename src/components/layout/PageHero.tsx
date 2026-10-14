@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import styled from "styled-components";
 import { ConfigProvider, Typography, type ThemeConfig } from "antd";
 import { colors } from "@/theme/themeConfig";
@@ -22,25 +21,32 @@ const Banner = styled.section`
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: #0b1d38;
+  background:
+    radial-gradient(
+      ellipse 70% 120% at 85% 50%,
+      rgba(181, 30, 50, 0.16) 0%,
+      transparent 60%
+    ),
+    linear-gradient(90deg, #0b1d38 0%, ${colors.navy} 100%);
   padding: 104px 24px 72px;
 
-  /* Navy wash over the photo so the copy stays readable */
-  &::after {
+  /* WhatsApp-style doodle tile of trade and logistics icons */
+  &::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(
-      90deg,
-      rgba(11, 29, 56, 0.96) 0%,
-      rgba(11, 29, 56, 0.92) 60%,
-      rgba(11, 29, 56, 0.88) 100%
-    );
+    background: url("/images/patterns/logistics-doodle.svg") center / 440px
+      repeat;
+    opacity: 0.07;
   }
 
   @media (max-width: 767px) {
     padding: 72px 20px 56px;
+
+    &::before {
+      background-size: 340px;
+    }
   }
 `;
 
@@ -79,7 +85,6 @@ type PageHeroProps = {
   eyebrow: string;
   title: string;
   description: string;
-  image?: string;
 };
 
 export default function PageHero({
@@ -87,19 +92,10 @@ export default function PageHero({
   eyebrow,
   title,
   description,
-  image = "/images/hero/hero-logistics.webp",
 }: PageHeroProps) {
   return (
     <ConfigProvider theme={heroTheme}>
       <Banner aria-labelledby={id}>
-        <Image
-          src={image}
-          alt=""
-          fill
-          sizes="100vw"
-          preload
-          style={{ objectFit: "cover", zIndex: -2 }}
-        />
         <Content>
           <div>
             <Eyebrow>{eyebrow}</Eyebrow>
