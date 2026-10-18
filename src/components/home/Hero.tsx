@@ -16,7 +16,7 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 import { COMMODITIES } from "./commodities";
 import styles from "./Hero.module.css";
 
-const HEADLINE = ["Essential", "Commodities,", "Traded Globally."];
+const HEADLINE = ["We Source.", "We Procure.", "We Deliver."];
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const container: Variants = {
@@ -169,9 +169,9 @@ export default function Hero() {
               </motion.div>
 
               <div className={styles.route} aria-hidden="true">
-                <span>Pakistan</span>
+                <span>{current.from}</span>
                 <span className={styles.routeLine} />
-                <span>Germany</span>
+                <span>{current.to}</span>
               </div>
             </div>
 
@@ -239,7 +239,7 @@ export default function Hero() {
             animate="show"
           >
             <motion.p className={styles.eyebrow} variants={fadeUp}>
-              Import · Export · Commodity Trading
+              Global Markets. One Trusted Partner.
             </motion.p>
 
             <h1 id="hero-heading" className={styles.headline}>
@@ -259,9 +259,9 @@ export default function Hero() {
             </h1>
 
             <motion.p className={styles.lead} variants={fadeUp}>
-              KORA imports and exports quality goods across six commodity
-              categories, from Himalayan salt to surgical instruments, with
-              sourcing, procurement and freight handled end to end.
+              KORA connects businesses to global opportunities, suppliers and
+              markets, providing end-to-end sourcing, procurement and
+              logistics, from the first order to final delivery.
             </motion.p>
 
             <motion.div className={styles.ctas} variants={fadeUp}>
@@ -269,22 +269,17 @@ export default function Hero() {
                 href="/contact"
                 className={`${styles.btn} ${styles.btnPrimary}`}
               >
-                Request a Quote
+                Get a Quote
                 <ArrowRightOutlined className={styles.btnIcon} />
               </Link>
               <Link
-                href="#who-we-are"
+                href="/services"
                 className={`${styles.btn} ${styles.btnOutline}`}
               >
-                Who We Are
+                View Services
                 <ArrowRightOutlined className={styles.btnIcon} />
               </Link>
             </motion.div>
-
-            <motion.p className={styles.proof} variants={fadeUp}>
-              Based in Germany <i aria-hidden="true" /> Operations in Pakistan{" "}
-              <i aria-hidden="true" /> Freight included
-            </motion.p>
           </motion.div>
         </div>
       </section>

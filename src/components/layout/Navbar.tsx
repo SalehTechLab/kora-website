@@ -6,11 +6,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Drawer, Space } from "antd";
-import {
-  MenuOutlined,
-  CloseOutlined,
-  WhatsAppOutlined,
-} from "@ant-design/icons";
+import { MenuOutlined, CloseOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import LocaleSwitcher from "./LocaleSwitcher";
 import styles from "./Navbar.module.css";
 
@@ -22,9 +18,6 @@ const NAV_LINKS = [
   { label: "Logistics", href: "/logistics" },
   { label: "Contact Us", href: "/contact" },
 ];
-
-const WHATSAPP_URL =
-  "https://wa.me/4917668257323?text=Hi%2C%20I%20have%20a%20query%20regarding%20your%20import%2Fexport%20services.%20Could%20you%20please%20assist%20me%3F";
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -75,15 +68,10 @@ export default function Navbar() {
             <LocaleSwitcher />
           </span>
           <span className={styles.desktopOnly}>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.ctaButton}
-            >
-              <WhatsAppOutlined className={styles.ctaIcon} />
-              Chat on WhatsApp
-            </a>
+            <Link href="/contact" className={styles.ctaButton}>
+              Become a partner
+              <ArrowRightOutlined />
+            </Link>
           </span>
           <button
             type="button"
@@ -116,15 +104,14 @@ export default function Navbar() {
             </Link>
           ))}
           <LocaleSwitcher block />
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/contact"
             className={`${styles.ctaButton} ${styles.ctaBlock}`}
+            onClick={() => setDrawerOpen(false)}
           >
-            <WhatsAppOutlined className={styles.ctaIcon} />
-            Chat on WhatsApp
-          </a>
+            Become a partner
+            <ArrowRightOutlined />
+          </Link>
         </Space>
       </Drawer>
     </motion.header>

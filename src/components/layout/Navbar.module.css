@@ -96,12 +96,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   height: 44px;
   padding: 0 24px;
   border-radius: 4px;
-  background: #25d366;
+  background: var(--kora-burgundy);
   color: var(--kora-white);
+  border: 1.5px solid var(--kora-burgundy);
   font-size: 15px;
   font-weight: 600;
   white-space: nowrap;
@@ -109,12 +110,9 @@
 }
 
 .ctaButton:hover {
-  background: #1fbf5b;
+  background: #9a1828;
+  border-color: #9a1828;
   color: var(--kora-white);
-}
-
-.ctaIcon {
-  font-size: 18px;
 }
 
 .ctaBlock {

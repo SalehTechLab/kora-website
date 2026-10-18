@@ -7,6 +7,9 @@ export type Commodity = {
   /** Full category name shown under the stage */
   name: string;
   items: string;
+  /** Trade route shown on the stage */
+  from: string;
+  to: string;
   /**
    * Optional cut-out product photo (transparent PNG/WebP, ~800px square).
    * When set it replaces the built-in illustration.
@@ -371,9 +374,53 @@ const TextileArt = (
   </svg>
 );
 
+/* ---------- BOPP rolls: wound film rolls ---------- */
+
+const BoppArt = (
+  <svg viewBox="0 0 400 400" aria-hidden="true">
+    <defs>
+      <linearGradient id="film" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stopColor="#9FB6D8" />
+        <stop offset="0.35" stopColor="#F4F8FD" />
+        <stop offset="0.7" stopColor="#C3D2E8" />
+        <stop offset="1" stopColor="#8DA5C9" />
+      </linearGradient>
+      <linearGradient id="filmRed" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stopColor="#8E1424" />
+        <stop offset="0.35" stopColor="#E0586A" />
+        <stop offset="0.7" stopColor="#B51E32" />
+        <stop offset="1" stopColor="#7A1020" />
+      </linearGradient>
+    </defs>
+    <ellipse cx="200" cy="360" rx="140" ry="12" fill="#10294E" opacity="0.1" />
+    <rect x="86" y="120" width="228" height="220" fill="url(#film)" />
+    <ellipse cx="200" cy="340" rx="114" ry="30" fill="#8DA5C9" />
+    <rect x="86" y="196" width="228" height="34" fill="url(#filmRed)" opacity="0.9" />
+    <ellipse cx="200" cy="120" rx="114" ry="30" fill="#EAF1FA" stroke="#9FB6D8" />
+    <ellipse cx="200" cy="120" rx="84" ry="21" fill="none" stroke="#9FB6D8" opacity="0.8" />
+    <ellipse cx="200" cy="120" rx="54" ry="13" fill="none" stroke="#9FB6D8" opacity="0.8" />
+    <ellipse cx="200" cy="120" rx="30" ry="7.5" fill="#10294E" />
+    <ellipse cx="200" cy="120" rx="14" ry="3.5" fill="#B51E32" />
+    <text
+      x="200"
+      y="293"
+      textAnchor="middle"
+      fontFamily={SERIF}
+      fontWeight="700"
+      fontSize="34"
+      fill="#10294E"
+      letterSpacing="3"
+    >
+      BOPP
+    </text>
+  </svg>
+);
+
 export const COMMODITIES: Commodity[] = [
   {
     id: "salt",
+    from: "Pakistan",
+    to: "Germany",
     tab: "Himalayan Salt",
     name: "Himalayan Salt Products",
     items: "Salt bricks · Edible & bath salt · Decor",
@@ -381,6 +428,8 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "surgical",
+    from: "Pakistan",
+    to: "Germany",
     tab: "Surgical Instruments",
     name: "Surgical Instruments",
     items: "Scissors · Forceps · Clinical stainless steel",
@@ -388,6 +437,8 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "tyres",
+    from: "Germany",
+    to: "UAE",
     tab: "Tyres & Automotive",
     name: "Tyres & Automotive Products",
     items: "Passenger & truck tyres · Wheels · Parts",
@@ -395,6 +446,8 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "industrial",
+    from: "Germany",
+    to: "Indonesia",
     tab: "Industrial",
     name: "Industrial Commodities",
     items: "Machinery parts · Components · Raw materials",
@@ -402,6 +455,8 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "rice",
+    from: "India",
+    to: "Germany",
     tab: "Rice & Food",
     name: "Rice & Food Commodities",
     items: "Basmati & long-grain rice · Staples",
@@ -409,9 +464,20 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "textiles",
+    from: "Pakistan",
+    to: "Germany",
     tab: "Textiles & Apparel",
     name: "Textiles & Apparel",
     items: "Fabric · Home textiles · Garments",
     art: TextileArt,
+  },
+  {
+    id: "bopp",
+    from: "Germany",
+    to: "Pakistan",
+    tab: "BOPP Rolls",
+    name: "BOPP Rolls",
+    items: "Packaging film · Laminating & printing grades",
+    art: BoppArt,
   },
 ];

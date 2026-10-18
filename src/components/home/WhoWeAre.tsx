@@ -13,6 +13,7 @@ import {
 } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { colors } from "@/theme/themeConfig";
+import FluidPastels from "./FluidPastels";
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -67,6 +68,7 @@ const Section = styled.section`
 `;
 
 const Container = styled.div`
+  position: relative;
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 32px;
@@ -241,6 +243,7 @@ export default function WhoWeAre() {
   return (
     <ConfigProvider theme={sectionTheme}>
       <Section id="who-we-are" aria-labelledby="who-we-are-heading">
+        <FluidPastels />
         <Container>
           <Eyebrow>Who We Are</Eyebrow>
           <Heading level={2} id="who-we-are-heading">

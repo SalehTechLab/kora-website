@@ -4,6 +4,8 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import themeConfig from "@/theme/themeConfig";
 import StyledComponentsRegistry from "@/lib/StyledComponentsRegistry";
+import Preloader from "@/components/layout/Preloader";
+import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import "./globals.css";
 
 const inter = Inter({
@@ -36,7 +38,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <StyledComponentsRegistry>
           <AntdRegistry>
-            <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>
+            <ConfigProvider theme={themeConfig}>
+              <Preloader />
+              {children}
+              <WhatsAppFloat />
+            </ConfigProvider>
           </AntdRegistry>
         </StyledComponentsRegistry>
       </body>
