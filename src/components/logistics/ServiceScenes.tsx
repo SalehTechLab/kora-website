@@ -373,10 +373,15 @@ export function RoadScene({ progress }: SceneProps) {
           <Loop animate={{ y: [0, -2] }} duration={0.22} ease="easeInOut" yoyo>
             <polygon points="170,-30 520,-6 520,18 170,-6" fill="url(#road-beam)" />
             <rect x={-212} y={-122} width={282} height={104} rx={4} fill="#e9eef6" />
-            <rect x={-212} y={-60} width={282} height={14} fill={colors.burgundy} />
-            <text x={-72} y={-76} textAnchor="middle" fontFamily="Inter, Arial, sans-serif" fontWeight={800} fontSize={30} letterSpacing={6} fill={colors.navy}>
-              KORA
-            </text>
+            <rect x={-212} y={-40} width={282} height={12} fill={colors.burgundy} />
+            <image
+              href="/images/logo/kora-logo-1.svg"
+              x={-141}
+              y={-112}
+              width={140}
+              height={62}
+              preserveAspectRatio="xMidYMid meet"
+            />
             <rect x={-218} y={-18} width={400} height={12} fill="#0b0d14" />
             <path d="M76,-18 L76,-108 L136,-108 L172,-62 L178,-18 Z" fill={colors.burgundy} />
             <path d="M104,-96 L134,-96 L158,-64 L104,-64 Z" fill="#9ec6ea" />
