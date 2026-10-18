@@ -4,6 +4,7 @@ import PageHero from "@/components/layout/PageHero";
 import Footer from "@/components/layout/Footer";
 import LogisticsIntro from "@/components/logistics/LogisticsIntro";
 import LogisticsServices from "@/components/logistics/LogisticsServices";
+import LogisticsCTA from "@/components/logistics/LogisticsCTA";
 
 export const metadata: Metadata = {
   title: "Logistics | Kora Traders",
@@ -23,7 +24,7 @@ export default function LogisticsPage() {
       />
       <LogisticsIntro />
       <LogisticsServices />
-
+      <LogisticsCTA />
       <Footer />
     </main>
   );

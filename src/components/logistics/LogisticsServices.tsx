@@ -185,7 +185,7 @@ const Heading = styled.div`
 
   h2 {
     font-family: var(--font-serif), Georgia, serif !important;
-    font-size: clamp(1.6rem, 3.6vw, 3rem) !important;
+    font-size: clamp(1.4rem, 3.6vw, 3rem) !important;
     line-height: 1.1 !important;
     letter-spacing: -0.02em;
     text-align: center;
@@ -203,9 +203,10 @@ const Grid = styled.div`
 
   @media (max-width: 991px) {
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, 1.15fr) auto auto;
+    grid-template-rows: minmax(150px, 1fr) auto auto;
     grid-template-areas: "panel" "copy" "points";
-    padding-bottom: 8px;
+    row-gap: 22px;
+    padding-bottom: 4px;
   }
 `;
 
@@ -239,8 +240,7 @@ const Panel = styled.div`
   @media (max-width: 991px) {
     align-self: stretch;
     aspect-ratio: auto;
-    height: 100%;
-    margin-bottom: 20px;
+    min-height: 0;
   }
 `;
 
@@ -284,6 +284,10 @@ const Counter = styled.div`
     font-size: 20px;
     color: #fff;
   }
+
+  @media (max-width: 991px) {
+    display: none;
+  }
 `;
 
 const Eyebrow = styled(Text)`
@@ -297,6 +301,10 @@ const Eyebrow = styled(Text)`
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: #e8798a;
+
+    @media (max-width: 991px) {
+      margin-bottom: 8px;
+    }
 
     &::after {
       content: "";
@@ -315,7 +323,12 @@ const ServiceTitle = styled(Title)`
     line-height: 1.12;
     overflow-wrap: break-word;
     letter-spacing: -0.02em;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
+
+    @media (max-width: 991px) {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
   }
 `;
 
@@ -340,7 +353,7 @@ const Points = styled.ul`
     gap: 8px 16px;
 
     li {
-      font-size: 0.86rem;
+      font-size: 0.8rem;
       gap: 10px;
     }
   }
@@ -557,7 +570,7 @@ export default function LogisticsServices() {
                   <ServiceTitle level={3}>{current.title}</ServiceTitle>
                   <Paragraph
                     type="secondary"
-                    style={{ margin: 0, fontSize: 15, lineHeight: 1.65 }}
+                    style={{ margin: 0, fontSize: "clamp(0.8rem, 1.2vw + 0.45rem, 0.95rem)", lineHeight: 1.6 }}
                   >
                     {current.description}
                   </Paragraph>

@@ -63,18 +63,22 @@ const Eyebrow = styled(Text)`
   && {
     display: block;
     margin-bottom: 12px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: #e8798a;
+
+    @media (min-width: 768px) {
+      font-size: 12px;
+    }
   }
 `;
 
 const Headline = styled(Title).attrs({ level: 1 })`
   && {
     font-family: var(--font-serif), Georgia, serif;
-    font-size: clamp(2.25rem, 4.6vw, 3.5rem);
+    font-size: clamp(1.75rem, 4.6vw, 3.5rem);
     line-height: 1.1;
     letter-spacing: -0.02em;
   }
@@ -100,7 +104,13 @@ export default function PageHero({
           <div>
             <Eyebrow>{eyebrow}</Eyebrow>
             <Headline id={id}>{title}</Headline>
-            <Paragraph style={{ fontSize: 16, lineHeight: 1.65, margin: 0 }}>
+            <Paragraph
+              style={{
+                fontSize: "clamp(0.9rem, 0.8rem + 0.4vw, 1rem)",
+                lineHeight: 1.65,
+                margin: 0,
+              }}
+            >
               {description}
             </Paragraph>
           </div>

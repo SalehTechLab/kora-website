@@ -77,7 +77,7 @@ export default function LogisticsIntro() {
         <Paragraph
           style={{
             margin: 0,
-            fontSize: "clamp(1.25rem, 2.4vw, 1.75rem)",
+            fontSize: "clamp(1.05rem, 0.7rem + 1.6vw, 1.75rem)",
             fontWeight: 600,
             lineHeight: 1.6,
             letterSpacing: "-0.01em",

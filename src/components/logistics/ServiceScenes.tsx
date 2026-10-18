@@ -626,7 +626,7 @@ export function CustomsScene({ progress }: SceneProps) {
           style={{ y: scan }}
         />
         {/* stamp */}
-        <g transform="translate(92 296)">
+        <g transform="translate(96 282)">
         <motion.g style={{ scale: stampScale, opacity: stampOpacity, rotate: stampRot }}>
           <circle r="62" fill="none" stroke={colors.burgundy} strokeWidth="4" />
           <circle r="53" fill="none" stroke={colors.burgundy} strokeWidth="1.5" />
