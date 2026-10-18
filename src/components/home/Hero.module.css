@@ -1,6 +1,4 @@
 .hero {
-  --hero-panel: #e7eef5; /* matches the illustration backdrop */
-
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10,30 +8,235 @@
   isolation: isolate;
 }
 
-/* Diagonal right panel — desktop only */
-.panel {
+.defs {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Burgundy ribbon peeking out from behind the navy shape */
+.ribbon {
   display: none;
+}
+
+/* Navy commodity stage — diagonal on desktop, stacked below the copy on mobile */
+.panel {
   position: relative;
   order: 2;
-  background: var(--hero-panel);
-  clip-path: polygon(0 14%, 100% 0, 100% 100%, 0 100%);
-  padding-top: 40px;
+  background:
+    radial-gradient(60% 46% at 50% 36%, #214a85 0%, rgba(33, 74, 133, 0) 70%),
+    var(--kora-navy);
+  clip-path: url(#hero-wave);
+  padding-top: 24px;
 }
 
-.imageWrap {
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 48px 20px 40px;
+}
+
+.disc {
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #ffffff 0%, #e6edf6 72%);
+  box-shadow:
+    0 40px 80px -32px rgba(0, 0, 0, 0.55),
+    0 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.orbit {
+  position: absolute;
+  inset: -9%;
+  width: 118%;
+  height: 118%;
+  pointer-events: none;
+}
+
+.parallax {
+  position: absolute;
+  inset: -1%;
+}
+
+.art,
+.float {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 2;
+  height: 100%;
 }
 
-.image {
-  object-fit: contain;
-  object-position: center;
+.art svg,
+.float svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.index {
+  position: absolute;
+  top: 6%;
+  left: -3%;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--kora-burgundy);
+  color: var(--kora-white);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.route {
+  position: absolute;
+  right: -8%;
+  bottom: -2%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(16, 41, 78, 0.72);
+  backdrop-filter: blur(8px);
+  color: var(--kora-white);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.routeLine {
+  width: 34px;
+  height: 2px;
+  background-image: linear-gradient(
+    90deg,
+    var(--kora-burgundy) 55%,
+    transparent 55%
+  );
+  background-size: 8px 2px;
+  animation: routeFlow 1s linear infinite;
+}
+
+@keyframes routeFlow {
+  to {
+    background-position: 8px 0;
+  }
+}
+
+.caption {
+  min-height: 64px;
+  text-align: center;
+}
+
+.captionTitle {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(1.375rem, 2vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--kora-white);
+}
+
+.captionItems {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--kora-blue-gray);
+}
+
+.tabs {
+  display: flex;
+  width: 100%;
+  max-width: 560px;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  position: relative;
+  flex: 0 0 auto;
+  height: 40px;
+  padding: 0 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--kora-blue-gray);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.tab:hover {
+  border-color: var(--kora-white);
+  color: var(--kora-white);
+}
+
+.tab[aria-selected="true"] {
+  background: var(--kora-white);
+  border-color: var(--kora-white);
+  color: var(--kora-navy);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--kora-white);
+  outline-offset: 3px;
+}
+
+/* Autoplay timer: when the bar finishes, the next commodity is shown */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--kora-burgundy);
+  transform-origin: left;
+  animation: fill 5s linear forwards;
+}
+
+.progress[data-paused="true"] {
+  animation-play-state: paused;
+}
+
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress {
+    animation: none;
+  }
+
+  .routeLine {
+    animation: none;
+  }
 }
 
 .inner {
   position: relative;
   z-index: 1;
+  pointer-events: none; /* lets the stage underneath stay interactive */
   max-width: 1280px;
   margin: 0 auto;
   padding: 56px 24px 48px;
@@ -41,6 +244,7 @@
 
 .content {
   max-width: 600px;
+  pointer-events: auto;
 }
 
 .eyebrow {
@@ -55,7 +259,7 @@
 .headline {
   font-family: var(--font-serif), Georgia, "Times New Roman", serif;
   font-weight: 700;
-  font-size: clamp(2.75rem, 6.4vw, 5.25rem);
+  font-size: clamp(2.5rem, 4.2vw, 4.25rem);
   line-height: 1.02;
   letter-spacing: -0.025em;
   color: var(--kora-navy);
@@ -138,6 +342,24 @@
   color: var(--kora-white);
 }
 
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #5b6577;
+}
+
+.proof i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--kora-burgundy);
+}
+
 @media (max-width: 479px) {
   .btn {
     flex: 1 1 100%;
@@ -145,33 +367,50 @@
   }
 }
 
-/* Desktop: content left, diagonal image panel right */
+/* Desktop: content left, diagonal commodity stage right */
 @media (min-width: 992px) {
   .hero {
     flex-direction: row;
     align-items: center;
-    min-height: min(calc(100svh - 76px), 760px);
+    min-height: min(calc(100svh - 76px), 780px);
   }
 
   .panel {
     position: absolute;
     inset: 0 0 0 auto;
-    width: 52%;
+    z-index: 0;
+    width: 56%;
     padding-top: 0;
-    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: url(#hero-blob);
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
-  .imageWrap {
+  .ribbon {
+    display: block;
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 56%;
+    background: linear-gradient(160deg, var(--kora-burgundy), #8e1424);
+    clip-path: url(#hero-blob);
+    transform: translateX(-28px) scale(1.01);
+  }
+
+  .stage {
     width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
-    margin-left: 6%;
+    padding: 40px 40px 32px 17%;
+    gap: 22px;
   }
 
-  .image {
-    object-position: right center;
+  .disc {
+    width: min(100%, 380px, 44svh);
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
   }
 
   .inner {
