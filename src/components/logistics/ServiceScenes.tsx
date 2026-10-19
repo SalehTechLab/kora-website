@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import {
   motion,
   useReducedMotion,
@@ -551,29 +551,68 @@ function CheckRow({
   );
 }
 
-function Chip({ x, y, label, delay }: { x: number; y: number; label: string; delay: number }) {
+function Chip({
+  x,
+  y,
+  label,
+  delay,
+  align = "start",
+}: {
+  x: number;
+  y: number;
+  label: string;
+  delay: number;
+  align?: "start" | "end";
+}) {
   const reduce = useReducedMotion();
+  const textRef = useRef<SVGTextElement>(null);
+  const [textW, setTextW] = useState(label.length * 9.6);
+
+  // Size the pill to the real text width so padding stays even
+  useLayoutEffect(() => {
+    const measure = () => {
+      if (textRef.current) setTextW(textRef.current.getComputedTextLength());
+    };
+    measure();
+    document.fonts?.ready.then(measure);
+  }, [label]);
+
+  const width = 28 + textW + 14;
   return (
-    <g transform={`translate(${x} ${y})`}>
-    <motion.g
-      animate={reduce ? undefined : { y: [0, -9] }}
-      transition={{ duration: 2.4, delay, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
-    >
-      <rect x={0} y={-15} width={label.length * 9 + 24} height={30} rx={15} fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.35)" />
-      <circle cx={14} cy={0} r={3.5} fill={colors.burgundy} />
-      <text x={26} y={5} fontFamily="Inter, Arial, sans-serif" fontSize={13} fontWeight={600} letterSpacing={1} fill="#fff">
-        {label}
-      </text>
-    </motion.g>
+    <g transform={`translate(${align === "end" ? x - width : x} ${y})`}>
+      <motion.g
+        animate={reduce ? undefined : { y: [0, -9] }}
+        transition={{ duration: 2.4, delay, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+      >
+        <rect x={0} y={-15} width={width} height={30} rx={15} fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.35)" />
+        <circle cx={15} cy={0} r={3.5} fill={colors.burgundy} />
+        <text ref={textRef} x={28} y={4.8} fontFamily="Inter, Arial, sans-serif" fontSize={13} fontWeight={600} letterSpacing={1} fill="#fff">
+          {label}
+        </text>
+      </motion.g>
     </g>
   );
 }
 
+const MARK_STEM = "M0 0H170.67V714.67H0Z";
+const MARK_SWOOSH =
+  "m517.73 215.39l119.09-82.06 2.6-1.82-187.28-129.19v46.1c-59.38 5.1-114.09 26.9-159.28 60.71-45.18 33.81-80.84 79.57-102.41 132.58-9.76 23.84-16.59 49.25-19.98 75.73q-2.73 20.11-2.73 40.85c0 13.74 0.91 27.35 2.73 40.75 3.39 26.32 10.22 51.89 19.98 75.94 36.21 89.34 113.06 159.36 210.92 184.68 9.31 2.4 18.95 4.31 28.72 6.01 16.01 2.48 32.23 3.73 48.37 3.73h0.45c20.2-0.12 40.18-2.04 59.59-5.8v-177.95c-18.5 8.86-38.82 13.41-60.04 13.5-5.01 0-9.53-0.24-14.32-0.79-1.48-0.12-2.94-0.25-4.88-0.58-0.79 0-1.58-0.24-2.94-0.45-5.91-0.91-11.92-2.28-18.62-4.22-5.22-1.49-10.55-3.52-15.89-5.91-51.52-22.35-84.91-73.21-84.91-129.64 0-69.11 49.7-126.67 115.2-139.04v42.03z";
+
 export function CustomsScene({ progress }: SceneProps) {
   const backX = useTransform(progress, [0, 1], [-24, 24]);
-  const stampScale = useTransform(progress, [0.42, 0.54, 0.6], [2.6, 0.92, 1]);
-  const stampOpacity = useTransform(progress, [0.42, 0.5], [0, 1]);
-  const stampRot = useTransform(progress, [0.42, 0.6], [-34, -14]);
+  const reduce = useReducedMotion();
+  // reduced motion renders the finished stamp instead of a mid-slam frame
+  const sp = useTransform(progress, (v) => (reduce ? 1 : v));
+  const stampScale = useTransform(sp, [0.42, 0.52, 0.58], [2.6, 0.9, 1]);
+  const stampOpacity = useTransform(sp, [0.42, 0.5], [0, 1]);
+  const stampRot = useTransform(sp, [0.42, 0.58], [-34, -14]);
+  const markScale = useTransform(sp, [0.52, 0.62, 0.68], [0, 1.12, 1]);
+  const markOpacity = useTransform(sp, [0.52, 0.58], [0, 1]);
+  const ringDraw = useTransform(sp, [0.5, 0.64], [0, 1]);
+  const textOpacity = useTransform(sp, [0.58, 0.66], [0, 1]);
+  const shockScale = useTransform(sp, [0.52, 0.7], [0.9, 1.9]);
+  const shockOpacity = useTransform(sp, [0.52, 0.56, 0.7], [0, 0.55, 0]);
+  const impactX = useTransform(sp, [0.5, 0.52, 0.54, 0.56, 0.58], [0, -3, 3, -1.5, 0]);
   const scan = useTransform(progress, [0, 1], [90, 330]);
 
   return (
@@ -627,23 +666,62 @@ export function CustomsScene({ progress }: SceneProps) {
         />
         {/* stamp */}
         <g transform="translate(96 282)">
-        <motion.g style={{ scale: stampScale, opacity: stampOpacity, rotate: stampRot }}>
-          <circle r="62" fill="none" stroke={colors.burgundy} strokeWidth="4" />
-          <circle r="53" fill="none" stroke={colors.burgundy} strokeWidth="1.5" />
-          <text y="-6" textAnchor="middle" fontFamily="Inter, Arial, sans-serif" fontSize={20} fontWeight={800} letterSpacing={3} fill={colors.burgundy}>
-            CLEARED
-          </text>
-          <text y="16" textAnchor="middle" fontFamily="Inter, Arial, sans-serif" fontSize={10} fontWeight={700} letterSpacing={3} fill={colors.burgundy}>
-            KORA TRADERS
-          </text>
-        </motion.g>
+          {/* ink shockwave on impact */}
+          <motion.circle
+            r="62"
+            fill="none"
+            stroke={colors.burgundy}
+            strokeWidth="2"
+            style={{ scale: shockScale, opacity: shockOpacity }}
+          />
+          <motion.g style={{ x: impactX }}>
+            <motion.g style={{ scale: stampScale, opacity: stampOpacity, rotate: stampRot }}>
+              <defs>
+                <path id="stamp-top" d="M -39 0 A 39 39 0 0 1 39 0" />
+                <path id="stamp-bottom" d="M -46 0 A 46 46 0 0 0 46 0" />
+              </defs>
+              <circle r="62" fill="rgba(247,249,252,0.82)" />
+              <motion.circle
+                r="60"
+                fill="none"
+                stroke={colors.burgundy}
+                strokeWidth="4"
+                style={{ pathLength: ringDraw, rotate: -90 }}
+              />
+              <circle r="52" fill="none" stroke={colors.burgundy} strokeWidth="1.5" />
+              <circle r="34" fill="none" stroke={colors.burgundy} strokeWidth="1.5" />
+
+              <motion.g style={{ opacity: textOpacity }} fill={colors.burgundy} fontFamily="Inter, Arial, sans-serif" fontWeight={800}>
+                <text fontSize={11} letterSpacing={3.5} textAnchor="middle">
+                  <textPath href="#stamp-top" startOffset="50%">
+                    CLEARED
+                  </textPath>
+                </text>
+                <text fontSize={8} letterSpacing={2.4} textAnchor="middle">
+                  <textPath href="#stamp-bottom" startOffset="50%">
+                    KORA TRADERS
+                  </textPath>
+                </text>
+                <circle cx={-43} cy={0} r={1.8} />
+                <circle cx={43} cy={0} r={1.8} />
+              </motion.g>
+
+              {/* Kora mark */}
+              <motion.g style={{ scale: markScale, opacity: markOpacity }}>
+                <g transform="translate(-16 -17.85) scale(0.05)" fill={colors.burgundy}>
+                  <path d={MARK_STEM} />
+                  <path d={MARK_SWOOSH} />
+                </g>
+              </motion.g>
+            </motion.g>
+          </motion.g>
         </g>
       </g>
 
-      <Chip x={44} y={104} label="HS CODE" delay={0} />
-      <Chip x={500} y={96} label="INCOTERMS" delay={0.6} />
-      <Chip x={40} y={330} label="EORI" delay={1.1} />
-      <Chip x={520} y={344} label="DUTIES" delay={1.6} />
+      <Chip x={32} y={104} label="HS CODE" delay={0} />
+      <Chip x={W - 32} y={96} label="INCOTERMS" delay={0.6} align="end" />
+      <Chip x={32} y={330} label="EORI" delay={1.1} />
+      <Chip x={W - 32} y={344} label="DUTIES" delay={1.6} align="end" />
     </Frame>
   );
 }

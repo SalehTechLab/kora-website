@@ -147,6 +147,19 @@ const Stage = styled.div`
   padding: 0 32px;
   overflow: hidden;
 
+  @media (max-width: 991px) {
+    padding: 0 20px;
+  }
+`;
+
+// Holds everything above the progress rail so the column guides stop short of it
+const Body = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+
   /* hairline column guides, echoing the reference grid */
   &::before,
   &::after {
@@ -159,20 +172,10 @@ const Stage = styled.div`
     pointer-events: none;
   }
   &::before {
-    left: 32px;
+    left: 0;
   }
   &::after {
-    right: 32px;
-  }
-
-  @media (max-width: 991px) {
-    padding: 0 20px;
-    &::before {
-      left: 20px;
-    }
-    &::after {
-      right: 20px;
-    }
+    right: 0;
   }
 `;
 
@@ -554,6 +557,7 @@ export default function LogisticsServices() {
     <ConfigProvider theme={sectionTheme}>
       <Runway ref={runwayRef} id="logistics-services" aria-labelledby="services-heading">
         <Stage>
+          <Body>
           <Heading>
             <Title level={2} id="services-heading">
               Our Logistics Services
@@ -642,6 +646,7 @@ export default function LogisticsServices() {
               </AnimatePresence>
             </Cell>
           </Grid>
+          </Body>
 
           <Rail aria-label="Logistics services">
             {SERVICES.map((s, i) => (
