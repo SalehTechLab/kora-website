@@ -12,11 +12,16 @@ export default function WhatsAppFloat() {
       <FloatButton
         type="primary"
         shape="circle"
-        icon={<WhatsAppOutlined />}
+        icon={<WhatsAppOutlined style={{ fontSize: 28 }} />}
         href={WHATSAPP_URL}
         target="_blank"
         aria-label="Chat on WhatsApp"
-        style={{ insetInlineEnd: 24, insetBlockEnd: 24 }}
+        style={{
+          insetInlineEnd: 24,
+          insetBlockEnd: 88,
+          width: 56,
+          height: 56,
+        }}
       />
     </ConfigProvider>
   );
