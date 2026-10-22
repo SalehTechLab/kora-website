@@ -4,7 +4,11 @@ import styled, { keyframes } from "styled-components";
 import { colors } from "@/theme/themeConfig";
 import { SERIF } from "./shared";
 
-const WORDS = ["Reliable", "Transparent", "Fair", "On time", "Hands-on"];
+const TAGLINES = [
+  "Trust in Every Deal. Value in Every Connection.",
+  "Better Deals. Stronger Bonds. Lasting Growth.",
+  "Real Connections. Fairer Trade. Growth That Lasts.",
+];
 
 const scroll = keyframes`
   to { transform: translateX(-50%); }
@@ -12,14 +16,14 @@ const scroll = keyframes`
 
 const Band = styled.section`
   overflow: hidden;
-  padding: 40px 0;
-  background: ${colors.navy};
+  padding: 36px 0;
+  background: ${colors.burgundy};
 `;
 
 const Track = styled.div`
   display: flex;
   width: max-content;
-  animation: ${scroll} 40s linear infinite;
+  animation: ${scroll} 70s linear infinite;
 
   &:hover {
     animation-play-state: paused;
@@ -36,36 +40,34 @@ const Item = styled.span`
   gap: 48px;
   padding-right: 48px;
   font-family: ${SERIF};
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  line-height: 1;
+  font-size: clamp(1.5rem, 3.4vw, 2.75rem);
+  line-height: 1.1;
   white-space: nowrap;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.55);
+  color: ${colors.white};
 
   &:nth-child(even) {
-    color: ${colors.white};
-    -webkit-text-stroke: 0;
     font-style: italic;
+    color: rgba(255, 255, 255, 0.62);
   }
 
   &::after {
     content: "";
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: ${colors.burgundy};
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+    background: ${colors.navy};
   }
 `;
 
-export default function ValuesMarquee() {
+export default function TaglineTicker() {
   // Two identical halves so the -50% loop is seamless
-  const items = [...WORDS, ...WORDS, ...WORDS, ...WORDS];
+  const items = [...TAGLINES, ...TAGLINES, ...TAGLINES, ...TAGLINES];
 
   return (
-    <Band aria-label="Our values: reliable, transparent, fair, on time, hands-on">
+    <Band aria-label={TAGLINES.join(" ")}>
       <Track aria-hidden>
-        {items.map((word, i) => (
-          <Item key={i}>{word}</Item>
+        {items.map((line, i) => (
+          <Item key={i}>{line}</Item>
         ))}
       </Track>
     </Band>

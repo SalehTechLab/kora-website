@@ -11,25 +11,21 @@ const { Title, Paragraph } = Typography;
 
 const PATHS = [
   {
-    number: "01",
     title: "Supply with us",
     description:
       "Manufacturers and exporters with quality products and a market to reach.",
   },
   {
-    number: "02",
     title: "Buy with us",
     description:
-      "Importers and distributors looking for reliable suppliers and fair prices.",
+      "Importers and distributors who want dependable suppliers at competitive prices.",
   },
   {
-    number: "03",
     title: "Move with us",
     description:
-      "Freight and logistics providers who deliver on time, every time.",
+      "Freight and logistics providers who keep every shipment moving.",
   },
   {
-    number: "04",
     title: "Venture with us",
     description:
       "Joint ventures (JVs) with businesses ready to build something larger together.",
@@ -141,15 +137,6 @@ const Card = styled(motion.article)`
   }
 `;
 
-const Number = styled.span`
-  display: block;
-  margin-bottom: 40px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: #f08a98;
-`;
-
 const spotlight = (e: React.MouseEvent<HTMLElement>) => {
   const r = e.currentTarget.getBoundingClientRect();
   e.currentTarget.style.setProperty("--x", `${e.clientX - r.left}px`);
@@ -182,8 +169,7 @@ export default function Partnerships() {
 
           <Grid>
             {PATHS.map((path, i) => (
-              <Card key={path.number} onMouseMove={spotlight} {...reveal(i * 0.1)}>
-                <Number aria-hidden>{path.number}</Number>
+              <Card key={path.title} onMouseMove={spotlight} {...reveal(i * 0.1)}>
                 <Title level={3} style={{ fontSize: 22, marginBottom: 12 }}>
                   {path.title}
                 </Title>
