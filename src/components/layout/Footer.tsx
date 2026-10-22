@@ -34,7 +34,7 @@ const COMMODITIES = [
 ];
 
 const LEGAL_LINKS = [
-  { label: "About us", href: "/about" },
+  { label: "About us", href: "/about-us" },
   { label: "Imprint", href: "/imprint" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms" },

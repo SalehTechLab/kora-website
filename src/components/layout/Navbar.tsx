@@ -6,13 +6,17 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Drawer, Space } from "antd";
-import { MenuOutlined, CloseOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import {
+  MenuOutlined,
+  CloseOutlined,
+  ArrowRightOutlined,
+} from "@ant-design/icons";
 import LocaleSwitcher from "./LocaleSwitcher";
 import styles from "./Navbar.module.css";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
+  { label: "About Us", href: "/about-us" },
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
   { label: "Logistics", href: "/logistics" },
