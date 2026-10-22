@@ -17,12 +17,24 @@ const { Title, Paragraph, Text } = Typography;
 
 const LINES = ["Opportunities", "are everywhere.", "Trust is rare."];
 
-// Each label rides its own ring; inset is the ring's gap to the stage edge (%),
-// angle its starting position, seconds one full revolution
-const ORBITS = [
-  { label: "Source", inset: 20, angle: 300, seconds: 32, dot: false },
-  { label: "Procure", inset: 11, angle: 60, seconds: 46, dot: true },
-  { label: "Deliver", inset: 3, angle: 180, seconds: 64, dot: false },
+// All seven brand traits share the outer ring, evenly spaced and turning
+// together, so labels can never cross. The inner rings carry only planets.
+// `inset` is the ring's gap to the stage edge (%), `start` its starting
+// rotation, `seconds` one full revolution.
+const TRAITS = [
+  "Opportunity focused",
+  "Reliable",
+  "Connected",
+  "Innovative",
+  "Approachable",
+  "Transparent",
+  "Diverse",
+];
+
+const RINGS = [
+  { inset: 5, start: 0, seconds: 90, traits: TRAITS },
+  { inset: 17, start: 200, seconds: 38, planet: "#F08A98" },
+  { inset: 27, start: 60, seconds: 26, planet: colors.burgundy },
 ];
 
 const theme: ThemeConfig = {
@@ -71,7 +83,7 @@ const Grid = styled.div`
   align-items: center;
   gap: 48px;
 
-  @media (max-width: 991px) {
+  @media (max-width: 1099px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -97,14 +109,16 @@ const Headline = styled(Title).attrs({ level: 1 })`
   }
 `;
 
+// Sized as a container so labels scale with the stage (cqw units)
 const Stage = styled.div`
   position: relative;
-  width: 100%;
-  max-width: 440px;
+  container-type: inline-size;
+  width: 82%;
+  max-width: 430px;
   aspect-ratio: 1;
-  margin-left: auto;
+  margin: 0 auto;
 
-  @media (max-width: 991px) {
+  @media (max-width: 1099px) {
     display: none;
   }
 `;
@@ -114,7 +128,7 @@ const revolve = keyframes`
   to { transform: rotate(calc(var(--a) + 360deg)); }
 `;
 
-// Keeps the label upright while its ring turns
+// Keeps the label upright while its ring turns; --a is the chip's total angle
 const unrevolve = keyframes`
   from { transform: translate(-50%, -50%) rotate(calc(var(--a) * -1)); }
   to { transform: translate(-50%, -50%) rotate(calc(var(--a) * -1 - 360deg)); }
@@ -133,16 +147,23 @@ const Orbit = styled.div<{ $inset: number; $seconds: number }>`
   }
 `;
 
+// Fixed offset of one body around its ring
+const Slot = styled.span`
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--b));
+`;
+
 const Chip = styled.span`
   position: absolute;
   top: 0;
   left: 50%;
-  padding: 8px 16px;
+  padding: 1.8cqw 3.6cqw;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
-  background: rgba(16, 41, 78, 0.85);
+  background: rgba(16, 41, 78, 0.9);
   backdrop-filter: blur(8px);
-  font-size: 13px;
+  font-size: 3cqw;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -156,22 +177,21 @@ const Chip = styled.span`
   }
 `;
 
-// Small planet on the far side of its ring
 const Planet = styled.i`
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 50%;
-  width: 10px;
-  height: 10px;
+  width: 2.3cqw;
+  height: 2.3cqw;
   border-radius: 50%;
-  background: ${colors.burgundy};
-  box-shadow: 0 0 0 4px rgba(181, 30, 50, 0.25);
-  transform: translate(-50%, 50%);
+  background: var(--c);
+  box-shadow: 0 0 0 0.9cqw rgba(255, 255, 255, 0.12);
+  transform: translate(-50%, -50%);
 `;
 
 const Core = styled.div`
   position: absolute;
-  inset: 29%;
+  inset: 33%;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -182,7 +202,7 @@ const Core = styled.div`
   );
 
   img {
-    width: 66%;
+    width: 70%;
     height: auto;
     filter: brightness(0) invert(1);
   }
@@ -303,24 +323,38 @@ export default function AboutHero() {
               <motion.div
                 style={{ position: "absolute", inset: 0, x: ringX, y: ringY }}
               >
-                {ORBITS.map((orbit) => (
+                {RINGS.map((ring) => (
                   <Orbit
-                    key={orbit.label}
-                    $inset={orbit.inset}
-                    $seconds={orbit.seconds}
-                    style={{ "--a": `${orbit.angle}deg` } as React.CSSProperties}
+                    key={ring.inset}
+                    $inset={ring.inset}
+                    $seconds={ring.seconds}
+                    style={{ "--a": `${ring.start}deg` } as React.CSSProperties}
                   >
-                    <Chip
-                      style={
-                        {
-                          "--a": `${orbit.angle}deg`,
-                          "--s": `${orbit.seconds}s`,
-                        } as React.CSSProperties
-                      }
-                    >
-                      {orbit.label}
-                    </Chip>
-                    {orbit.dot && <Planet />}
+                    {ring.traits?.map((trait, i, all) => {
+                      const slot = (360 / all.length) * i;
+                      return (
+                        <Slot
+                          key={trait}
+                          style={{ "--b": `${slot}deg` } as React.CSSProperties}
+                        >
+                          <Chip
+                            style={
+                              {
+                                "--a": `${ring.start + slot}deg`,
+                                "--s": `${ring.seconds}s`,
+                              } as React.CSSProperties
+                            }
+                          >
+                            {trait}
+                          </Chip>
+                        </Slot>
+                      );
+                    })}
+                    {ring.planet && (
+                      <Slot style={{ "--b": "0deg" } as React.CSSProperties}>
+                        <Planet style={{ "--c": ring.planet } as React.CSSProperties} />
+                      </Slot>
+                    )}
                   </Orbit>
                 ))}
               </motion.div>
