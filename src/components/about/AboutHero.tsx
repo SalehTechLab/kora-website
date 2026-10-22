@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { ConfigProvider, Typography, type ThemeConfig } from "antd";
 import {
   motion,
@@ -17,10 +17,12 @@ const { Title, Paragraph, Text } = Typography;
 
 const LINES = ["Opportunities", "are everywhere.", "Trust is rare."];
 
-const CHIPS = [
-  { label: "Source", style: { top: "8%", left: "6%" }, delay: 0 },
-  { label: "Procure", style: { top: "46%", right: "-2%" }, delay: 1.2 },
-  { label: "Deliver", style: { bottom: "6%", left: "14%" }, delay: 2.4 },
+// Each label rides its own ring; inset is the ring's gap to the stage edge (%),
+// angle its starting position, seconds one full revolution
+const ORBITS = [
+  { label: "Source", inset: 20, angle: 300, seconds: 32, dot: false },
+  { label: "Procure", inset: 11, angle: 60, seconds: 46, dot: true },
+  { label: "Deliver", inset: 3, angle: 180, seconds: 64, dot: false },
 ];
 
 const theme: ThemeConfig = {
@@ -107,35 +109,97 @@ const Stage = styled.div`
   }
 `;
 
-const Mark = styled.div`
-  position: absolute;
-  inset: 26%;
-  filter: brightness(0) invert(1);
-  opacity: 0.92;
+const revolve = keyframes`
+  from { transform: rotate(var(--a)); }
+  to { transform: rotate(calc(var(--a) + 360deg)); }
+`;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+// Keeps the label upright while its ring turns
+const unrevolve = keyframes`
+  from { transform: translate(-50%, -50%) rotate(calc(var(--a) * -1)); }
+  to { transform: translate(-50%, -50%) rotate(calc(var(--a) * -1 - 360deg)); }
+`;
+
+const Orbit = styled.div<{ $inset: number; $seconds: number }>`
+  position: absolute;
+  inset: ${({ $inset }) => $inset}%;
+  border: 1px dashed rgba(255, 255, 255, 0.26);
+  border-radius: 50%;
+  transform: rotate(var(--a));
+  animation: ${revolve} ${({ $seconds }) => $seconds}s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
 `;
 
-const Chip = styled(motion.span)`
+const Chip = styled.span`
   position: absolute;
+  top: 0;
+  left: 50%;
   padding: 8px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(16, 41, 78, 0.85);
   backdrop-filter: blur(8px);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: ${colors.white};
+  transform: translate(-50%, -50%) rotate(calc(var(--a) * -1));
+  animation: ${unrevolve} var(--s) linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+`;
+
+// Small planet on the far side of its ring
+const Planet = styled.i`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: ${colors.burgundy};
+  box-shadow: 0 0 0 4px rgba(181, 30, 50, 0.25);
+  transform: translate(-50%, 50%);
+`;
+
+const Core = styled.div`
+  position: absolute;
+  inset: 29%;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(240, 138, 152, 0.28) 0%,
+    rgba(240, 138, 152, 0) 70%
+  );
+
+  img {
+    width: 66%;
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
+`;
+
+const CueTrack = styled.span`
+  position: relative;
+  width: 3px;
+  height: 52px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: ${colors.white};
 `;
 
 const Cue = styled(motion.div)`
   position: absolute;
+  z-index: 1;
   left: 50%;
   bottom: 28px;
   display: flex;
@@ -151,14 +215,6 @@ const Cue = styled(motion.div)`
 
   @media (max-width: 767px) {
     display: none;
-  }
-
-  span {
-    position: relative;
-    width: 1px;
-    height: 44px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.2);
   }
 `;
 
@@ -244,56 +300,35 @@ export default function AboutHero() {
             </div>
 
             <Stage aria-hidden>
-              <motion.svg
-                viewBox="0 0 100 100"
+              <motion.div
                 style={{ position: "absolute", inset: 0, x: ringX, y: ringY }}
               >
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="48"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.12)"
-                  strokeWidth="0.3"
-                />
-                <motion.g
-                  style={{ originX: "50px", originY: "50px" }}
-                  animate={reduceMotion ? undefined : { rotate: 360 }}
-                  transition={{ duration: 48, ease: "linear", repeat: Infinity }}
-                >
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.35)"
-                    strokeWidth="0.35"
-                    strokeDasharray="1.2 2.4"
-                  />
-                  <circle cx="50" cy="10" r="2.1" fill={colors.burgundy} />
-                  <circle cx="50" cy="10" r="0.8" fill="#fff" />
-                </motion.g>
-                <motion.g
-                  style={{ originX: "50px", originY: "50px" }}
-                  animate={reduceMotion ? undefined : { rotate: -360 }}
-                  transition={{ duration: 70, ease: "linear", repeat: Infinity }}
-                >
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="30"
-                    fill="none"
-                    stroke="rgba(255,255,255,0.2)"
-                    strokeWidth="0.3"
-                  />
-                  <circle cx="80" cy="50" r="1.4" fill="#F08A98" />
-                </motion.g>
-              </motion.svg>
+                {ORBITS.map((orbit) => (
+                  <Orbit
+                    key={orbit.label}
+                    $inset={orbit.inset}
+                    $seconds={orbit.seconds}
+                    style={{ "--a": `${orbit.angle}deg` } as React.CSSProperties}
+                  >
+                    <Chip
+                      style={
+                        {
+                          "--a": `${orbit.angle}deg`,
+                          "--s": `${orbit.seconds}s`,
+                        } as React.CSSProperties
+                      }
+                    >
+                      {orbit.label}
+                    </Chip>
+                    {orbit.dot && <Planet />}
+                  </Orbit>
+                ))}
+              </motion.div>
 
               <motion.div
                 style={{ position: "absolute", inset: 0, x: markX, y: markY }}
               >
-                <Mark>
+                <Core>
                   <Image
                     src="/images/logo/kora-logo-mark.svg"
                     alt=""
@@ -301,41 +336,25 @@ export default function AboutHero() {
                     height={714}
                     priority
                   />
-                </Mark>
+                </Core>
               </motion.div>
-
-              {CHIPS.map((chip) => (
-                <Chip
-                  key={chip.label}
-                  style={chip.style}
-                  animate={reduceMotion ? undefined : { y: [0, -8, 0] }}
-                  transition={{
-                    duration: 6,
-                    ease: "easeInOut",
-                    repeat: Infinity,
-                    delay: chip.delay,
-                  }}
-                >
-                  {chip.label}
-                </Chip>
-              ))}
             </Stage>
           </Grid>
         </Container>
 
         <Cue aria-hidden {...fade(1.1)}>
           <Text style={{ color: "inherit", font: "inherit" }}>Scroll</Text>
-          <span>
+          <CueTrack>
             <motion.i
               style={{
                 position: "absolute",
                 inset: 0,
-                background: colors.white,
+                background: colors.burgundy,
               }}
               animate={reduceMotion ? undefined : { y: ["-100%", "100%"] }}
               transition={{ duration: 1.8, ease: "easeInOut", repeat: Infinity }}
             />
-          </span>
+          </CueTrack>
         </Cue>
       </Banner>
     </ConfigProvider>
