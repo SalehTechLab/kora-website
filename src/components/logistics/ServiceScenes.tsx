@@ -137,7 +137,7 @@ export function AirScene({ progress }: SceneProps) {
         strokeDasharray="3 9"
       />
       <circle cx="30" cy="340" r="4" fill="#fff" opacity="0.8" />
-      <circle cx="700" cy="210" r="4" fill={colors.burgundy} />
+      <circle cx="700" cy="210" r="4" fill={colors.crimson} />
 
       {/* speed streaks */}
       <Loop animate={{ x: [0, -720] }} duration={5}>
@@ -167,7 +167,7 @@ export function AirScene({ progress }: SceneProps) {
             {/* far wing */}
             <path d="M-6,-8 L-52,-62 L-26,-62 L44,-10 Z" fill="#9fb2cc" />
             {/* tail fin */}
-            <path d="M-138,-6 L-160,-72 L-122,-72 L-64,-24 Z" fill={colors.burgundy} />
+            <path d="M-138,-6 L-160,-72 L-122,-72 L-64,-24 Z" fill={colors.crimson} />
             <path d="M-126,4 L-166,16 L-150,22 L-100,12 Z" fill="#9fb2cc" />
             {/* fuselage */}
             <path
@@ -176,7 +176,7 @@ export function AirScene({ progress }: SceneProps) {
             />
             <path d="M-142,8 C-142,16 -70,24 40,22 C104,22 148,14 160,2 L-142,2Z" fill="#aab9d0" opacity="0.55" />
             <path d="M104,-22 C128,-20 146,-10 152,-2 L100,-2 Z" fill="#17314f" />
-            <rect x={-120} y={2} width={250} height={5} fill={colors.burgundy} opacity="0.9" />
+            <rect x={-120} y={2} width={250} height={5} fill={colors.crimson} opacity="0.9" />
             {Array.from({ length: 13 }).map((_, i) => (
               <circle key={i} cx={-84 + i * 14} cy={-12} r={3.2} fill="#17314f" />
             ))}
@@ -202,7 +202,7 @@ export function AirScene({ progress }: SceneProps) {
 
 /* ---------- 02 · SEA ---------- */
 
-const CONTAINER_COLORS = [colors.burgundy, "#e9eef6", "#3d7cc9", "#f0b44c", "#2a9d8f"];
+const CONTAINER_COLORS = [colors.crimson, "#e9eef6", "#3d7cc9", "#f0b44c", "#2a9d8f"];
 const STACKS = [3, 4, 4, 3, 4, 2, 3];
 
 export function SeaScene({ progress }: SceneProps) {
@@ -277,10 +277,10 @@ export function SeaScene({ progress }: SceneProps) {
             <rect x={90} y={-82} width={72} height={12} fill="#cdd7e6" />
             <rect x={100} y={-62} width={52} height={7} fill="#17314f" />
             <rect x={100} y={-46} width={52} height={7} fill="#17314f" />
-            <rect x={118} y={-104} width={16} height={22} fill={colors.burgundy} />
+            <rect x={118} y={-104} width={16} height={22} fill={colors.crimson} />
             {/* hull */}
             <path d="M-206,-10 L206,-10 L178,46 L-190,46 Z" fill="#161c2c" />
-            <path d="M-200,6 L196,6 L190,18 L-194,18 Z" fill={colors.burgundy} />
+            <path d="M-200,6 L196,6 L190,18 L-194,18 Z" fill={colors.crimson} />
             <path d="M-206,-10 L206,-10 L202,-4 L-206,-4Z" fill="#2a3350" />
           </Loop>
         </motion.g>
@@ -373,7 +373,7 @@ export function RoadScene({ progress }: SceneProps) {
           <Loop animate={{ y: [0, -2] }} duration={0.22} ease="easeInOut" yoyo>
             <polygon points="170,-30 520,-6 520,18 170,-6" fill="url(#road-beam)" />
             <rect x={-212} y={-122} width={282} height={104} rx={4} fill="#e9eef6" />
-            <rect x={-212} y={-40} width={282} height={12} fill={colors.burgundy} />
+            <rect x={-212} y={-40} width={282} height={12} fill={colors.crimson} />
             <image
               href="/images/logo/kora-logo-1.svg"
               x={-141}
@@ -383,7 +383,7 @@ export function RoadScene({ progress }: SceneProps) {
               preserveAspectRatio="xMidYMid meet"
             />
             <rect x={-218} y={-18} width={400} height={12} fill="#0b0d14" />
-            <path d="M76,-18 L76,-108 L136,-108 L172,-62 L178,-18 Z" fill={colors.burgundy} />
+            <path d="M76,-18 L76,-108 L136,-108 L172,-62 L178,-18 Z" fill={colors.crimson} />
             <path d="M104,-96 L134,-96 L158,-64 L104,-64 Z" fill="#9ec6ea" />
             <rect x={170} y={-30} width={10} height={8} rx={2} fill="#ffe9a8" />
             <rect x={150} y={-130} width={6} height={26} fill="#0b0d14" />
@@ -452,7 +452,7 @@ export function RailScene({ progress }: SceneProps) {
               {/* pantograph */}
               <path d="M70 -86 L96 -150 L122 -86 M96 -150 H138" stroke="#0b1325" strokeWidth="3" fill="none" />
               {/* locomotive */}
-              <path d="M0,-18 L0,-88 L150,-88 L202,-60 L202,-18 Z" fill={colors.burgundy} />
+              <path d="M0,-18 L0,-88 L150,-88 L202,-60 L202,-18 Z" fill={colors.crimson} />
               <rect x={0} y={-52} width={202} height={10} fill="#fff" opacity="0.9" />
               <path d="M138,-82 L172,-82 L194,-62 L138,-62 Z" fill="#9ec6ea" />
               <rect x={14} y={-76} width={50} height={14} rx={2} fill="#17314f" />
@@ -537,13 +537,13 @@ function CheckRow({
       <motion.path
         d={`M${-107} ${y} l5 6 l11 -13`}
         fill="none"
-        stroke={colors.burgundy}
+        stroke={colors.crimson}
         strokeWidth={3.5}
         strokeLinecap="round"
         strokeLinejoin="round"
         style={{ pathLength: draw }}
       />
-      <text x={-76} y={y + 6} fontFamily="Inter, Arial, sans-serif" fontSize={15} fontWeight={600} fill={colors.navy}>
+      <text x={-76} y={y + 6} fontFamily="Inter, Arial, sans-serif" fontSize={15} fontWeight={600} fill={colors.deepNavy}>
         {CHECKS[i]}
       </text>
       <rect x={-76} y={y + 14} width={90 + (i % 2) * 40} height={4} rx={2} fill="#d0d7e2" />
@@ -585,7 +585,7 @@ function Chip({
         transition={{ duration: 2.4, delay, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
       >
         <rect x={0} y={-15} width={width} height={30} rx={15} fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.35)" />
-        <circle cx={15} cy={0} r={3.5} fill={colors.burgundy} />
+        <circle cx={15} cy={0} r={3.5} fill={colors.crimson} />
         <text ref={textRef} x={28} y={4.8} fontFamily="Inter, Arial, sans-serif" fontSize={13} fontWeight={600} letterSpacing={1} fill="#fff">
           {label}
         </text>
@@ -641,8 +641,8 @@ export function CustomsScene({ progress }: SceneProps) {
       {/* main declaration */}
       <g transform="translate(360 40)">
         <rect x={-150} y={0} width={300} height={360} rx={16} fill="#f7f9fc" />
-        <rect x={-150} y={0} width={300} height={56} rx={16} fill={colors.navy} />
-        <rect x={-150} y={36} width={300} height={20} fill={colors.navy} />
+        <rect x={-150} y={0} width={300} height={56} rx={16} fill={colors.deepNavy} />
+        <rect x={-150} y={36} width={300} height={20} fill={colors.deepNavy} />
         <text x={-124} y={34} fontFamily="Inter, Arial, sans-serif" fontSize={16} fontWeight={700} letterSpacing={2} fill="#fff">
           CUSTOMS DECLARATION
         </text>
@@ -650,7 +650,7 @@ export function CustomsScene({ progress }: SceneProps) {
           <CheckRow key={i} i={i} progress={progress} />
         ))}
         {/* barcode */}
-        <g fill={colors.charcoal}>
+        <g fill={colors.darkSlate}>
           {Array.from({ length: 34 }).map((_, i) => (
             <rect key={i} x={-124 + i * 4.4} y={300} width={i % 3 === 0 ? 3 : 1.6} height={34} />
           ))}
@@ -660,7 +660,7 @@ export function CustomsScene({ progress }: SceneProps) {
           x={-150}
           width={300}
           height={3}
-          fill={colors.burgundy}
+          fill={colors.crimson}
           opacity={0.55}
           style={{ y: scan }}
         />
@@ -670,7 +670,7 @@ export function CustomsScene({ progress }: SceneProps) {
           <motion.circle
             r="62"
             fill="none"
-            stroke={colors.burgundy}
+            stroke={colors.crimson}
             strokeWidth="2"
             style={{ scale: shockScale, opacity: shockOpacity }}
           />
@@ -684,14 +684,14 @@ export function CustomsScene({ progress }: SceneProps) {
               <motion.circle
                 r="60"
                 fill="none"
-                stroke={colors.burgundy}
+                stroke={colors.crimson}
                 strokeWidth="4"
                 style={{ pathLength: ringDraw, rotate: -90 }}
               />
-              <circle r="52" fill="none" stroke={colors.burgundy} strokeWidth="1.5" />
-              <circle r="34" fill="none" stroke={colors.burgundy} strokeWidth="1.5" />
+              <circle r="52" fill="none" stroke={colors.crimson} strokeWidth="1.5" />
+              <circle r="34" fill="none" stroke={colors.crimson} strokeWidth="1.5" />
 
-              <motion.g style={{ opacity: textOpacity }} fill={colors.burgundy} fontFamily="Inter, Arial, sans-serif" fontWeight={800}>
+              <motion.g style={{ opacity: textOpacity }} fill={colors.crimson} fontFamily="Inter, Arial, sans-serif" fontWeight={800}>
                 <text fontSize={11} letterSpacing={3.5} textAnchor="middle">
                   <textPath href="#stamp-top" startOffset="50%">
                     CLEARED
@@ -708,7 +708,7 @@ export function CustomsScene({ progress }: SceneProps) {
 
               {/* Kora mark */}
               <motion.g style={{ scale: markScale, opacity: markOpacity }}>
-                <g transform="translate(-16 -17.85) scale(0.05)" fill={colors.burgundy}>
+                <g transform="translate(-16 -17.85) scale(0.05)" fill={colors.crimson}>
                   <path d={MARK_STEM} />
                   <path d={MARK_SWOOSH} />
                 </g>

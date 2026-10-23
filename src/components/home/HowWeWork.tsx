@@ -17,7 +17,7 @@ const sectionTheme: ThemeConfig = {
 
 const Section = styled.section`
   padding: 112px 0;
-  background: ${colors.offWhite};
+  background: ${colors.mist};
 
   @media (max-width: 767px) {
     padding: 72px 0;
@@ -42,7 +42,7 @@ const Eyebrow = styled(Text)`
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
   }
 `;
 

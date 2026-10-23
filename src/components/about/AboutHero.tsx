@@ -33,14 +33,14 @@ const TRAITS = [
 
 const RINGS = [
   { inset: 5, start: 0, seconds: 90, traits: TRAITS },
-  { inset: 17, start: 200, seconds: 38, planet: "#F08A98" },
-  { inset: 27, start: 60, seconds: 26, planet: colors.burgundy },
+  { inset: 17, start: 200, seconds: 38, planet: "#B51E32" },
+  { inset: 27, start: 60, seconds: 26, planet: colors.crimson },
 ];
 
 const theme: ThemeConfig = {
   token: {
-    colorTextHeading: colors.white,
-    colorText: "rgba(255, 255, 255, 0.82)",
+    colorTextHeading: colors.softWhite,
+    colorText: "rgba(244, 246, 249, 0.82)",
   },
   components: { Typography: { titleMarginTop: 0, titleMarginBottom: 0 } },
 };
@@ -59,7 +59,7 @@ const Banner = styled.section`
       rgba(181, 30, 50, 0.22) 0%,
       transparent 62%
     ),
-    linear-gradient(90deg, #0b1d38 0%, ${colors.navy} 100%);
+    linear-gradient(90deg, #10294E 0%, ${colors.deepNavy} 100%);
 
   &::before {
     content: "";
@@ -105,7 +105,7 @@ const Headline = styled(Title).attrs({ level: 1 })`
   /* Last line carries the point, so it gets the accent */
   ${Line}:last-child span {
     font-style: italic;
-    color: #f08a98;
+    color: #B51E32;
   }
 `;
 
@@ -137,7 +137,7 @@ const unrevolve = keyframes`
 const Orbit = styled.div<{ $inset: number; $seconds: number }>`
   position: absolute;
   inset: ${({ $inset }) => $inset}%;
-  border: 1px dashed rgba(255, 255, 255, 0.26);
+  border: 1px dashed rgba(244, 246, 249, 0.26);
   border-radius: 50%;
   transform: rotate(var(--a));
   animation: ${revolve} ${({ $seconds }) => $seconds}s linear infinite;
@@ -159,7 +159,7 @@ const Chip = styled.span`
   top: 0;
   left: 50%;
   padding: 1.8cqw 3.6cqw;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(244, 246, 249, 0.3);
   border-radius: 999px;
   background: rgba(16, 41, 78, 0.9);
   backdrop-filter: blur(8px);
@@ -168,7 +168,7 @@ const Chip = styled.span`
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: ${colors.white};
+  color: ${colors.softWhite};
   transform: translate(-50%, -50%) rotate(calc(var(--a) * -1));
   animation: ${unrevolve} var(--s) linear infinite;
 
@@ -185,7 +185,7 @@ const Planet = styled.i`
   height: 2.3cqw;
   border-radius: 50%;
   background: var(--c);
-  box-shadow: 0 0 0 0.9cqw rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 0.9cqw rgba(244, 246, 249, 0.12);
   transform: translate(-50%, -50%);
 `;
 
@@ -197,8 +197,8 @@ const Core = styled.div`
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(240, 138, 152, 0.28) 0%,
-    rgba(240, 138, 152, 0) 70%
+    rgba(181, 30, 50, 0.28) 0%,
+    rgba(181, 30, 50, 0) 70%
   );
 
   img {
@@ -214,7 +214,7 @@ const CueTrack = styled.span`
   height: 52px;
   overflow: hidden;
   border-radius: 3px;
-  background: ${colors.white};
+  background: ${colors.softWhite};
 `;
 
 const Cue = styled(motion.div)`
@@ -230,7 +230,7 @@ const Cue = styled(motion.div)`
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(244, 246, 249, 0.6);
   transform: translateX(-50%);
 
   @media (max-width: 767px) {
@@ -383,7 +383,7 @@ export default function AboutHero() {
               style={{
                 position: "absolute",
                 inset: 0,
-                background: colors.burgundy,
+                background: colors.crimson,
               }}
               animate={reduceMotion ? undefined : { y: ["-100%", "100%"] }}
               transition={{ duration: 1.8, ease: "easeInOut", repeat: Infinity }}

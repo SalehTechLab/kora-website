@@ -120,12 +120,12 @@ export default function Hero() {
                     cy="50"
                     r="49"
                     fill="none"
-                    stroke="rgba(255,255,255,0.35)"
+                    stroke="rgba(244, 246, 249, 0.35)"
                     strokeWidth="0.35"
                     strokeDasharray="1.2 2.4"
                   />
                   <circle cx="50" cy="1" r="2.1" fill="#B51E32" />
-                  <circle cx="50" cy="1" r="0.8" fill="#fff" />
+                  <circle cx="50" cy="1" r="0.8" fill="#F4F6F9" />
                 </motion.g>
               </motion.svg>
 

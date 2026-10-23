@@ -5,9 +5,9 @@
   height: 40px;
   padding: 0 14px;
   border-radius: 4px;
-  border: 1px solid var(--kora-blue-gray);
-  background: var(--kora-white);
-  color: var(--kora-navy);
+  border: 1px solid var(--kora-steel-gray);
+  background: var(--kora-soft-white);
+  color: var(--kora-deep-navy);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -16,8 +16,8 @@
 }
 
 .trigger:hover {
-  border-color: var(--kora-navy);
-  background: var(--kora-off-white);
+  border-color: var(--kora-deep-navy);
+  background: var(--kora-soft-white);
 }
 
 .trigger.block {
@@ -40,7 +40,7 @@
 .chevron {
   display: inline-flex;
   font-size: 10px;
-  color: var(--kora-charcoal);
+  color: var(--kora-dark-slate);
 }
 
 .item {

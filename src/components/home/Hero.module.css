@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 100%;
   overflow: hidden;
-  background: var(--kora-white);
+  background: var(--kora-soft-white);
   isolation: isolate;
 }
 
@@ -23,8 +23,8 @@
   position: relative;
   order: 2;
   background:
-    radial-gradient(60% 46% at 50% 36%, #214a85 0%, rgba(33, 74, 133, 0) 70%),
-    var(--kora-navy);
+    radial-gradient(60% 46% at 50% 36%, #10294E 0%, rgba(16, 41, 78, 0) 70%),
+    var(--kora-deep-navy);
   clip-path: url(#hero-wave);
   padding-top: 24px;
 }
@@ -42,10 +42,10 @@
   width: min(100%, 340px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 28%, #ffffff 0%, #e6edf6 72%);
+  background: radial-gradient(circle at 35% 28%, #F4F6F9 0%, #F4F6F9 72%);
   box-shadow:
-    0 40px 80px -32px rgba(0, 0, 0, 0.55),
-    0 0 0 10px rgba(255, 255, 255, 0.05);
+    0 40px 80px -32px rgba(36, 44, 56, 0.55),
+    0 0 0 10px rgba(244, 246, 249, 0.05);
 }
 
 .orbit {
@@ -83,7 +83,7 @@
   padding: 6px 12px;
   border-radius: 999px;
   background: var(--kora-burgundy);
-  color: var(--kora-white);
+  color: var(--kora-soft-white);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -100,10 +100,10 @@
   gap: 10px;
   padding: 8px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(244, 246, 249, 0.25);
   background: rgba(16, 41, 78, 0.72);
   backdrop-filter: blur(8px);
-  color: var(--kora-white);
+  color: var(--kora-soft-white);
   font-size: 11.5px;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -138,13 +138,13 @@
   font-size: clamp(1.375rem, 2vw, 1.75rem);
   font-weight: 700;
   line-height: 1.15;
-  color: var(--kora-white);
+  color: var(--kora-soft-white);
 }
 
 .captionItems {
   margin-top: 6px;
   font-size: 14px;
-  color: var(--kora-blue-gray);
+  color: var(--kora-steel-gray);
 }
 
 .tabs {
@@ -167,10 +167,10 @@
   height: 40px;
   padding: 0 16px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(244, 246, 249, 0.25);
   border-radius: 999px;
   background: transparent;
-  color: var(--kora-blue-gray);
+  color: var(--kora-steel-gray);
   font: inherit;
   font-size: 12.5px;
   font-weight: 600;
@@ -183,18 +183,18 @@
 }
 
 .tab:hover {
-  border-color: var(--kora-white);
-  color: var(--kora-white);
+  border-color: var(--kora-soft-white);
+  color: var(--kora-soft-white);
 }
 
 .tab[aria-selected="true"] {
-  background: var(--kora-white);
-  border-color: var(--kora-white);
-  color: var(--kora-navy);
+  background: var(--kora-soft-white);
+  border-color: var(--kora-soft-white);
+  color: var(--kora-deep-navy);
 }
 
 .tab:focus-visible {
-  outline: 2px solid var(--kora-white);
+  outline: 2px solid var(--kora-soft-white);
   outline-offset: 3px;
 }
 
@@ -262,7 +262,7 @@
   font-size: clamp(2.5rem, 4.2vw, 4.25rem);
   line-height: 1.02;
   letter-spacing: -0.025em;
-  color: var(--kora-navy);
+  color: var(--kora-deep-navy);
   margin-bottom: 28px;
 }
 
@@ -277,7 +277,7 @@
 .lead {
   font-size: clamp(1rem, 1.3vw, 1.1875rem);
   line-height: 1.65;
-  color: #5b6577;
+  color: rgba(36, 44, 56, 0.75);
   max-width: 34em;
   margin-bottom: 36px;
 }
@@ -306,7 +306,7 @@
 }
 
 .btn:focus-visible {
-  outline: 2px solid var(--kora-navy);
+  outline: 2px solid var(--kora-deep-navy);
   outline-offset: 3px;
 }
 
@@ -321,25 +321,25 @@
 
 .btnPrimary {
   background: var(--kora-burgundy);
-  color: var(--kora-white);
+  color: var(--kora-soft-white);
   border: 1.5px solid var(--kora-burgundy);
 }
 
 .btnPrimary:hover {
-  background: #9a1828;
-  border-color: #9a1828;
-  color: var(--kora-white);
+  background: #B51E32;
+  border-color: #B51E32;
+  color: var(--kora-soft-white);
 }
 
 .btnOutline {
-  background: var(--kora-white);
-  color: var(--kora-navy);
-  border: 1.5px solid var(--kora-navy);
+  background: var(--kora-soft-white);
+  color: var(--kora-deep-navy);
+  border: 1.5px solid var(--kora-deep-navy);
 }
 
 .btnOutline:hover {
-  background: var(--kora-navy);
-  color: var(--kora-white);
+  background: var(--kora-deep-navy);
+  color: var(--kora-soft-white);
 }
 
 .proof {
@@ -350,7 +350,7 @@
   margin-top: 32px;
   font-size: 13px;
   font-weight: 500;
-  color: #5b6577;
+  color: rgba(36, 44, 56, 0.75);
 }
 
 .proof i {
@@ -392,7 +392,7 @@
     position: absolute;
     inset: 0 0 0 auto;
     width: 56%;
-    background: linear-gradient(160deg, var(--kora-burgundy), #8e1424);
+    background: linear-gradient(160deg, var(--kora-burgundy), #B51E32);
     clip-path: url(#hero-blob);
     transform: translateX(-28px) scale(1.01);
   }

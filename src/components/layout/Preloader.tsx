@@ -88,9 +88,9 @@ export default function Preloader() {
             initial={{ y: 0 }}
             animate={{ y: leaving ? "-100%" : 0 }}
             transition={{ duration: 0.9, ease: EASE, delay: leaving ? 0.12 : 0 }}
-            style={{ position: "absolute", inset: 0, background: colors.burgundy }}
+            style={{ position: "absolute", inset: 0, background: colors.crimson }}
           >
-            <Curve fill={colors.burgundy} />
+            <Curve fill={colors.crimson} />
           </motion.div>
 
           {/* Front curtain with content */}
@@ -104,7 +104,7 @@ export default function Preloader() {
             style={{
               position: "absolute",
               inset: 0,
-              background: colors.offWhite,
+              background: colors.softWhite,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -135,7 +135,7 @@ export default function Preloader() {
                 style={{
                   width: "min(260px, 60vw)",
                   height: 2,
-                  background: colors.blueGray,
+                  background: colors.steelGray,
                   transformOrigin: "left",
                   overflow: "hidden",
                 }}
@@ -143,7 +143,7 @@ export default function Preloader() {
                 <motion.div
                   style={{
                     height: "100%",
-                    background: colors.burgundy,
+                    background: colors.crimson,
                     transformOrigin: "left",
                     scaleX: barScale,
                   }}
@@ -163,14 +163,14 @@ export default function Preloader() {
                 fontWeight: 700,
                 fontSize: "clamp(48px, 9vw, 120px)",
                 lineHeight: 1,
-                color: colors.navy,
+                color: colors.deepNavy,
                 fontVariantNumeric: "tabular-nums",
               }}
             >
               <motion.span>{counter}</motion.span>
             </motion.span>
 
-            <Curve fill={colors.offWhite} />
+            <Curve fill={colors.softWhite} />
           </motion.div>
         </motion.div>
       )}

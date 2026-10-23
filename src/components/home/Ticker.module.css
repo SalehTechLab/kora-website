@@ -2,8 +2,8 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: var(--kora-navy);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--kora-deep-navy);
+  border-bottom: 1px solid rgba(244, 246, 249, 0.08);
   padding: 18px 0;
 }
 
@@ -21,12 +21,12 @@
 
 .ticker::before {
   left: 0;
-  background: linear-gradient(to right, var(--kora-navy), transparent);
+  background: linear-gradient(to right, var(--kora-deep-navy), transparent);
 }
 
 .ticker::after {
   right: 0;
-  background: linear-gradient(to left, var(--kora-navy), transparent);
+  background: linear-gradient(to left, var(--kora-deep-navy), transparent);
 }
 
 .track {
@@ -55,7 +55,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
-  color: var(--kora-blue-gray);
+  color: var(--kora-soft-white);
 }
 
 .star {

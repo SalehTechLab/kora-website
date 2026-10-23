@@ -61,34 +61,36 @@ const SOCIAL_LINKS = [
 
 const OFFICES = [
   {
-    name: "Munich Headquarters",
-    address: "Leopoldstraße 120, 80802 München, Germany",
-    phone: "+49 1521 4181175",
+    name: "Germany (Headquarters)",
+    address: ["Franz-Wolter-Straße", "81925 Munich", "Germany"],
+    email: "info@koratraders.com",
+    phone: "+49 176 68257323",
   },
   {
-    name: "Pakistan Operations",
-    address: "Port Qasim Logistics Zone, Karachi, Pakistan",
-    phone: "+92 (21) 3584 9200",
+    name: "Pakistan (Regional Office)",
+    address: ["Lahore, Pakistan"],
+    email: "info@koratraders.com",
+    phone: "+92 321 6491547",
   },
 ];
 
-const textSoft = "rgba(255, 255, 255, 0.82)";
-const textMuted = "rgba(255, 255, 255, 0.62)";
+const textSoft = "rgba(244, 246, 249, 0.82)";
+const textMuted = "rgba(244, 246, 249, 0.62)";
 
 // Dark theme scoped to the footer so antd components render correctly on navy
 const footerTheme: ThemeConfig = {
   token: {
     colorText: textSoft,
-    colorTextHeading: colors.white,
+    colorTextHeading: colors.softWhite,
     colorTextDescription: textMuted,
     colorLink: textSoft,
-    colorLinkHover: colors.white,
-    colorLinkActive: colors.white,
-    colorSplit: "rgba(255, 255, 255, 0.12)",
+    colorLinkHover: colors.softWhite,
+    colorLinkActive: colors.softWhite,
+    colorSplit: "rgba(244, 246, 249, 0.12)",
   },
   components: {
     Layout: {
-      footerBg: "#0b1d38",
+      footerBg: colors.darkSlate,
       footerPadding: "72px 0 32px",
     },
     Typography: {
@@ -99,15 +101,15 @@ const footerTheme: ThemeConfig = {
       controlHeight: 36,
       fontWeight: 600,
       defaultShadow: "none",
-      defaultColor: colors.white,
-      defaultBg: "rgba(255, 255, 255, 0.08)",
-      defaultBorderColor: "rgba(255, 255, 255, 0.16)",
-      defaultHoverColor: colors.white,
-      defaultHoverBg: colors.burgundy,
-      defaultHoverBorderColor: colors.burgundy,
-      defaultActiveColor: colors.white,
-      defaultActiveBg: colors.burgundy,
-      defaultActiveBorderColor: colors.burgundy,
+      defaultColor: colors.softWhite,
+      defaultBg: "rgba(244, 246, 249, 0.08)",
+      defaultBorderColor: "rgba(244, 246, 249, 0.16)",
+      defaultHoverColor: colors.softWhite,
+      defaultHoverBg: colors.crimson,
+      defaultHoverBorderColor: colors.crimson,
+      defaultActiveColor: colors.softWhite,
+      defaultActiveBg: colors.crimson,
+      defaultActiveBorderColor: colors.crimson,
     },
   },
 };
@@ -130,7 +132,7 @@ const Slogan = styled(Text)`
     font-style: italic;
     font-size: 17px;
     font-weight: 600;
-    color: ${colors.white};
+    color: ${colors.softWhite};
   }
 `;
 
@@ -152,7 +154,7 @@ export default function Footer() {
     <ConfigProvider theme={footerTheme}>
       {/* antd scopes Layout tokens to .ant-layout, so Footer needs this parent */}
       <Layout>
-        <Layout.Footer>
+        <Layout.Footer style={{ borderTop: `4px solid ${colors.crimson}` }}>
           <Container>
             <Row gutter={[48, 40]}>
               <Col xs={24} lg={6}>
@@ -224,10 +226,22 @@ export default function Footer() {
                 <Flex vertical gap={20}>
                   {OFFICES.map((office) => (
                     <Flex key={office.name} vertical gap={4}>
-                      <Text strong style={{ color: colors.white }}>
+                      <Text strong style={{ color: colors.softWhite }}>
                         {office.name}
                       </Text>
-                      <Text type="secondary">{office.address}</Text>
+                      <Flex vertical>
+                        {office.address.map((line) => (
+                          <Text key={line} type="secondary">
+                            {line}
+                          </Text>
+                        ))}
+                      </Flex>
+                      <Text type="secondary">
+                        Email:{" "}
+                        <Typography.Link href={`mailto:${office.email}`}>
+                          {office.email}
+                        </Typography.Link>
+                      </Text>
                       <Text type="secondary">
                         Tel:{" "}
                         <Typography.Link href={toTelHref(office.phone)}>

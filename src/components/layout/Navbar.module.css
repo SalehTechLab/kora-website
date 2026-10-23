@@ -3,8 +3,8 @@
   top: 0;
   z-index: 100;
   width: 100%;
-  background: var(--kora-white);
-  border-bottom: 1px solid var(--kora-blue-gray);
+  background: var(--kora-soft-white);
+  border-bottom: 1px solid var(--kora-steel-gray);
 }
 
 .inner {
@@ -50,7 +50,7 @@
   margin: 0 10px;
   font-size: 15px;
   font-weight: 500;
-  color: var(--kora-navy);
+  color: var(--kora-deep-navy);
   white-space: nowrap;
 }
 
@@ -101,7 +101,7 @@
   padding: 0 24px;
   border-radius: 4px;
   background: var(--kora-burgundy);
-  color: var(--kora-white);
+  color: var(--kora-soft-white);
   border: 1.5px solid var(--kora-burgundy);
   font-size: 15px;
   font-weight: 600;
@@ -110,9 +110,9 @@
 }
 
 .ctaButton:hover {
-  background: #9a1828;
-  border-color: #9a1828;
-  color: var(--kora-white);
+  background: #B51E32;
+  border-color: #B51E32;
+  color: var(--kora-soft-white);
 }
 
 .ctaBlock {
@@ -126,9 +126,9 @@
   width: 40px;
   height: 40px;
   border-radius: 4px;
-  border: 1px solid var(--kora-blue-gray);
-  background: var(--kora-white);
-  color: var(--kora-navy);
+  border: 1px solid var(--kora-steel-gray);
+  background: var(--kora-soft-white);
+  color: var(--kora-deep-navy);
   font-size: 18px;
   cursor: pointer;
 }
@@ -137,7 +137,7 @@
   display: block;
   font-size: 17px;
   font-weight: 600;
-  color: var(--kora-navy);
+  color: var(--kora-deep-navy);
 }
 
 .drawerLink:hover,

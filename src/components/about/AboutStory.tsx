@@ -27,7 +27,7 @@ const CLOSING =
 const Section = styled.section`
   position: relative;
   padding: 120px 0;
-  background: ${colors.offWhite};
+  background: ${colors.white};
 
   @media (max-width: 767px) {
     padding: 80px 0;
@@ -61,19 +61,19 @@ const Origin = styled.span`
   gap: 10px;
   margin-top: 28px;
   padding: 8px 16px;
-  border: 1px solid ${colors.blueGray};
+  border: 1px solid ${colors.steelGray};
   border-radius: 999px;
-  background: ${colors.white};
+  background: ${colors.softWhite};
   font-size: 13px;
   font-weight: 600;
-  color: ${colors.navy};
+  color: ${colors.deepNavy};
 
   &::before {
     content: "";
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: ${colors.burgundy};
+    background: ${colors.crimson};
     box-shadow: 0 0 0 4px rgba(181, 30, 50, 0.16);
   }
 `;
@@ -88,15 +88,15 @@ const Pull = styled(motion.blockquote)`
   position: relative;
   margin: 24px 0;
   padding-left: 32px;
-  border-left: 3px solid ${colors.burgundy};
+  border-left: 3px solid ${colors.crimson};
   font-family: ${SERIF};
   font-size: clamp(1.75rem, 3.4vw, 2.75rem);
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: ${colors.navy};
+  color: ${colors.deepNavy};
 
   em {
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
   }
 
   @media (max-width: 767px) {
@@ -137,7 +137,7 @@ function ScrollText({ text }: { text: string }) {
   const words = text.split(" ");
 
   return (
-    <Paragraph ref={ref} style={{ ...proseStyle, color: colors.navy }}>
+    <Paragraph ref={ref} style={{ ...proseStyle, color: colors.deepNavy }}>
       {reduceMotion
         ? text
         : words.map((word, i) => (

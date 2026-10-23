@@ -16,8 +16,8 @@ const scroll = keyframes`
 
 const Band = styled.section`
   overflow: hidden;
-  padding: 36px 0;
-  background: ${colors.burgundy};
+  padding: 22px 0;
+  background: ${colors.crimson};
 `;
 
 const Track = styled.div`
@@ -37,25 +37,25 @@ const Track = styled.div`
 const Item = styled.span`
   display: flex;
   align-items: center;
-  gap: 48px;
-  padding-right: 48px;
+  gap: 32px;
+  padding-right: 32px;
   font-family: ${SERIF};
-  font-size: clamp(1.5rem, 3.4vw, 2.75rem);
+  font-size: clamp(1.05rem, 1.7vw, 1.5rem);
   line-height: 1.1;
   white-space: nowrap;
-  color: ${colors.white};
+  color: ${colors.softWhite};
 
   &:nth-child(even) {
     font-style: italic;
-    color: rgba(255, 255, 255, 0.62);
+    color: rgba(244, 246, 249, 0.62);
   }
 
   &::after {
     content: "";
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     transform: rotate(45deg);
-    background: ${colors.navy};
+    background: ${colors.deepNavy};
   }
 `;
 

@@ -42,7 +42,7 @@ export const Eyebrow = styled(Typography.Text)<{ $light?: boolean }>`
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: ${({ $light }) => ($light ? "#E8798A" : colors.burgundy)};
+    color: ${({ $light }) => ($light ? "#B51E32" : colors.crimson)};
   }
 `;
 

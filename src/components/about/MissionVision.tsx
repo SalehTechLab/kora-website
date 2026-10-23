@@ -15,7 +15,7 @@ const theme: ThemeConfig = {
 
 const Section = styled.section`
   padding: 120px 0;
-  background: ${colors.offWhite};
+  background: ${colors.mist};
 
   @media (max-width: 767px) {
     padding: 80px 0;
@@ -39,9 +39,9 @@ const Panel = styled(motion.article)<{ $dark?: boolean }>`
   flex-direction: column;
   padding: 56px 48px;
   border-radius: 28px;
-  border: 1px solid ${({ $dark }) => ($dark ? colors.navy : "rgba(208, 215, 226, 0.7)")};
-  background: ${({ $dark }) => ($dark ? colors.navy : colors.white)};
-  color: ${({ $dark }) => ($dark ? colors.white : colors.charcoal)};
+  border: 1px solid ${({ $dark }) => ($dark ? colors.deepNavy : "rgba(140, 155, 176, 0.35)")};
+  background: ${({ $dark }) => ($dark ? colors.deepNavy : colors.white)};
+  color: ${({ $dark }) => ($dark ? colors.softWhite : colors.darkSlate)};
   transition:
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -70,7 +70,7 @@ const Statement = styled(Paragraph)<{ $dark?: boolean }>`
     line-height: 1.35;
     letter-spacing: -0.01em;
     text-wrap: balance;
-    color: ${({ $dark }) => ($dark ? colors.white : colors.navy)};
+    color: ${({ $dark }) => ($dark ? colors.softWhite : colors.deepNavy)};
   }
 `;
 
@@ -84,7 +84,7 @@ const BurgundyMark = styled.div`
   opacity: 0.12;
   pointer-events: none;
   transform: rotate(-14deg);
-  background: ${colors.burgundy};
+  background: ${colors.crimson};
   mask: url("/images/logo/kora-logo-mark.svg") center / contain no-repeat;
 `;
 
@@ -127,7 +127,7 @@ export default function MissionVision() {
                   fontWeight: 600,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color: "#F08A98",
+                  color: "#B51E32",
                 }}
               >
                 Our Mission
@@ -150,7 +150,7 @@ export default function MissionVision() {
                   fontWeight: 600,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color: colors.burgundy,
+                  color: colors.crimson,
                 }}
               >
                 Our Vision

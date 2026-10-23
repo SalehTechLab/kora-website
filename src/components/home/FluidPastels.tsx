@@ -14,14 +14,14 @@ const Canvas = styled.canvas`
 const SCALE = 4; // canvas renders at 1/4 size; soft gradients hide the upscale
 const FPS = 30;
 
-// Brand palette only: Cool Blue-Gray #D0D7E2, tints of it, and white,
-// all on the Off-White #F7F9FC section background
+// Brand palette only: Steel Gray #8C9BB0 and Soft White #F4F6F9,
+// on the Soft White section background
 const PALETTE: [number, number, number][] = [
-  [208, 215, 226], // blue-gray
-  [255, 255, 255], // white
-  [224, 229, 237], // light blue-gray
-  [255, 255, 255],
-  [208, 215, 226],
+  [140, 155, 176], // steel gray
+  [244, 246, 249], // soft white
+  [140, 155, 176],
+  [244, 246, 249],
+  [140, 155, 176],
 ];
 
 type Blob = {

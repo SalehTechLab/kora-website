@@ -64,15 +64,15 @@ const sectionTheme: ThemeConfig = {
     Button: {
       controlHeight: 40,
       defaultShadow: "none",
-      defaultColor: colors.charcoal,
-      defaultBg: colors.white,
-      defaultBorderColor: colors.white,
-      defaultHoverColor: colors.burgundy,
-      defaultHoverBg: colors.white,
-      defaultHoverBorderColor: colors.white,
-      defaultActiveColor: colors.burgundy,
-      defaultActiveBg: colors.offWhite,
-      defaultActiveBorderColor: colors.offWhite,
+      defaultColor: colors.darkSlate,
+      defaultBg: colors.softWhite,
+      defaultBorderColor: colors.softWhite,
+      defaultHoverColor: colors.crimson,
+      defaultHoverBg: colors.softWhite,
+      defaultHoverBorderColor: colors.softWhite,
+      defaultActiveColor: colors.crimson,
+      defaultActiveBg: colors.softWhite,
+      defaultActiveBorderColor: colors.softWhite,
     },
   },
 };
@@ -106,7 +106,7 @@ const Eyebrow = styled(Text)`
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
   }
 `;
 
@@ -166,7 +166,7 @@ const Details = styled.div`
     transform 0.5s ${ease};
 
   .ant-typography {
-    color: ${colors.white};
+    color: ${colors.softWhite};
   }
 `;
 
@@ -181,7 +181,7 @@ const Card = styled.article`
   &:hover,
   &:focus-within,
   &[data-active="true"] {
-    background: ${colors.burgundy};
+    background: ${colors.crimson};
 
     ${Media} {
       transform: scale(0.5);

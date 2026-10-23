@@ -13,7 +13,7 @@ const ctaTheme: ThemeConfig = {
 };
 
 const Section = styled.section`
-  background: ${colors.offWhite};
+  background: ${colors.white};
   padding: 96px 24px;
 
   @media (max-width: 767px) {
@@ -35,7 +35,7 @@ const Eyebrow = styled(Text)`
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
   }
 `;
 

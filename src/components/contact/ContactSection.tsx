@@ -23,14 +23,15 @@ const { Title, Paragraph, Text } = Typography;
 const OFFICES = [
   {
     name: "Germany (Headquarters)",
-    city: "Munich, Germany",
+    address: ["Franz-Wolter-Straße", "81925 Munich", "Germany"],
     email: "info@koratraders.com",
     phone: "+49 176 68257323",
   },
   {
     name: "Pakistan (Regional Office)",
-    city: "Lahore, Pakistan",
+    address: ["Lahore, Pakistan"],
     email: "info@koratraders.com",
+    phone: "+92 321 6491547",
   },
 ];
 
@@ -42,18 +43,19 @@ const INTERESTS = [
   "Other",
 ].map((label) => ({ label, value: label }));
 
-const muted = "#5b6577";
+const muted = "rgba(36, 44, 56, 0.75)";
 
 // Squared-off form controls to match the quote panel
 const formTheme: ThemeConfig = {
   token: {
+    colorBgContainer: colors.white,
     borderRadius: 2,
     controlHeight: 42,
   },
   components: {
     Form: {
       labelFontSize: 12,
-      labelColor: colors.navy,
+      labelColor: colors.softWhite,
       verticalLabelPadding: "0 0 6px",
       itemMarginBottom: 18,
     },
@@ -84,7 +86,7 @@ const Eyebrow = styled(Text)`
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
   }
 `;
 
@@ -98,12 +100,13 @@ const SerifTitle = styled(Title)`
 
 const Office = styled.div`
   padding-left: 16px;
-  border-left: 2px solid ${colors.burgundy};
+  border-left: 2px solid ${colors.crimson};
 `;
 
 const QuotePanel = styled.div`
-  background: #e9eef3;
-  border: 1px solid ${colors.blueGray};
+  background: ${colors.deepNavy};
+  border: 1px solid ${colors.deepNavy};
+  border-top: 4px solid ${colors.crimson};
   padding: 40px 44px;
 
   @media (max-width: 575px) {
@@ -112,6 +115,10 @@ const QuotePanel = styled.div`
 
   .ant-form-item-label > label {
     font-weight: 600;
+  }
+
+  .ant-form-item-explain-error {
+    color: ${colors.softWhite};
   }
 `;
 
@@ -169,9 +176,11 @@ export default function ContactSection() {
                     {office.name}
                   </SerifTitle>
                   <Flex vertical gap={2}>
-                    <Text style={{ color: muted, fontSize: 13 }}>
-                      {office.city}
-                    </Text>
+                    {office.address.map((line) => (
+                      <Text key={line} style={{ color: muted, fontSize: 13 }}>
+                        {line}
+                      </Text>
+                    ))}
                     <Typography.Link
                       href={`mailto:${office.email}`}
                       strong
@@ -197,7 +206,10 @@ export default function ContactSection() {
           <Col xs={24} lg={14}>
             <ConfigProvider theme={formTheme}>
               <QuotePanel>
-                <SerifTitle level={4} style={{ marginBottom: 24 }}>
+                <SerifTitle
+                  level={4}
+                  style={{ marginBottom: 24, color: colors.softWhite }}
+                >
                   Request a Quote
                 </SerifTitle>
                 <Form

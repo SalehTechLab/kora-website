@@ -1,19 +1,20 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f6f9;
+  --foreground: #242c38;
 
-  --kora-navy: #10294e;
+  --kora-deep-navy: #10294e;
+  --kora-dark-slate: #242c38;
   --kora-burgundy: #b51e32;
-  --kora-off-white: #f7f9fc;
-  --kora-blue-gray: #d0d7e2;
-  --kora-charcoal: #242c38;
+  --kora-steel-gray: #8c9bb0;
+  --kora-soft-white: #f4f6f9;
   --kora-white: #ffffff;
+  --kora-mist: color-mix(in srgb, #8c9bb0 26%, #f4f6f9);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #242c38;
+    --foreground: #f4f6f9;
   }
 }
 

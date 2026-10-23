@@ -13,7 +13,6 @@ import {
 } from "antd";
 import { motion, useReducedMotion } from "framer-motion";
 import { colors } from "@/theme/themeConfig";
-import FluidPastels from "./FluidPastels";
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -47,7 +46,7 @@ const sectionTheme: ThemeConfig = {
       titleMarginBottom: 0,
     },
     Divider: {
-      colorSplit: colors.blueGray,
+      colorSplit: colors.steelGray,
       textPaddingInline: 0,
       orientationMargin: 0,
     },
@@ -60,7 +59,7 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
   padding: 120px 0;
-  background: ${colors.offWhite};
+  background: ${colors.mist};
 
   @media (max-width: 767px) {
     padding: 80px 0;
@@ -86,7 +85,7 @@ const Eyebrow = styled(Text)`
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
   }
 `;
 
@@ -94,9 +93,9 @@ const Heading = styled(Title)`
   && {
     font-family: var(--font-serif), Georgia, "Times New Roman", serif;
     margin-bottom: 28px;
-    font-size: clamp(2.25rem, 4.6vw, 3.75rem);
-    line-height: 1.08;
-    letter-spacing: -0.025em;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
   span {
@@ -107,7 +106,7 @@ const Heading = styled(Title)`
   /* Last line carries the promise, so it gets the accent */
   span:last-child {
     font-style: italic;
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
   }
 `;
 
@@ -116,9 +115,9 @@ const Mission = styled(motion.blockquote)`
   overflow: hidden;
   margin: 56px 0 0;
   padding: 40px 48px;
-  border-left: 3px solid ${colors.burgundy};
+  border-left: 3px solid ${colors.crimson};
   border-radius: 0 16px 16px 0;
-  background: ${colors.navy};
+  background: ${colors.deepNavy};
 
   @media (max-width: 767px) {
     margin-top: 40px;
@@ -161,7 +160,7 @@ const MissionText = styled(Paragraph)`
     font-size: clamp(1.25rem, 2.2vw, 1.75rem);
     font-style: italic;
     line-height: 1.45;
-    color: ${colors.white};
+    color: ${colors.softWhite};
   }
 `;
 
@@ -172,7 +171,7 @@ const PillarNumber = styled.span`
   font-size: 72px;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1.5px ${colors.blueGray};
+  -webkit-text-stroke: 1.5px ${colors.steelGray};
   transition:
     color 0.4s ease,
     -webkit-text-stroke-color 0.4s ease;
@@ -184,7 +183,7 @@ const Pillar = styled.article`
   padding: 36px 32px 40px;
   border-radius: 20px;
   background: ${colors.white};
-  border: 1px solid rgba(208, 215, 226, 0.6);
+  border: 1px solid rgba(140, 155, 176, 0.3);
   transition:
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -198,7 +197,7 @@ const Pillar = styled.article`
     right: 32px;
     height: 3px;
     border-radius: 0 0 3px 3px;
-    background: ${colors.burgundy};
+    background: ${colors.crimson};
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
@@ -213,8 +212,8 @@ const Pillar = styled.article`
     }
 
     ${PillarNumber} {
-      color: ${colors.burgundy};
-      -webkit-text-stroke-color: ${colors.burgundy};
+      color: ${colors.crimson};
+      -webkit-text-stroke-color: ${colors.crimson};
     }
   }
 
@@ -243,7 +242,6 @@ export default function WhoWeAre() {
   return (
     <ConfigProvider theme={sectionTheme}>
       <Section id="who-we-are" aria-labelledby="who-we-are-heading">
-        <FluidPastels />
         <Container>
           <Eyebrow>Who We Are</Eyebrow>
           <Heading level={2} id="who-we-are-heading">
@@ -257,22 +255,16 @@ export default function WhoWeAre() {
           <motion.div style={{ maxWidth: 920 }} {...reveal(0.2)}>
             <Paragraph
               style={{
-                fontSize: 19,
-                lineHeight: 1.65,
-                color: colors.navy,
-                fontWeight: 500,
-                marginBottom: 16,
+                fontSize: 18,
+                lineHeight: 1.7,
+                color: colors.deepNavy,
+                marginBottom: 0,
               }}
             >
               Global trade is full of moving parts: unfamiliar suppliers,
               shifting prices, complex paperwork and tight delivery windows.
-              Kora Traders exists to take that complexity off your plate.
-            </Paragraph>
-            <Paragraph
-              type="secondary"
-              style={{ fontSize: 17, lineHeight: 1.7, marginBottom: 0 }}
-            >
-              We are a single, dependable partner for sourcing, procurement and
+              Kora Traders exists to take that complexity off your plate. We
+              are a single, dependable partner for sourcing, procurement and
               logistics. We find reliable suppliers, negotiate competitive
               terms, and manage the movement of your goods by air, sea, rail or
               road, from the first order to final delivery.
@@ -297,7 +289,7 @@ export default function WhoWeAre() {
                 fontWeight: 600,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#F08A98",
+                color: "#B51E32",
               }}
             >
               Our Mission
@@ -316,7 +308,7 @@ export default function WhoWeAre() {
                 fontWeight: 600,
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color: colors.navy,
+                color: colors.deepNavy,
               }}
             >
               What Sets Us Apart

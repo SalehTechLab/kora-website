@@ -31,40 +31,40 @@ const STEPS: {
     description:
       "We start with a conversation about your product, volumes, budget, and timelines, so every decision that follows is built on a clear brief.",
     icon: "brief",
-    accent: colors.navy,
-    tint: "#E6EBF3",
+    accent: colors.deepNavy,
+    tint: "#F4F6F9",
   },
   {
     title: "Sourcing & Supplier Verification",
     description:
       "We identify qualified suppliers, verify their credentials and capacity, and compare offers so you only work with partners you can trust.",
     icon: "search",
-    accent: "#2F3F6E",
-    tint: "#E9ECF5",
+    accent: "#10294E",
+    tint: "#F4F6F9",
   },
   {
     title: "Procurement & Order Preparation",
     description:
       "We negotiate terms, place orders, and oversee production, quality checks, packaging, and export documentation.",
     icon: "box",
-    accent: "#5B2E5A",
-    tint: "#F1E8F0",
+    accent: "#10294E",
+    tint: "#F4F6F9",
   },
   {
     title: "Logistics & International Shipping",
     description:
       "We choose the right mode (road, rail, sea, or air), book capacity, handle customs, and track your cargo across every border.",
     icon: "ship",
-    accent: "#8A2545",
-    tint: "#F8E6EB",
+    accent: "#B51E32",
+    tint: "#F4F6F9",
   },
   {
     title: "Delivery & Continued Partnership",
     description:
       "Your goods arrive at their destination, and we stay on as your partner for repeat orders, new markets, and ongoing support.",
     icon: "check",
-    accent: colors.burgundy,
-    tint: "#FBE6E9",
+    accent: colors.crimson,
+    tint: "#F4F6F9",
   },
 ];
 
@@ -153,7 +153,7 @@ const NodeButton = styled(motion.button)`
   padding: 0;
 
   &:focus-visible {
-    outline: 3px solid ${colors.burgundy};
+    outline: 3px solid ${colors.crimson};
     outline-offset: 6px;
   }
 `;
@@ -217,7 +217,7 @@ const MobileTrack = styled.span`
   width: 2px;
   background: repeating-linear-gradient(
     to bottom,
-    ${colors.blueGray} 0 6px,
+    ${colors.steelGray} 0 6px,
     transparent 6px 12px
   );
 `;
@@ -226,7 +226,7 @@ const MobileFill = styled(motion.span)`
   position: absolute;
   inset: 0;
   transform-origin: top;
-  background: linear-gradient(${colors.navy}, ${colors.burgundy});
+  background: linear-gradient(${colors.deepNavy}, ${colors.crimson});
 `;
 
 export default function ProcessJourney() {
@@ -316,7 +316,7 @@ export default function ProcessJourney() {
               <motion.rect
                 y={0}
                 height={VB_H}
-                fill="white"
+                fill="#F4F6F9"
                 initial={{ width: 0 }}
                 animate={{ width: revealed ? VB_W : 0 }}
                 transition={{ duration: reduceMotion ? 0 : 1.6, ease }}
@@ -330,7 +330,7 @@ export default function ProcessJourney() {
           <g mask={`url(#${uid}-reveal)`}>
             <path
               d={`M0,${LOW} H${XS[0]} M${XS[LAST]},${LOW} H${VB_W}`}
-              stroke={colors.blueGray}
+              stroke={colors.steelGray}
               strokeWidth={3}
               strokeDasharray="8 10"
               strokeLinecap="round"
@@ -339,7 +339,7 @@ export default function ProcessJourney() {
               ref={routeRef}
               d={ROUTE}
               fill="none"
-              stroke={colors.blueGray}
+              stroke={colors.steelGray}
               strokeWidth={3}
               strokeDasharray="2 12"
               strokeLinecap="round"
@@ -363,7 +363,7 @@ export default function ProcessJourney() {
                 d="M0 0 q10 -8 20 0 t20 0 t20 0 t20 0 t20 0"
                 transform={`translate(${row * 22} ${row * 12})`}
                 fill="none"
-                stroke="#7CB7E0"
+                stroke="#8C9BB0"
                 strokeWidth={2.5}
                 strokeLinecap="round"
                 initial={{ opacity: 0 }}
@@ -386,7 +386,7 @@ export default function ProcessJourney() {
                 cx={dotX}
                 cy={dotY}
                 r={14}
-                fill={colors.burgundy}
+                fill={colors.crimson}
                 filter={`url(#${uid}-glow)`}
                 animate={reduceMotion ? undefined : { opacity: [0.35, 0.8, 0.35] }}
                 transition={{ duration: 1.6, repeat: Infinity }}
@@ -395,8 +395,8 @@ export default function ProcessJourney() {
                 cx={dotX}
                 cy={dotY}
                 r={7}
-                fill={colors.burgundy}
-                stroke={colors.white}
+                fill={colors.crimson}
+                stroke={colors.softWhite}
                 strokeWidth={3}
               />
             </g>
@@ -426,11 +426,11 @@ export default function ProcessJourney() {
                   scale: revealed ? (isActive ? 1.14 : 1) : 0,
                   opacity: revealed ? 1 : 0,
                   backgroundColor: isActive ? s.accent : reached ? s.tint : colors.white,
-                  borderColor: reached ? s.accent : colors.blueGray,
-                  color: isActive ? colors.white : reached ? s.accent : "#8A93A3",
+                  borderColor: reached ? s.accent : colors.steelGray,
+                  color: isActive ? colors.softWhite : reached ? s.accent : "#8C9BB0",
                   boxShadow: isActive
                     ? `0 18px 40px -12px ${s.accent}`
-                    : "0 0 0 0 rgba(0,0,0,0)",
+                    : "0 0 0 0 rgba(36, 44, 56, 0)",
                 }}
                 whileHover={{ scale: isActive ? 1.18 : 1.08 }}
                 whileTap={{ scale: 0.95 }}
@@ -509,7 +509,7 @@ export default function ProcessJourney() {
                           width: 7,
                           height: 7,
                           borderRadius: "50%",
-                          background: n % 2 ? colors.burgundy : colors.navy,
+                          background: n % 2 ? colors.crimson : colors.deepNavy,
                         }}
                         initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
                         animate={{
@@ -646,8 +646,8 @@ export default function ProcessJourney() {
                 animate={{
                   scale: isActive ? 1.1 : 1,
                   backgroundColor: isActive ? s.accent : reached ? s.tint : colors.white,
-                  borderColor: reached ? s.accent : colors.blueGray,
-                  color: isActive ? colors.white : reached ? s.accent : "#8A93A3",
+                  borderColor: reached ? s.accent : colors.steelGray,
+                  color: isActive ? colors.softWhite : reached ? s.accent : "#8C9BB0",
                 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
               >

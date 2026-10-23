@@ -47,7 +47,7 @@ const SERVICES: Service[] = [
       "Airport-to-Airport",
       "Door-to-Door Delivery",
     ],
-    accent: "#6fb3f2",
+    accent: "#8C9BB0",
     Scene: AirScene,
   },
   {
@@ -62,7 +62,7 @@ const SERVICES: Service[] = [
       "Port-to-Port Shipping",
       "Cargo Consolidation",
     ],
-    accent: "#4fd1c5",
+    accent: "#8C9BB0",
     Scene: SeaScene,
   },
   {
@@ -77,7 +77,7 @@ const SERVICES: Service[] = [
       "Cross-Border Transport",
       "Door-to-Door Delivery",
     ],
-    accent: "#f5a65b",
+    accent: "#8C9BB0",
     Scene: RoadScene,
   },
   {
@@ -92,7 +92,7 @@ const SERVICES: Service[] = [
       "Cross-Border Shipping",
       "Intermodal Transportation",
     ],
-    accent: "#e8798a",
+    accent: "#B51E32",
     Scene: RailScene,
   },
   {
@@ -107,7 +107,7 @@ const SERVICES: Service[] = [
       "Trade Compliance Support",
       "Duties & Tariff Guidance",
     ],
-    accent: "#b79cf2",
+    accent: "#8C9BB0",
     Scene: CustomsScene,
   },
 ];
@@ -118,9 +118,9 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const sectionTheme: ThemeConfig = {
   token: {
-    colorTextHeading: colors.white,
-    colorText: "rgba(255, 255, 255, 0.72)",
-    colorTextDescription: "rgba(255, 255, 255, 0.6)",
+    colorTextHeading: colors.softWhite,
+    colorText: "rgba(244, 246, 249, 0.72)",
+    colorTextDescription: "rgba(244, 246, 249, 0.6)",
   },
   components: {
     Typography: { titleMarginTop: 0, titleMarginBottom: 0 },
@@ -133,7 +133,7 @@ const sectionTheme: ThemeConfig = {
 const Runway = styled.section`
   position: relative;
   height: calc(100svh + ${COUNT * 90}svh);
-  background: linear-gradient(180deg, #0b1d38 0%, ${colors.navy} 100%);
+  background: linear-gradient(180deg, #10294E 0%, ${colors.deepNavy} 100%);
 `;
 
 const Stage = styled.div`
@@ -168,7 +168,7 @@ const Body = styled.div`
     top: 0;
     bottom: 0;
     width: 1px;
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(244, 246, 249, 0.07);
     pointer-events: none;
   }
   &::before {
@@ -236,9 +236,9 @@ const Panel = styled.div`
   aspect-ratio: 720 / 440;
   max-height: 100%;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #0b1d38;
-  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(244, 246, 249, 0.12);
+  background: #10294E;
+  box-shadow: 0 30px 80px -30px rgba(36, 44, 56, 0.6);
 
   @media (max-width: 991px) {
     align-self: stretch;
@@ -257,7 +257,7 @@ const Corner = styled.span<{ $pos: string }>`
   position: absolute;
   width: 14px;
   height: 14px;
-  border: 0 solid rgba(255, 255, 255, 0.75);
+  border: 0 solid rgba(244, 246, 249, 0.75);
   pointer-events: none;
   ${({ $pos }) =>
     ({
@@ -279,13 +279,13 @@ const Counter = styled.div`
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.7);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  color: rgba(244, 246, 249, 0.7);
+  text-shadow: 0 1px 8px rgba(36, 44, 56, 0.5);
   pointer-events: none;
 
   strong {
     font-size: 20px;
-    color: #fff;
+    color: #F4F6F9;
   }
 
   @media (max-width: 991px) {
@@ -303,7 +303,7 @@ const Eyebrow = styled(Text)`
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #e8798a;
+    color: #B51E32;
 
     @media (max-width: 991px) {
       margin-bottom: 8px;
@@ -347,7 +347,7 @@ const Points = styled.ul`
     gap: 14px;
     font-size: clamp(0.95rem, 1.2vw, 1.1rem);
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.88);
+    color: rgba(244, 246, 249, 0.88);
   }
 
   @media (max-width: 991px) {
@@ -380,7 +380,7 @@ const Ghost = styled(motion.span)`
   font-weight: 700;
   line-height: 0.8;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
+  -webkit-text-stroke: 1px rgba(244, 246, 249, 0.08);
   pointer-events: none;
   user-select: none;
 
@@ -412,7 +412,7 @@ const RailItem = styled.button`
   padding-top: 2px;
 
   &:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid #F4F6F9;
     outline-offset: 4px;
   }
 `;
@@ -421,14 +421,14 @@ const Track = styled.span`
   position: relative;
   display: block;
   height: 2px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(244, 246, 249, 0.14);
   overflow: hidden;
 `;
 
 const Fill = styled(motion.span)`
   position: absolute;
   inset: 0;
-  background: ${colors.burgundy};
+  background: ${colors.crimson};
   transform-origin: left center;
 `;
 
@@ -439,11 +439,11 @@ const RailLabel = styled.span<{ $active: boolean }>`
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${({ $active }) => ($active ? "#fff" : "rgba(255, 255, 255, 0.4)")};
+  color: ${({ $active }) => ($active ? "#F4F6F9" : "rgba(244, 246, 249, 0.4)")};
   transition: color 0.3s;
 
   &:hover {
-    color: #fff;
+    color: #F4F6F9;
   }
 
   @media (max-width: 575px) {

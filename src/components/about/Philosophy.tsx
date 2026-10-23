@@ -34,7 +34,7 @@ const theme: ThemeConfig = {
 
 const Section = styled.section`
   padding: 88px 0;
-  background: ${colors.white};
+  background: ${colors.softWhite};
 
   @media (max-width: 767px) {
     padding: 64px 0;
@@ -64,12 +64,12 @@ const Display = styled(Title).attrs({ level: 2 })`
 
   /* Three beats: solid, muted, accent */
   ${Mask}:nth-child(2) span {
-    color: #aab5c9;
+    color: #8C9BB0;
   }
 
   ${Mask}:nth-child(3) span {
     font-style: italic;
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
   }
 `;
 
@@ -90,7 +90,7 @@ const Principles = styled.ol`
 const Item = styled(motion.li)`
   position: relative;
   padding: 24px 0 8px;
-  border-top: 1px solid ${colors.blueGray};
+  border-top: 1px solid ${colors.steelGray};
 
   /* Burgundy rule draws along the top edge on hover */
   &::before {
@@ -100,7 +100,7 @@ const Item = styled(motion.li)`
     left: 0;
     right: 0;
     height: 2px;
-    background: ${colors.burgundy};
+    background: ${colors.crimson};
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -127,7 +127,7 @@ const Number = styled.span`
   font-family: ${SERIF};
   font-size: 20px;
   line-height: 1;
-  color: ${colors.burgundy};
+  color: ${colors.crimson};
 `;
 
 export default function Philosophy() {
@@ -167,7 +167,7 @@ export default function Philosophy() {
             </div>
             <motion.div style={{ maxWidth: 720 }} {...reveal(0.1)}>
               <Paragraph
-                style={{ margin: 0, fontSize: 17, lineHeight: 1.65, color: colors.navy }}
+                style={{ margin: 0, fontSize: 17, lineHeight: 1.65, color: colors.deepNavy }}
               >
                 We combine smart solutions, efficient processes and automation
                 to create greater value for our partners and customers,

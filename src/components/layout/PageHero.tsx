@@ -9,8 +9,8 @@ const { Title, Paragraph, Text } = Typography;
 // Light-on-dark text for the navy banner
 const heroTheme: ThemeConfig = {
   token: {
-    colorTextHeading: colors.white,
-    colorText: "rgba(255, 255, 255, 0.82)",
+    colorTextHeading: colors.softWhite,
+    colorText: "rgba(244, 246, 249, 0.82)",
   },
   components: {
     Typography: { titleMarginTop: 0, titleMarginBottom: 16 },
@@ -27,7 +27,7 @@ const Banner = styled.section`
       rgba(181, 30, 50, 0.16) 0%,
       transparent 60%
     ),
-    linear-gradient(90deg, #0b1d38 0%, ${colors.navy} 100%);
+    linear-gradient(90deg, #10294E 0%, ${colors.deepNavy} 100%);
   padding: 104px 24px 72px;
 
   /* WhatsApp-style doodle tile of trade and logistics icons */
@@ -67,7 +67,7 @@ const Eyebrow = styled(Text)`
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #e8798a;
+    color: #B51E32;
 
     @media (min-width: 768px) {
       font-size: 12px;

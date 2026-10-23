@@ -12,7 +12,7 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
   padding: 120px 24px;
-  background: ${colors.offWhite};
+  background: ${colors.white};
 
   @media (max-width: 767px) {
     padding: 80px 20px;
@@ -83,7 +83,7 @@ export default function LogisticsIntro() {
             letterSpacing: "-0.01em",
           }}
         >
-          <Text style={{ color: colors.navy, font: "inherit" }}>
+          <Text style={{ color: colors.deepNavy, font: "inherit" }}>
             At Kora Traders, our commitment goes beyond sourcing and
             procurement—we keep global trade moving. Through reliable freight
             transportation by sea, air, and road, we streamline the journey of

@@ -35,9 +35,9 @@ const PATHS = [
 // Light-on-dark text for the navy section
 const theme: ThemeConfig = {
   token: {
-    colorTextHeading: colors.white,
-    colorText: "rgba(255, 255, 255, 0.85)",
-    colorTextDescription: "rgba(255, 255, 255, 0.7)",
+    colorTextHeading: colors.softWhite,
+    colorText: "rgba(244, 246, 249, 0.85)",
+    colorTextDescription: "rgba(244, 246, 249, 0.7)",
   },
   components: { Typography: { titleMarginTop: 0, titleMarginBottom: 0 } },
 };
@@ -53,7 +53,7 @@ const Section = styled.section`
       rgba(181, 30, 50, 0.25) 0%,
       transparent 60%
     ),
-    linear-gradient(90deg, #0b1d38 0%, ${colors.navy} 100%);
+    linear-gradient(90deg, #10294E 0%, ${colors.deepNavy} 100%);
 
   @media (max-width: 767px) {
     padding: 80px 0;
@@ -98,9 +98,9 @@ const Card = styled(motion.article)`
   overflow: hidden;
   height: 100%;
   padding: 32px 28px 36px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(244, 246, 249, 0.14);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(244, 246, 249, 0.04);
   transition:
     transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.4s ease;
@@ -112,7 +112,7 @@ const Card = styled(motion.article)`
     inset: 0;
     background: radial-gradient(
       320px circle at var(--x, 50%) var(--y, 0%),
-      rgba(240, 138, 152, 0.22),
+      rgba(181, 30, 50, 0.22),
       transparent 70%
     );
     opacity: 0;
@@ -122,7 +122,7 @@ const Card = styled(motion.article)`
 
   &:hover {
     transform: translateY(-6px);
-    border-color: rgba(240, 138, 152, 0.55);
+    border-color: rgba(181, 30, 50, 0.55);
 
     &::before {
       opacity: 1;

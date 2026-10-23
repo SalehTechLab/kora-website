@@ -26,17 +26,17 @@ function Cube({ x, y, s }: { x: number; y: number; s: number }) {
   const w = s * 0.87;
   const pt = (dx: number, dy: number) => `${x + dx},${y + dy}`;
   return (
-    <g strokeLinejoin="round" stroke="#B85C49" strokeWidth="1">
+    <g strokeLinejoin="round" stroke="#B51E32" strokeWidth="1">
       <polygon
-        fill="#F8D3C6"
+        fill="#F4F6F9"
         points={[pt(0, -s), pt(w, -s / 2), pt(0, 0), pt(-w, -s / 2)].join(" ")}
       />
       <polygon
-        fill="#E59A88"
+        fill="#B51E32"
         points={[pt(-w, -s / 2), pt(0, 0), pt(0, s), pt(-w, s / 2)].join(" ")}
       />
       <polygon
-        fill="#CD7560"
+        fill="#B51E32"
         points={[pt(0, 0), pt(w, -s / 2), pt(w, s / 2), pt(0, s)].join(" ")}
       />
     </g>
@@ -55,8 +55,8 @@ const SaltArt = (
       <Cube x={306} y={226} s={30} />
       <Cube x={96} y={236} s={26} />
     </g>
-    <polygon points="60,320 78,300 92,322" fill="#E59A88" />
-    <polygon points="318,324 334,308 350,326" fill="#F8D3C6" />
+    <polygon points="60,320 78,300 92,322" fill="#B51E32" />
+    <polygon points="318,324 334,308 350,326" fill="#F4F6F9" />
   </svg>
 );
 
@@ -68,7 +68,7 @@ function ScissorHalf({ angle }: { angle: number }) {
       <polygon
         points="193,206 207,206 205,56 200,36 196,60"
         fill="url(#steel)"
-        stroke="#7F8CA3"
+        stroke="#8C9BB0"
         strokeWidth="1"
       />
       <rect x="193" y="204" width="14" height="62" rx="3" fill="url(#steel)" />
@@ -87,7 +87,7 @@ function ScissorHalf({ angle }: { angle: number }) {
         rx="27"
         ry="35"
         fill="none"
-        stroke="#7F8CA3"
+        stroke="#8C9BB0"
         strokeWidth="1"
         opacity="0.6"
       />
@@ -99,9 +99,9 @@ const SurgicalArt = (
   <svg viewBox="0 0 400 400" aria-hidden="true">
     <defs>
       <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stopColor="#FAFBFD" />
-        <stop offset="0.5" stopColor="#B9C3D3" />
-        <stop offset="1" stopColor="#7F8CA3" />
+        <stop offset="0" stopColor="#F4F6F9" />
+        <stop offset="0.5" stopColor="#8C9BB0" />
+        <stop offset="1" stopColor="#8C9BB0" />
       </linearGradient>
     </defs>
     <ellipse cx="200" cy="350" rx="110" ry="12" fill="#10294E" opacity="0.1" />
@@ -109,7 +109,7 @@ const SurgicalArt = (
       <ScissorHalf angle={20} />
       <ScissorHalf angle={-20} />
       <circle cx="200" cy="200" r="10" fill="#B51E32" />
-      <circle cx="197" cy="197" r="3.5" fill="#F08A98" />
+      <circle cx="197" cy="197" r="3.5" fill="#B51E32" />
     </g>
   </svg>
 );
@@ -122,23 +122,23 @@ const TyreArt = (
   <svg viewBox="0 0 400 400" aria-hidden="true">
     <defs>
       <radialGradient id="rim" cx="0.4" cy="0.35" r="0.8">
-        <stop offset="0" stopColor="#FFFFFF" />
-        <stop offset="0.6" stopColor="#C4CDDB" />
-        <stop offset="1" stopColor="#8995AA" />
+        <stop offset="0" stopColor="#F4F6F9" />
+        <stop offset="0.6" stopColor="#8C9BB0" />
+        <stop offset="1" stopColor="#8C9BB0" />
       </radialGradient>
     </defs>
     <ellipse cx="200" cy="352" rx="120" ry="12" fill="#10294E" opacity="0.12" />
-    <circle cx="200" cy="200" r="150" fill="#161C28" />
+    <circle cx="200" cy="200" r="150" fill="#242C38" />
     <circle
       cx="200"
       cy="200"
       r="141"
       fill="none"
-      stroke="#2D364A"
+      stroke="#242C38"
       strokeWidth="16"
       strokeDasharray="13 8.4"
     />
-    <circle cx="200" cy="200" r="122" fill="#1F2736" />
+    <circle cx="200" cy="200" r="122" fill="#10294E" />
     <circle
       cx="200"
       cy="200"
@@ -152,12 +152,12 @@ const TyreArt = (
     <circle cx="200" cy="200" r="92" fill="url(#rim)" />
     {SPOKES.map((a) => (
       <g key={a} transform={`rotate(${a} 200 200)`}>
-        <circle cx="200" cy="146" r="17" fill="#232B3B" />
-        <circle cx="200" cy="146" r="17" fill="none" stroke="#7F8CA3" />
+        <circle cx="200" cy="146" r="17" fill="#10294E" />
+        <circle cx="200" cy="146" r="17" fill="none" stroke="#8C9BB0" />
       </g>
     ))}
     <circle cx="200" cy="200" r="28" fill="#10294E" />
-    <circle cx="200" cy="200" r="28" fill="none" stroke="#C4CDDB" strokeWidth="3" />
+    <circle cx="200" cy="200" r="28" fill="none" stroke="#8C9BB0" strokeWidth="3" />
     <circle cx="200" cy="200" r="9" fill="#B51E32" />
   </svg>
 );
@@ -196,12 +196,12 @@ const IndustrialArt = (
   <svg viewBox="0 0 400 400" aria-hidden="true">
     <defs>
       <linearGradient id="navyGear" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stopColor="#2A5191" />
+        <stop offset="0" stopColor="#10294E" />
         <stop offset="1" stopColor="#10294E" />
       </linearGradient>
       <linearGradient id="redGear" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stopColor="#D9384C" />
-        <stop offset="1" stopColor="#8E1424" />
+        <stop offset="0" stopColor="#B51E32" />
+        <stop offset="1" stopColor="#B51E32" />
       </linearGradient>
     </defs>
     <ellipse cx="200" cy="360" rx="120" ry="10" fill="#10294E" opacity="0.1" />
@@ -218,7 +218,7 @@ const IndustrialArt = (
       cy={BIG.cy}
       r="78"
       fill="none"
-      stroke="#fff"
+      stroke="#F4F6F9"
       strokeOpacity="0.18"
       strokeWidth="2"
     />
@@ -227,7 +227,7 @@ const IndustrialArt = (
       cy={BIG.cy}
       r="96"
       fill="none"
-      stroke="#fff"
+      stroke="#F4F6F9"
       strokeOpacity="0.1"
       strokeWidth="2"
     />
@@ -262,21 +262,21 @@ const RiceArt = (
   <svg viewBox="0 0 400 400" aria-hidden="true">
     <defs>
       <linearGradient id="burlap" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stopColor="#D7BC87" />
-        <stop offset="0.45" stopColor="#EBD7AB" />
-        <stop offset="1" stopColor="#C4A66D" />
+        <stop offset="0" stopColor="#8C9BB0" />
+        <stop offset="0.45" stopColor="#8C9BB0" />
+        <stop offset="1" stopColor="#8C9BB0" />
       </linearGradient>
     </defs>
     <ellipse cx="200" cy="364" rx="140" ry="12" fill="#10294E" opacity="0.1" />
     <path
       d="M122 132C98 196 96 284 126 338Q200 354 274 338C304 284 302 196 278 132Z"
       fill="url(#burlap)"
-      stroke="#B89A5E"
+      stroke="#8C9BB0"
     />
     <path
       d="M122 132Q200 112 278 132Q266 98 200 94Q134 98 122 132Z"
-      fill="#E2CB98"
-      stroke="#B89A5E"
+      fill="#8C9BB0"
+      stroke="#8C9BB0"
     />
     <path
       d="M138 128Q200 142 262 128"
@@ -294,7 +294,7 @@ const RiceArt = (
       fontFamily={SERIF}
       fontWeight="700"
       fontSize="30"
-      fill="#fff"
+      fill="#F4F6F9"
       letterSpacing="2"
     >
       RICE
@@ -305,7 +305,7 @@ const RiceArt = (
       textAnchor="middle"
       fontSize="9"
       fontWeight="600"
-      fill="#D0D7E2"
+      fill="rgba(140, 155, 176, 0.50)"
       letterSpacing="3"
     >
       PREMIUM GRAIN
@@ -317,8 +317,8 @@ const RiceArt = (
         cy={y}
         rx="10"
         ry="3.6"
-        fill="#FBF6E8"
-        stroke="#D9CBA6"
+        fill="#F4F6F9"
+        stroke="#8C9BB0"
         transform={`rotate(${a} ${x} ${y})`}
       />
     ))}
@@ -328,18 +328,18 @@ const RiceArt = (
 /* ---------- Textiles & apparel: fabric rolls ---------- */
 
 const ROLLS = [
-  { x: 96, y: 96, color: "#10294E", cap: "#27487C" },
-  { x: 56, y: 170, color: "#B51E32", cap: "#D9566A" },
-  { x: 110, y: 244, color: "#EAD9BC", cap: "#F6EBD5" },
+  { x: 96, y: 96, color: "#10294E", cap: "#10294E" },
+  { x: 56, y: 170, color: "#B51E32", cap: "#B51E32" },
+  { x: 110, y: 244, color: "#8C9BB0", cap: "#F4F6F9" },
 ];
 
 const TextileArt = (
   <svg viewBox="0 0 400 400" aria-hidden="true">
     <defs>
       <linearGradient id="roll" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stopColor="#fff" stopOpacity="0.28" />
-        <stop offset="0.45" stopColor="#fff" stopOpacity="0" />
-        <stop offset="1" stopColor="#000" stopOpacity="0.28" />
+        <stop offset="0" stopColor="#F4F6F9" stopOpacity="0.28" />
+        <stop offset="0.45" stopColor="#F4F6F9" stopOpacity="0" />
+        <stop offset="1" stopColor="#242C38" stopOpacity="0.28" />
       </linearGradient>
       <pattern
         id="weave"
@@ -348,7 +348,7 @@ const TextileArt = (
         patternUnits="userSpaceOnUse"
         patternTransform="rotate(45)"
       >
-        <rect width="7" height="1.4" fill="#fff" opacity="0.12" />
+        <rect width="7" height="1.4" fill="#F4F6F9" opacity="0.12" />
       </pattern>
     </defs>
     <ellipse cx="200" cy="342" rx="140" ry="12" fill="#10294E" opacity="0.1" />
@@ -365,10 +365,10 @@ const TextileArt = (
           rx="9"
           ry="20"
           fill="none"
-          stroke="#000"
+          stroke="#242C38"
           strokeOpacity="0.2"
         />
-        <ellipse cx={x} cy={y + 33} rx="3.5" ry="8" fill="#000" opacity="0.25" />
+        <ellipse cx={x} cy={y + 33} rx="3.5" ry="8" fill="#242C38" opacity="0.25" />
       </g>
     ))}
   </svg>
@@ -380,25 +380,25 @@ const BoppArt = (
   <svg viewBox="0 0 400 400" aria-hidden="true">
     <defs>
       <linearGradient id="film" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stopColor="#9FB6D8" />
-        <stop offset="0.35" stopColor="#F4F8FD" />
-        <stop offset="0.7" stopColor="#C3D2E8" />
-        <stop offset="1" stopColor="#8DA5C9" />
+        <stop offset="0" stopColor="#8C9BB0" />
+        <stop offset="0.35" stopColor="#F4F6F9" />
+        <stop offset="0.7" stopColor="#8C9BB0" />
+        <stop offset="1" stopColor="#8C9BB0" />
       </linearGradient>
       <linearGradient id="filmRed" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stopColor="#8E1424" />
-        <stop offset="0.35" stopColor="#E0586A" />
+        <stop offset="0" stopColor="#B51E32" />
+        <stop offset="0.35" stopColor="#B51E32" />
         <stop offset="0.7" stopColor="#B51E32" />
-        <stop offset="1" stopColor="#7A1020" />
+        <stop offset="1" stopColor="#B51E32" />
       </linearGradient>
     </defs>
     <ellipse cx="200" cy="360" rx="140" ry="12" fill="#10294E" opacity="0.1" />
     <rect x="86" y="120" width="228" height="220" fill="url(#film)" />
-    <ellipse cx="200" cy="340" rx="114" ry="30" fill="#8DA5C9" />
+    <ellipse cx="200" cy="340" rx="114" ry="30" fill="#8C9BB0" />
     <rect x="86" y="196" width="228" height="34" fill="url(#filmRed)" opacity="0.9" />
-    <ellipse cx="200" cy="120" rx="114" ry="30" fill="#EAF1FA" stroke="#9FB6D8" />
-    <ellipse cx="200" cy="120" rx="84" ry="21" fill="none" stroke="#9FB6D8" opacity="0.8" />
-    <ellipse cx="200" cy="120" rx="54" ry="13" fill="none" stroke="#9FB6D8" opacity="0.8" />
+    <ellipse cx="200" cy="120" rx="114" ry="30" fill="#F4F6F9" stroke="#8C9BB0" />
+    <ellipse cx="200" cy="120" rx="84" ry="21" fill="none" stroke="#8C9BB0" opacity="0.8" />
+    <ellipse cx="200" cy="120" rx="54" ry="13" fill="none" stroke="#8C9BB0" opacity="0.8" />
     <ellipse cx="200" cy="120" rx="30" ry="7.5" fill="#10294E" />
     <ellipse cx="200" cy="120" rx="14" ry="3.5" fill="#B51E32" />
     <text

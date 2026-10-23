@@ -30,7 +30,7 @@ const KORA = [
 // Fragmented rows sit slightly off-grid; the Kora rows stay aligned
 const JITTER = [0, 14, -6, 10, 2];
 
-const MUTED = "#6b7688";
+const MUTED = "rgba(36, 44, 56, 0.75)";
 
 const sectionTheme: ThemeConfig = {
   components: {
@@ -42,23 +42,23 @@ const sectionTheme: ThemeConfig = {
 
 const koraTheme: ThemeConfig = {
   token: {
-    colorBgContainer: colors.navy,
-    colorBorderSecondary: "rgba(255, 255, 255, 0.14)",
-    colorTextHeading: colors.white,
-    colorText: "rgba(255, 255, 255, 0.92)",
-    colorTextDescription: "rgba(255, 255, 255, 0.6)",
-    colorSplit: "rgba(255, 255, 255, 0.12)",
+    colorBgContainer: colors.deepNavy,
+    colorBorderSecondary: "rgba(244, 246, 249, 0.14)",
+    colorTextHeading: colors.softWhite,
+    colorText: "rgba(244, 246, 249, 0.92)",
+    colorTextDescription: "rgba(244, 246, 249, 0.6)",
+    colorSplit: "rgba(244, 246, 249, 0.12)",
   },
 };
 
 const oldTheme: ThemeConfig = {
   token: {
-    colorBgContainer: "rgba(255, 255, 255, 0.6)",
-    colorBorderSecondary: "#b9c2d1",
-    colorTextHeading: "#4a5568",
+    colorBgContainer: "rgba(244, 246, 249, 0.6)",
+    colorBorderSecondary: "#8C9BB0",
+    colorTextHeading: "#242C38",
     colorText: MUTED,
-    colorTextDescription: "#8792a5",
-    colorSplit: "#d0d7e2",
+    colorTextDescription: "#8C9BB0",
+    colorSplit: "rgba(140, 155, 176, 0.50)",
   },
 };
 
@@ -68,7 +68,7 @@ const Section = styled.section`
   position: relative;
   overflow: hidden;
   padding: 120px 24px;
-  background-color: ${colors.white};
+  background-color: ${colors.mist};
   background-image: radial-gradient(rgba(16, 41, 78, 0.09) 1px, transparent 1px);
   background-size: 28px 28px;
 
@@ -77,7 +77,7 @@ const Section = styled.section`
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at center, transparent 35%, ${colors.white} 85%);
+    background: radial-gradient(ellipse at center, transparent 35%, ${colors.mist} 85%);
     pointer-events: none;
   }
 
@@ -108,7 +108,7 @@ const Eyebrow = styled(Text)`
     font-weight: 600;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: ${colors.burgundy};
+    color: ${colors.crimson};
 
     &::before,
     &::after {
@@ -136,7 +136,7 @@ const Highlight = styled.span`
   position: relative;
   display: inline-block;
   font-style: italic;
-  color: ${colors.burgundy};
+  color: ${colors.crimson};
 `;
 
 const Underline = styled(motion.span)`
@@ -145,7 +145,7 @@ const Underline = styled(motion.span)`
   right: 0;
   bottom: 0.02em;
   height: 0.09em;
-  background: ${colors.burgundy};
+  background: ${colors.crimson};
   opacity: 0.35;
   transform-origin: left center;
 `;
@@ -170,11 +170,11 @@ const Medallion = styled(motion.div)`
   font-weight: 700;
   font-style: italic;
   letter-spacing: 0.02em;
-  color: ${colors.white};
-  background: ${colors.burgundy};
+  color: ${colors.softWhite};
+  background: ${colors.crimson};
   border-radius: 50%;
   box-shadow:
-    0 0 0 6px ${colors.white},
+    0 0 0 6px ${colors.softWhite},
     0 12px 32px -8px rgba(181, 30, 50, 0.6);
 
   @media (max-width: 991px) {
@@ -191,7 +191,7 @@ const Ring = styled.span`
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1.5px solid ${colors.burgundy};
+  border: 1.5px solid ${colors.crimson};
   animation: ${pulse} 2.6s ease-out infinite;
   pointer-events: none;
 
@@ -218,8 +218,8 @@ const KoraGlow = styled.div`
   .ant-card {
     background-image:
       radial-gradient(ellipse 80% 50% at 50% 110%, rgba(181, 30, 50, 0.32), transparent 70%),
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(244, 246, 249, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244, 246, 249, 0.04) 1px, transparent 1px);
     background-size:
       auto,
       32px 32px,
@@ -262,7 +262,7 @@ const Row_ = styled.div<{ $hot: boolean; $kora: boolean }>`
     background-color 0.3s,
     color 0.3s;
   background-color: ${({ $hot, $kora }) =>
-    $hot ? ($kora ? "rgba(255, 255, 255, 0.07)" : "rgba(181, 30, 50, 0.05)") : "transparent"};
+    $hot ? ($kora ? "rgba(244, 246, 249, 0.07)" : "rgba(181, 30, 50, 0.05)") : "transparent"};
   cursor: default;
 `;
 
@@ -282,9 +282,9 @@ const Mark = styled(motion.span)<{ $kora: boolean }>`
   height: 28px;
   font-size: 12px;
   border-radius: 50%;
-  color: ${({ $kora }) => ($kora ? colors.white : "#8792a5")};
-  background: ${({ $kora }) => ($kora ? colors.burgundy : "transparent")};
-  border: ${({ $kora }) => ($kora ? "none" : "1.5px dashed #b0b9c9")};
+  color: ${({ $kora }) => ($kora ? colors.softWhite : "#8C9BB0")};
+  background: ${({ $kora }) => ($kora ? colors.crimson : "transparent")};
+  border: ${({ $kora }) => ($kora ? "none" : "1.5px dashed #8C9BB0")};
   box-shadow: ${({ $kora }) => ($kora ? "0 0 18px rgba(181, 30, 50, 0.65)" : "none")};
 `;
 
@@ -403,7 +403,7 @@ function TraditionalDiagram({ reduce }: { reduce: boolean }) {
           className="flow"
           d={tangled(y, i)}
           fill="none"
-          stroke="#9aa5b8"
+          stroke="#8C9BB0"
           strokeWidth={1.4}
           strokeLinecap="round"
           variants={fadeIn}
@@ -418,10 +418,10 @@ function TraditionalDiagram({ reduce }: { reduce: boolean }) {
       ].map(([x, y], i) => (
         <motion.g key={x} variants={fadeIn} custom={5 + i}>
           <g className="flicker" style={{ animationDelay: `${i * 0.7}s` }}>
-            <circle cx={x} cy={y} r={9} fill="#fff" stroke={colors.burgundy} strokeWidth={1.2} />
+            <circle cx={x} cy={y} r={9} fill="#F4F6F9" stroke={colors.crimson} strokeWidth={1.2} />
             <path
               d={`M${x - 3.5},${y - 3.5} L${x + 3.5},${y + 3.5} M${x + 3.5},${y - 3.5} L${x - 3.5},${y + 3.5}`}
-              stroke={colors.burgundy}
+              stroke={colors.crimson}
               strokeWidth={1.5}
               strokeLinecap="round"
             />
@@ -430,13 +430,13 @@ function TraditionalDiagram({ reduce }: { reduce: boolean }) {
       ))}
       {!reduce &&
         [0, 2, 4].map((i) => (
-          <Packet key={i} path={tangled(SRC_Y[i], i)} delay={i * 0.55} color="#8792a5" lost />
+          <Packet key={i} path={tangled(SRC_Y[i], i)} delay={i * 0.55} color="#8C9BB0" lost />
         ))}
       {SRC_Y.map((y, i) => (
-        <Node key={y} x={44} y={y} i={i} fill="#fff" stroke="#9aa5b8" />
+        <Node key={y} x={44} y={y} i={i} fill="#F4F6F9" stroke="#8C9BB0" />
       ))}
-      <Node x={YOU.x} y={YOU.y} i={5} fill="#fff" stroke="#6b7688" />
-      <text x={YOU.x} y={YOU.y + 28} textAnchor="middle" fontSize={10} letterSpacing="0.18em" fill="#8792a5">
+      <Node x={YOU.x} y={YOU.y} i={5} fill="#F4F6F9" stroke="rgba(36, 44, 56, 0.75)" />
+      <text x={YOU.x} y={YOU.y + 28} textAnchor="middle" fontSize={10} letterSpacing="0.18em" fill="#8C9BB0">
         YOU
       </text>
     </Svg>
@@ -451,7 +451,7 @@ function KoraDiagram({ reduce }: { reduce: boolean }) {
           key={y}
           d={funnel(y)}
           fill="none"
-          stroke="rgba(255,255,255,0.4)"
+          stroke="rgba(244, 246, 249, 0.4)"
           strokeWidth={1.4}
           strokeLinecap="round"
           variants={drawIn}
@@ -460,15 +460,15 @@ function KoraDiagram({ reduce }: { reduce: boolean }) {
       ))}
       <motion.path
         d={`M${HUB.x},${HUB.y} L${YOU.x},${YOU.y}`}
-        stroke={colors.burgundy}
+        stroke={colors.crimson}
         strokeWidth={3}
         strokeLinecap="round"
-        style={{ filter: "drop-shadow(0 0 6px rgba(181,30,50,0.9))" }}
+        style={{ filter: "drop-shadow(0 0 6px rgba(181, 30, 50, 0.9))" }}
         variants={drawIn}
         custom={5}
       />
       {!reduce &&
-        SRC_Y.map((y, i) => <Packet key={y} path={fullRoute(y)} delay={i * 0.6} color="#fff" />)}
+        SRC_Y.map((y, i) => <Packet key={y} path={fullRoute(y)} delay={i * 0.6} color="#F4F6F9" />)}
 
       {/* hub */}
       <motion.g variants={popIn} custom={5} style={{ transformBox: "fill-box", transformOrigin: "center" }}>
@@ -480,7 +480,7 @@ function KoraDiagram({ reduce }: { reduce: boolean }) {
               cy={HUB.y}
               r={26}
               fill="none"
-              stroke={colors.burgundy}
+              stroke={colors.crimson}
               strokeWidth={1.2}
               initial={{ scale: 1, opacity: 0.6 }}
               animate={{ scale: 1.9, opacity: 0 }}
@@ -488,8 +488,8 @@ function KoraDiagram({ reduce }: { reduce: boolean }) {
               style={{ transformBox: "fill-box", transformOrigin: "center" }}
             />
           ))}
-        <circle cx={HUB.x} cy={HUB.y} r={26} fill={colors.burgundy} />
-        <circle cx={HUB.x} cy={HUB.y} r={32} fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth={1} />
+        <circle cx={HUB.x} cy={HUB.y} r={26} fill={colors.crimson} />
+        <circle cx={HUB.x} cy={HUB.y} r={32} fill="none" stroke="rgba(244, 246, 249, 0.35)" strokeWidth={1} />
         <text
           x={HUB.x}
           y={HUB.y + 3.5}
@@ -497,17 +497,17 @@ function KoraDiagram({ reduce }: { reduce: boolean }) {
           fontSize={10}
           fontWeight={700}
           letterSpacing="0.16em"
-          fill="#fff"
+          fill="#F4F6F9"
         >
           KORA
         </text>
       </motion.g>
 
       {SRC_Y.map((y, i) => (
-        <Node key={y} x={44} y={y} i={i} fill={colors.navy} stroke="rgba(255,255,255,0.8)" />
+        <Node key={y} x={44} y={y} i={i} fill={colors.deepNavy} stroke="rgba(244, 246, 249, 0.8)" />
       ))}
-      <Node x={YOU.x} y={YOU.y} i={5} fill={colors.white} stroke={colors.white} />
-      <text x={YOU.x} y={YOU.y + 28} textAnchor="middle" fontSize={10} letterSpacing="0.18em" fill="#fff">
+      <Node x={YOU.x} y={YOU.y} i={5} fill={colors.softWhite} stroke={colors.softWhite} />
+      <text x={YOU.x} y={YOU.y + 28} textAnchor="middle" fontSize={10} letterSpacing="0.18em" fill="#F4F6F9">
         YOU
       </text>
     </Svg>
@@ -553,7 +553,7 @@ function Column({
   const body = (
     <Card variant="outlined" style={kora ? undefined : { borderStyle: "dashed" }}>
       <Pad>
-        <Kicker type="secondary" style={kora ? { color: "#f08a99" } : undefined}>
+        <Kicker type="secondary" style={kora ? { color: "#B51E32" } : undefined}>
           {kicker}
         </Kicker>
         <CardTitle level={3}>{title}</CardTitle>
@@ -690,7 +690,7 @@ export default function KoraAdvantage() {
               <Text
                 strong
                 style={{
-                  color: colors.navy,
+                  color: colors.deepNavy,
                   fontFamily: "var(--font-serif), Georgia, serif",
                   fontSize: "1.375rem",
                 }}
