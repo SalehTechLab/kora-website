@@ -23,6 +23,8 @@ const NAV_LINKS = [
   { label: "Contact Us", href: "/contact" },
 ];
 
+const BOOKING_MEETING_URL = "https://calendly.com/kora-traders-sales";
+
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const pathname = usePathname();
@@ -72,10 +74,15 @@ export default function Navbar() {
             <LocaleSwitcher />
           </span>
           <span className={styles.desktopOnly}>
-            <Link href="/contact" className={styles.ctaButton}>
-              Become a partner
+            <a
+              href={BOOKING_MEETING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.ctaButton}
+            >
+              Book a Consultation
               <ArrowRightOutlined />
-            </Link>
+            </a>
           </span>
           <button
             type="button"
@@ -108,14 +115,16 @@ export default function Navbar() {
             </Link>
           ))}
           <LocaleSwitcher block />
-          <Link
-            href="/contact"
+          <a
+            href={BOOKING_MEETING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`${styles.ctaButton} ${styles.ctaBlock}`}
             onClick={() => setDrawerOpen(false)}
           >
-            Become a partner
+            Book a Consultation
             <ArrowRightOutlined />
-          </Link>
+          </a>
         </Space>
       </Drawer>
     </motion.header>
