@@ -1,0 +1,6 @@
+[build.environment]
+# CONTACT_TO_EMAIL is the public contact address shown on the site (footer, contact, imprint),
+# so it is expected to appear in the build output.
+SECRETS_SCAN_OMIT_KEYS = "CONTACT_TO_EMAIL"
+# Turbopack's build cache is never served; it can contain env values read at build time.
+SECRETS_SCAN_OMIT_PATHS = ".netlify/.next/cache/**"
