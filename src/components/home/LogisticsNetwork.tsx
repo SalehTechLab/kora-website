@@ -19,36 +19,36 @@ const { Title, Text, Paragraph } = Typography;
 const MODES = [
   {
     title: "Road Freight",
-    image: "/images/services/road-freight.png",
-    width: 250,
-    height: 232,
+    image: "/images/services/road-freight-small.png",
+    width: 1000,
+    height: 920,
     href: "/services/road-freight",
     description:
       "Flexible FTL and LTL trucking solutions for domestic and cross-border shipments, including first-mile pickup and last-mile delivery.",
   },
   {
     title: "Rail Freight",
-    image: "/images/services/rail-freight.png",
-    width: 362,
-    height: 333,
+    image: "/images/services/rail-freight-small.png",
+    width: 1000,
+    height: 920,
     href: "/services/rail-freight",
     description:
       "Cost-effective rail transportation for bulk cargo and long-distance shipments across major trade corridors.",
   },
   {
     title: "Sea Freight",
-    image: "/images/services/sea-freight.png",
-    width: 246,
-    height: 262,
+    image: "/images/services/sea-freight-small.png",
+    width: 1000,
+    height: 920,
     href: "/services/sea-freight",
     description:
       "Reliable FCL and LCL ocean freight solutions for international shipments, containerized cargo, and bulk goods.",
   },
   {
     title: "Air Freight",
-    image: "/images/services/air-freight.png",
-    width: 246,
-    height: 262,
+    image: "/images/services/air-freight-small.png",
+    width: 1000,
+    height: 920,
     href: "/services/air-freight",
     description:
       "Fast and flexible air cargo solutions for urgent, high-value, and time-sensitive international shipments.",
@@ -244,6 +244,7 @@ export default function LogisticsNetwork() {
                       alt=""
                       width={mode.width}
                       height={mode.height}
+                      loading="eager"
                       sizes="(max-width: 575px) 90vw, (max-width: 991px) 45vw, 280px"
                     />
                   </Media>
