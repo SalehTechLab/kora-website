@@ -22,7 +22,7 @@ const SECTIONS: LegalSectionData[] = [
       </address>
     ),
   },
-  { heading: "Commercial Register", content: "HRB 207145" },
+  { heading: "Commercial Register", content: "HRA 207145" },
   {
     heading: "Register Court",
     content: "Local Court of Munich (Amtsgericht München)",
