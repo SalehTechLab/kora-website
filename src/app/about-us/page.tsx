@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import AboutHero from "@/components/about/AboutHero";
 import AboutStory from "@/components/about/AboutStory";
 import MissionVision from "@/components/about/MissionVision";
+import Summit from "@/components/about/Summit";
 import TaglineTicker from "@/components/about/TaglineTicker";
 import Partnerships from "@/components/about/Partnerships";
 
@@ -20,6 +21,7 @@ export default function AboutPage() {
       <AboutHero />
       <AboutStory />
       <MissionVision />
+      <Summit />
       <TaglineTicker />
       <Partnerships />
       <Footer />
