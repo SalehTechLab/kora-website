@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {
   App,
   Button,
+  Checkbox,
   Col,
   ConfigProvider,
   Flex,
@@ -36,11 +37,12 @@ const OFFICES = [
 ];
 
 const INTERESTS = [
-  "Product sourcing",
-  "Procurement",
-  "Logistics & freight",
-  "Partnership",
-  "Other",
+  "Buying Products",
+  "Supplying / Selling Products",
+  "Product Sourcing & Procurement",
+  "Logistics & Shipping",
+  "Business Partnership",
+  "Other Inquiry",
 ].map((label) => ({ label, value: label }));
 
 const muted = "rgba(36, 44, 56, 0.75)";
@@ -115,6 +117,15 @@ const QuotePanel = styled.div`
 
   .ant-form-item-label > label {
     font-weight: 600;
+  }
+
+  .ant-checkbox-wrapper {
+    color: ${colors.softWhite};
+    font-size: 13px;
+  }
+
+  .ant-checkbox-wrapper a {
+    color: ${colors.white};
   }
 
   .ant-form-item-explain-error {
@@ -212,10 +223,32 @@ export default function ContactSection() {
                 >
                   Request a Quote
                 </SerifTitle>
+                <Paragraph
+                  style={{
+                    color: colors.softWhite,
+                    marginTop: -12,
+                    marginBottom: 24,
+                  }}
+                >
+                  Tell us what you&apos;re looking for, and our team will get
+                  back to you.
+                </Paragraph>
                 <Form
                   form={form}
                   layout="vertical"
-                  requiredMark={false}
+                  requiredMark={(label, { required }) => (
+                    <>
+                      {label}
+                      {required && (
+                        <span
+                          aria-hidden="true"
+                          style={{ marginLeft: 4, color: colors.crimson }}
+                        >
+                          *
+                        </span>
+                      )}
+                    </>
+                  )}
                   onFinish={onFinish}
                   disabled={submitting}
                 >
@@ -232,18 +265,24 @@ export default function ContactSection() {
                           },
                         ]}
                       >
-                        <Input autoComplete="name" />
+                        <Input
+                          autoComplete="name"
+                          placeholder="Your full name"
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
-                      <Form.Item name="company" label="Company">
-                        <Input autoComplete="organization" />
+                      <Form.Item name="company" label="Company Name">
+                        <Input
+                          autoComplete="organization"
+                          placeholder="Your company"
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
                       <Form.Item
                         name="email"
-                        label="Email"
+                        label="Business Email"
                         rules={[
                           {
                             required: true,
@@ -255,21 +294,62 @@ export default function ContactSection() {
                           },
                         ]}
                       >
-                        <Input type="email" autoComplete="email" />
+                        <Input
+                          type="email"
+                          autoComplete="email"
+                          placeholder="name@company.com"
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
-                      <Form.Item name="phone" label="Phone">
-                        <Input type="tel" autoComplete="tel" />
+                      <Form.Item
+                        name="phone"
+                        label="Phone / WhatsApp"
+                        rules={[
+                          {
+                            required: true,
+                            whitespace: true,
+                            message:
+                              "Please enter your phone or WhatsApp number",
+                          },
+                        ]}
+                      >
+                        <Input
+                          type="tel"
+                          autoComplete="tel"
+                          placeholder="+49 ..."
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
-                      <Form.Item name="country" label="Country">
-                        <Input autoComplete="country-name" />
+                      <Form.Item
+                        name="country"
+                        label="Country"
+                        rules={[
+                          {
+                            required: true,
+                            whitespace: true,
+                            message: "Please enter your country",
+                          },
+                        ]}
+                      >
+                        <Input
+                          autoComplete="country-name"
+                          placeholder="Your country"
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12}>
-                      <Form.Item name="interest" label="I'm interested in">
+                      <Form.Item
+                        name="interest"
+                        label="I'm Interested In"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please select what you are interested in",
+                          },
+                        ]}
+                      >
                         <Select
                           placeholder="Please select"
                           options={INTERESTS}
@@ -290,13 +370,50 @@ export default function ContactSection() {
                       >
                         <Input.TextArea
                           rows={4}
-                          placeholder="Tell us what you need to source, buy or move."
+                          placeholder="Tell us about the product, quantity, destination, specifications, or your business requirements..."
                         />
+                      </Form.Item>
+                    </Col>
+                    <Col span={24}>
+                      <Form.Item
+                        name="consent"
+                        valuePropName="checked"
+                        rules={[
+                          {
+                            validator: (_, checked) =>
+                              checked
+                                ? Promise.resolve()
+                                : Promise.reject(
+                                    new Error(
+                                      "Please accept the Privacy Policy",
+                                    ),
+                                  ),
+                          },
+                        ]}
+                      >
+                        <Checkbox>
+                          I agree to the processing of my information in
+                          accordance with the{" "}
+                          <Typography.Link
+                            href="/privacy-policy"
+                            target="_blank"
+                            underline
+                          >
+                            Privacy Policy
+                          </Typography.Link>
+                          .
+                          <span
+                            aria-hidden="true"
+                            style={{ marginLeft: 4, color: colors.crimson }}
+                          >
+                            *
+                          </span>
+                        </Checkbox>
                       </Form.Item>
                     </Col>
                   </Row>
                   <Button type="primary" htmlType="submit" loading={submitting}>
-                    Send Request
+                    Submit Inquiry
                   </Button>
                 </Form>
               </QuotePanel>
