@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   App,
@@ -139,6 +139,18 @@ export default function ContactSection() {
   const [form] = Form.useForm<QuoteRequest>();
   const [submitting, setSubmitting] = useState(false);
   const { message } = App.useApp();
+
+  // Prefill from the Products page: /contact?product=Industrial%20valves
+  useEffect(() => {
+    const product = new URLSearchParams(window.location.search)
+      .get("product")
+      ?.trim();
+    if (!product) return;
+    form.setFieldsValue({
+      interest: "Product Sourcing & Procurement",
+      message: `I'm looking for: ${product.slice(0, 200)}\n\nQuantity / specs / destination: `,
+    });
+  }, [form]);
 
   const onFinish = async (values: QuoteRequest) => {
     setSubmitting(true);

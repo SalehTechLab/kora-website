@@ -25,12 +25,12 @@ import { colors } from "@/theme/themeConfig";
 const { Title, Text, Paragraph } = Typography;
 
 const COMMODITIES = [
-  { label: "Himalayan Salt Products", href: "/products/himalayan-salt" },
-  { label: "Surgical Instruments", href: "/products/surgical-instruments" },
-  { label: "Tyres & Automotive Products", href: "/products/tyres-automotive" },
-  { label: "Industrial Commodities", href: "/products/industrial-commodities" },
-  { label: "Rice & Food Commodities", href: "/products/rice-food" },
-  { label: "Textiles & Apparel", href: "/products/textiles-apparel" },
+  { label: "Himalayan Salt Products", href: "/products#salt" },
+  { label: "Surgical Instruments", href: "/products#surgical" },
+  { label: "Tyres & Automotive Products", href: "/products#tyres" },
+  { label: "Industrial Commodities", href: "/products#industrial" },
+  { label: "Rice & Food Commodities", href: "/products#rice" },
+  { label: "Textiles & Apparel", href: "/products#textiles" },
 ];
 
 const LEGAL_LINKS = [
