@@ -11,8 +11,8 @@ export type Commodity = {
   from: string;
   to: string;
   /**
-   * Optional cut-out product photo (transparent PNG/WebP, ~800px square).
-   * When set it replaces the built-in illustration.
+   * Optional real product photo (any background, roughly square).
+   * When set it fills the stage circle and replaces the built-in illustration.
    */
   image?: string;
   art: ReactNode;
@@ -419,6 +419,7 @@ const BoppArt = (
 export const COMMODITIES: Commodity[] = [
   {
     id: "salt",
+    image: "/images/commodities/salt-photo.jpg",
     from: "Pakistan",
     to: "Germany",
     tab: "Himalayan Salt",
@@ -428,6 +429,7 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "surgical",
+    image: "/images/commodities/surgical-photo.jpg",
     from: "Pakistan",
     to: "Germany",
     tab: "Surgical Instruments",
@@ -437,6 +439,7 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "tyres",
+    image: "/images/commodities/tyres-photo.jpg",
     from: "Germany",
     to: "UAE",
     tab: "Tyres & Automotive",
@@ -446,6 +449,7 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "industrial",
+    image: "/images/commodities/industrial-photo.jpg",
     from: "Germany",
     to: "Indonesia",
     tab: "Industrial",
@@ -455,6 +459,7 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "rice",
+    image: "/images/commodities/rice-photo.jpg",
     from: "India",
     to: "Germany",
     tab: "Rice & Food",
@@ -464,6 +469,7 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "textiles",
+    image: "/images/commodities/textiles-photo.jpg",
     from: "Pakistan",
     to: "Germany",
     tab: "Textiles & Apparel",
@@ -473,6 +479,7 @@ export const COMMODITIES: Commodity[] = [
   },
   {
     id: "bopp",
+    image: "/images/commodities/bopp-photo.jpg",
     from: "Germany",
     to: "Pakistan",
     tab: "BOPP Rolls",

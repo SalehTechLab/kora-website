@@ -158,7 +158,8 @@ export default function Hero() {
                           alt=""
                           fill
                           sizes="(max-width: 991px) 70vw, 30vw"
-                          style={{ objectFit: "contain" }}
+                          priority={active === 0}
+                          style={{ objectFit: "cover", borderRadius: "50%" }}
                         />
                       ) : (
                         current.art
