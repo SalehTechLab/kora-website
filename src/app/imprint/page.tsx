@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Imprint | Kora Traders",
   description:
-    "Provider identification for Kora Trader in accordance with § 5 DDG.",
+    "Provider identification for Kora Traders in accordance with § 5 DDG.",
 };
 
 export default function ImprintPage() {

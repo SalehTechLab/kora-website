@@ -12,7 +12,7 @@ const SECTIONS: LegalSectionData[] = [
     heading: "Company",
     content: (
       <address style={{ fontStyle: "normal" }}>
-        Kora Trader
+        Kora Traders
         <br />
         Franz-Wolter-Straße
         <br />
