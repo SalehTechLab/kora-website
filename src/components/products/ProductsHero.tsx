@@ -122,50 +122,27 @@ const Accent = styled(motion.span)`
     100% 0.07em;
 `;
 
-const Stats = styled.dl`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 32px;
-  margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(244, 246, 249, 0.16);
-
-  dt {
-    font-family: ${SERIF};
-    font-size: clamp(1.75rem, 3vw, 2.4rem);
-    font-weight: 700;
-    line-height: 1;
-    color: ${colors.softWhite};
-  }
-
-  dd {
-    margin-top: 6px;
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(244, 246, 249, 0.62);
-  }
-`;
-
 /* ---------- catalogue fan ---------- */
 
 const Fan = styled.div`
   position: relative;
-  width: min(100%, 480px);
+  width: min(100%, 420px);
   aspect-ratio: 1 / 1.05;
-  margin-left: auto;
+  margin-inline: auto;
+  /* nudged up so the fan has equal space above and below inside the hero */
+  transform: translateY(-89px);
 
   @media (max-width: 959px) {
-    width: min(100%, 420px);
-    margin-inline: auto;
+    width: min(100%, 340px);
+    transform: none;
   }
 `;
 
 const FanCard = styled(motion.a)`
   position: absolute;
-  left: 25%;
-  bottom: 4%;
-  width: 50%;
+  left: 28%;
+  bottom: 6%;
+  width: 44%;
   display: block;
   transform-origin: 50% 130%;
   border-radius: 8px;
@@ -177,7 +154,7 @@ const FanCard = styled(motion.a)`
 const FanHint = styled.span`
   position: absolute;
   left: 50%;
-  bottom: -4px;
+  bottom: -16px;
   transform: translateX(-50%);
   font-size: 11px;
   letter-spacing: 0.14em;
@@ -264,21 +241,6 @@ export default function ProductsHero() {
                   <ArrowRightOutlined />
                 </Button>
               </Flex>
-
-              <Stats>
-                <div>
-                  <dt>0{PRODUCTS.length}</dt>
-                  <dd>Core catalogues</dd>
-                </div>
-                <div>
-                  <dt>&infin;</dt>
-                  <dd>Products on request</dd>
-                </div>
-                <div>
-                  <dt>1</dt>
-                  <dd>Partner, end to end</dd>
-                </div>
-              </Stats>
             </motion.div>
           </div>
 
@@ -296,7 +258,7 @@ export default function ProductsHero() {
                       ? false
                       : { opacity: 0, y: 80, rotate: 0, x: "0%" }
                   }
-                  animate={{ opacity: 1, y: 0, rotate: t * 7.5, x: `${t * 17}%` }}
+                  animate={{ opacity: 1, y: 0, rotate: t * 6, x: `${t * 12}%` }}
                   whileHover={
                     reduceMotion
                       ? undefined

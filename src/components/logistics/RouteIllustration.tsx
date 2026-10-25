@@ -106,7 +106,8 @@ export default function RouteIllustration() {
   const pop = (delay: number, y = 18) => ({
     initial: reduceMotion ? false : { opacity: 0, y },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.9, delay, ease },
+    // Staggered but quick, so the whole scene is in place within about a second
+    transition: { duration: 0.5, delay: delay * 0.3, ease },
   });
   const travel = (dur: string, begin: string, rotate: "auto" | "0", path: string) =>
     reduceMotion ? null : (
@@ -129,7 +130,7 @@ export default function RouteIllustration() {
         <motion.g
           initial={reduceMotion ? false : { opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease }}
+          transition={{ duration: 0.6, ease }}
           style={{ transformBox: "fill-box", transformOrigin: "center" }}
         >
           <circle cx="270" cy="230" r="204" fill={colors.softWhite} opacity="0.07" />
@@ -167,7 +168,7 @@ export default function RouteIllustration() {
         <motion.g
           initial={reduceMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6, ease }}
+          transition={{ duration: 0.6, delay: 0.2, ease }}
           fill="none"
           strokeLinecap="round"
         >
