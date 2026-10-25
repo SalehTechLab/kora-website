@@ -36,13 +36,20 @@ const Block = styled.div`
   }
 `;
 
+// Deep navy title with a thin crimson highlight under its second half
 const Heading = styled(Title)`
   &&& {
-    margin: 0 0 10px;
+    display: inline-block;
+    margin: 0 0 14px;
+    padding: 0 4px 0 0;
     font-family: var(--font-serif), Georgia, serif;
-    font-size: 22px;
-    line-height: 1.3;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 1.875rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
     color: ${colors.deepNavy};
+    background: linear-gradient(${colors.crimson}, ${colors.crimson}) no-repeat
+      100% 100% / 62% 0.09em;
   }
 `;
 
@@ -55,12 +62,13 @@ const Text = styled.div`
     margin: 0 0 12px;
   }
 
-  a {
+  && a {
+    font-size: inherit;
     color: ${colors.deepNavy};
     font-weight: 600;
   }
 
-  a:hover {
+  && a:hover {
     color: ${colors.crimson};
   }
 `;
