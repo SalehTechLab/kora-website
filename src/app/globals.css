@@ -11,15 +11,9 @@
   --kora-mist: color-mix(in srgb, #8c9bb0 26%, #f4f6f9);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #242c38;
-    --foreground: #f4f6f9;
-  }
-}
-
 html {
   height: 100%;
+  color-scheme: light;
 }
 
 html,
@@ -48,10 +42,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
