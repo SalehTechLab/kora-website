@@ -191,11 +191,26 @@ const Panel = styled.div`
   }
 `;
 
-const BigNumber = styled(motion.span)`
-  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
-  font-size: 104px;
-  line-height: 1;
-  color: transparent;
+const BigNumber = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+
+  .eyebrow {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: ${colors.steelGray};
+  }
+
+  .digits {
+    font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+    font-size: 84px;
+    font-weight: 700;
+    line-height: 1;
+  }
 `;
 
 const MobileList = styled.ol`
@@ -561,13 +576,15 @@ export default function ProcessJourney() {
         <AnimatePresence mode="wait" initial={false}>
           <BigNumber
             key={`n-${active}`}
-            style={{ WebkitTextStroke: `1.5px ${step.accent}` }}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -24 }}
             transition={{ duration: 0.4, ease }}
           >
-            {String(active + 1).padStart(2, "0")}
+            <span className="eyebrow">Step</span>
+            <span className="digits" style={{ color: step.accent }}>
+              {String(active + 1).padStart(2, "0")}
+            </span>
           </BigNumber>
         </AnimatePresence>
 
