@@ -3,7 +3,7 @@
 import styled, { keyframes } from "styled-components";
 import { motion, useReducedMotion } from "framer-motion";
 import { colors } from "@/theme/themeConfig";
-import { SERIF, ease } from "@/components/about/shared";
+import { ease } from "@/components/about/shared";
 
 const float = keyframes`
   0%, 100% { transform: translateY(0); }
@@ -25,9 +25,6 @@ const type = keyframes`
   0% { transform: scaleX(0); }
   35%, 80% { transform: scaleX(1); }
   100% { transform: scaleX(1); opacity: 0.2; }
-`;
-const spin = keyframes`
-  to { transform: rotate(360deg); }
 `;
 const steam = keyframes`
   0% { opacity: 0; transform: translateY(8px); }
@@ -92,11 +89,6 @@ const Svg = styled.svg`
   .line:nth-of-type(2) { animation-delay: 0.5s; }
   .line:nth-of-type(3) { animation-delay: 1s; }
   .line:nth-of-type(4) { animation-delay: 1.5s; }
-  .spin {
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: ${spin} 18s linear infinite;
-  }
   .steam {
     transform-box: fill-box;
     animation: ${steam} 3.2s ease-in-out infinite;
@@ -114,7 +106,6 @@ const Svg = styled.svg`
     .bob,
     .blink,
     .line,
-    .spin,
     .steam,
     .glow {
       animation: none;
@@ -301,46 +292,6 @@ export default function SupportIllustration() {
             </g>
           </motion.g>
         ))}
-
-        {/* 24 / 7 availability */}
-        <motion.g {...pop(1.2)}>
-          <g className="float b">
-            <g transform="translate(412 92)">
-              <circle r="42" fill={colors.deepNavy} />
-              <circle
-                className="spin"
-                r="40"
-                fill="none"
-                stroke={colors.softWhite}
-                strokeWidth="3"
-                strokeDasharray="7 6"
-                strokeLinecap="round"
-              />
-              <circle className="spin" cx="0" cy="-40" r="5.5" fill={colors.crimson} />
-              <text
-                y="8"
-                textAnchor="middle"
-                fontFamily={SERIF}
-                fontSize="25"
-                fontWeight="700"
-                letterSpacing="-0.5"
-                fill={colors.white}
-              >
-                24/7
-              </text>
-              <text
-                y="24"
-                textAnchor="middle"
-                fontSize="7.5"
-                fontWeight="600"
-                letterSpacing="1.6"
-                fill={colors.steelGray}
-              >
-                SUPPORT
-              </text>
-            </g>
-          </g>
-        </motion.g>
 
         {/* coffee */}
         <motion.g {...pop(1.1, 10)}>
