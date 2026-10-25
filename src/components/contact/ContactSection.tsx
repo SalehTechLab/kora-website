@@ -16,23 +16,66 @@ import {
   Typography,
   type ThemeConfig,
 } from "antd";
+import {
+  ArrowRightOutlined,
+  CheckOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  WhatsAppOutlined,
+} from "@ant-design/icons";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { colors } from "@/theme/themeConfig";
+import { Container, Eyebrow, SERIF, ease, useReveal } from "@/components/about/shared";
+import { WHATSAPP_URL } from "@/components/layout/WhatsAppFloat";
 import { submitQuoteRequest, type QuoteRequest } from "@/app/contact/actions";
+import LiveTime from "./OfficeClock";
 
 const { Title, Paragraph, Text } = Typography;
 
-const OFFICES = [
+const EMAIL = "info@koratraders.com";
+
+const CHANNELS = [
   {
-    name: "Germany (Headquarters)",
-    address: ["Franz-Wolter-Straße", "81925 Munich", "Germany"],
-    email: "info@koratraders.com",
-    phone: "+49 176 68257323",
+    key: "whatsapp",
+    icon: <WhatsAppOutlined />,
+    label: "WhatsApp",
+    value: "Chat with our team",
+    note: "Quickest for a first question",
+    href: WHATSAPP_URL,
+    external: true,
   },
   {
-    name: "Pakistan (Regional Office)",
-    address: ["Lahore, Pakistan"],
-    email: "info@koratraders.com",
+    key: "email",
+    icon: <MailOutlined />,
+    label: "Email",
+    value: EMAIL,
+    note: "Send specs, lists and documents",
+    href: `mailto:${EMAIL}`,
+  },
+  {
+    key: "phone",
+    icon: <PhoneOutlined />,
+    label: "Call Munich HQ",
+    value: "+49 176 68257323",
+    note: "Speak to a person directly",
+    href: "tel:+4917668257323",
+  },
+];
+
+const OFFICES = [
+  {
+    name: "Germany",
+    role: "Headquarters",
+    address: ["Franz-Wolter-Straße", "81925 Munich"],
+    phone: "+49 176 68257323",
+    timeZone: "Europe/Berlin",
+  },
+  {
+    name: "Pakistan",
+    role: "Regional Office",
+    address: ["Lahore"],
     phone: "+92 321 6491547",
+    timeZone: "Asia/Karachi",
   },
 ];
 
@@ -70,42 +113,182 @@ const formTheme: ThemeConfig = {
   },
 };
 
-const Container = styled.div`
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 104px 32px;
+const Section = styled.section`
+  position: relative;
+`;
 
-  @media (max-width: 767px) {
-    padding: 64px 20px;
+/* ---------- channel cards (overlap the hero edge) ---------- */
+
+const Channels = styled.div`
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: -64px;
+
+  @media (max-width: 899px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: -56px;
   }
 `;
 
-const Eyebrow = styled(Text)`
-  && {
+const ChannelCard = styled(motion.a)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  overflow: hidden;
+  padding: 24px 24px 24px 22px;
+  background: ${colors.white};
+  border: 1px solid rgba(140, 155, 176, 0.35);
+  border-bottom: 3px solid transparent;
+  box-shadow: 0 24px 48px -28px rgba(16, 41, 78, 0.45);
+  color: ${colors.darkSlate};
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
+  outline-offset: 3px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 3px;
+    background: ${colors.crimson};
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    background: ${colors.deepNavy};
+    color: ${colors.softWhite};
+    transition:
+      background 0.3s ease,
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &:hover .icon,
+  &:focus-visible .icon {
+    background: ${colors.crimson};
+    transform: rotate(-8deg) scale(1.06);
+  }
+
+  .label {
     display: block;
-    margin-bottom: 10px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: ${colors.crimson};
+  }
+
+  .value {
+    display: block;
+    margin-top: 3px;
+    font-family: ${SERIF};
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: ${colors.deepNavy};
+    overflow-wrap: anywhere;
+  }
+
+  .note {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    color: ${muted};
+  }
+
+  .arrow {
+    margin-left: auto;
+    flex: none;
+    color: ${colors.steelGray};
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.3s ease;
+  }
+
+  &:hover .arrow,
+  &:focus-visible .arrow {
+    color: ${colors.crimson};
+    transform: translateX(6px);
+  }
+`;
+
+/* ---------- main two-column band ---------- */
+
+const Band = styled.div`
+  padding: 96px 0 112px;
+
+  @media (max-width: 767px) {
+    padding: 64px 0 72px;
   }
 `;
 
 // &&& beats antd's sibling margin rule (e.g. span + h2.ant-typography)
 const SerifTitle = styled(Title)`
   &&& {
-    font-family: var(--font-serif), Georgia, serif;
+    font-family: ${SERIF};
     margin-top: 0;
   }
 `;
 
-const Office = styled.div`
-  padding-left: 16px;
-  border-left: 2px solid ${colors.crimson};
+const OfficeCard = styled(motion.div)`
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 16px;
+  padding: 20px 22px;
+  background: ${colors.white};
+  border: 1px solid rgba(140, 155, 176, 0.35);
+  border-left: 3px solid ${colors.crimson};
+
+  .clock {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    align-self: center;
+    text-align: right;
+  }
+
+  .clock time {
+    display: block;
+    font-family: ${SERIF};
+    font-size: 30px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    color: ${colors.deepNavy};
+  }
+
+  .clock span {
+    display: block;
+    margin-top: 6px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: ${colors.steelGray};
+  }
 `;
 
+/* ---------- quote panel ---------- */
+
 const QuotePanel = styled.div`
+  scroll-margin-top: 96px;
   background: ${colors.deepNavy};
   border: 1px solid ${colors.deepNavy};
   border-top: 4px solid ${colors.crimson};
@@ -133,12 +316,36 @@ const QuotePanel = styled.div`
   }
 `;
 
+const Sent = styled(motion.div)`
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  padding: 24px 0;
+  min-height: 420px;
+  align-content: center;
+
+  .tick {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    border-radius: 50%;
+    background: ${colors.crimson};
+    color: ${colors.white};
+    font-size: 26px;
+  }
+`;
+
 const toTelHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
 
 export default function ContactSection() {
   const [form] = Form.useForm<QuoteRequest>();
   const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
   const { message } = App.useApp();
+  const reveal = useReveal();
+  const reduceMotion = useReducedMotion();
 
   // Prefill from the Products page: /contact?product=Industrial%20valves
   useEffect(() => {
@@ -157,10 +364,8 @@ export default function ContactSection() {
     try {
       const result = await submitQuoteRequest(values);
       if (result.ok) {
-        message.success(
-          "Thanks, we received your request and will be in touch.",
-        );
         form.resetFields();
+        setSent(true);
       } else {
         message.error(result.error);
       }
@@ -172,267 +377,402 @@ export default function ContactSection() {
   };
 
   return (
-    <section aria-labelledby="get-in-touch-heading">
+    <Section aria-labelledby="get-in-touch-heading">
       <Container>
-        <Row gutter={[64, 48]}>
-          <Col xs={24} lg={10}>
-            <Eyebrow>Get in touch</Eyebrow>
-            <SerifTitle
-              id="get-in-touch-heading"
-              level={2}
-              style={{
-                fontSize: "clamp(1.75rem, 3vw, 2.25rem)",
-                lineHeight: 1.2,
-              }}
+        <Channels>
+          {CHANNELS.map((channel, i) => (
+            <ChannelCard
+              key={channel.key}
+              href={channel.href}
+              {...(channel.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              {...reveal(0.1 * i)}
+              whileHover={reduceMotion ? undefined : { y: -6 }}
             >
-              Two offices, one point of contact.
-            </SerifTitle>
-            <Paragraph style={{ color: muted, lineHeight: 1.7, maxWidth: 420 }}>
-              Reach us directly, or send a request through the form and we will
-              route it to the right team.
-            </Paragraph>
+              <span className="icon" aria-hidden="true">
+                {channel.icon}
+              </span>
+              <span>
+                <span className="label">{channel.label}</span>
+                <span className="value">{channel.value}</span>
+                <span className="note">{channel.note}</span>
+              </span>
+              <ArrowRightOutlined className="arrow" aria-hidden="true" />
+            </ChannelCard>
+          ))}
+        </Channels>
 
-            <Flex vertical gap={28} style={{ marginTop: 40 }}>
-              {OFFICES.map((office) => (
-                <Office key={office.name}>
-                  <SerifTitle level={5} style={{ marginBottom: 4 }}>
-                    {office.name}
-                  </SerifTitle>
-                  <Flex vertical gap={2}>
-                    {office.address.map((line) => (
-                      <Text key={line} style={{ color: muted, fontSize: 13 }}>
-                        {line}
-                      </Text>
-                    ))}
-                    <Typography.Link
-                      href={`mailto:${office.email}`}
-                      strong
-                      style={{ fontSize: 13, marginTop: 6 }}
-                    >
-                      {office.email}
-                    </Typography.Link>
-                    {office.phone && (
-                      <Typography.Link
-                        href={toTelHref(office.phone)}
-                        strong
-                        style={{ fontSize: 13 }}
-                      >
-                        {office.phone}
-                      </Typography.Link>
-                    )}
-                  </Flex>
-                </Office>
-              ))}
-            </Flex>
-          </Col>
-
-          <Col xs={24} lg={14}>
-            <ConfigProvider theme={formTheme}>
-              <QuotePanel>
+        <Band>
+          <Row gutter={[64, 56]}>
+            <Col xs={24} lg={10}>
+              <motion.div {...reveal(0)}>
+                <Eyebrow>Get in touch</Eyebrow>
                 <SerifTitle
-                  level={4}
-                  style={{ marginBottom: 24, color: colors.softWhite }}
-                >
-                  Request a Quote
-                </SerifTitle>
-                <Paragraph
+                  id="get-in-touch-heading"
+                  level={2}
                   style={{
-                    color: colors.softWhite,
-                    marginTop: -12,
-                    marginBottom: 24,
+                    fontSize: "clamp(1.9rem, 3.4vw, 2.6rem)",
+                    lineHeight: 1.12,
+                    letterSpacing: "-0.02em",
+                    marginBottom: 16,
                   }}
                 >
-                  Tell us what you&apos;re looking for, and our team will get
-                  back to you.
-                </Paragraph>
-                <Form
-                  form={form}
-                  layout="vertical"
-                  requiredMark={(label, { required }) => (
-                    <>
-                      {label}
-                      {required && (
-                        <span
-                          aria-hidden="true"
-                          style={{ marginLeft: 4, color: colors.crimson }}
-                        >
-                          *
-                        </span>
-                      )}
-                    </>
-                  )}
-                  onFinish={onFinish}
-                  disabled={submitting}
+                  The sooner you start, the sooner it ships.
+                </SerifTitle>
+                <Paragraph
+                  style={{ color: muted, lineHeight: 1.7, maxWidth: 440 }}
                 >
-                  <Row gutter={16}>
-                    <Col xs={24} sm={12}>
-                      <Form.Item
-                        name="fullName"
-                        label="Full Name"
-                        rules={[
-                          {
-                            required: true,
-                            whitespace: true,
-                            message: "Please enter your name",
-                          },
-                        ]}
+                  Reach us directly, or send a request through the form and we
+                  will route it to the right team.
+                </Paragraph>
+              </motion.div>
+
+              <Flex vertical gap={14} style={{ marginTop: 32 }}>
+                {OFFICES.map((office, i) => (
+                  <OfficeCard key={office.name} {...reveal(0.08 * i)}>
+                    <div>
+                      <Text
+                        style={{
+                          display: "block",
+                          fontSize: 11,
+                          fontWeight: 600,
+                          letterSpacing: "0.14em",
+                          textTransform: "uppercase",
+                          color: colors.crimson,
+                        }}
                       >
-                        <Input
-                          autoComplete="name"
-                          placeholder="Your full name"
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col xs={24} sm={12}>
-                      <Form.Item name="company" label="Company Name">
-                        <Input
-                          autoComplete="organization"
-                          placeholder="Your company"
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col xs={24} sm={12}>
-                      <Form.Item
-                        name="email"
-                        label="Business Email"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please enter your email",
-                          },
-                          {
-                            type: "email",
-                            message: "Please enter a valid email",
-                          },
-                        ]}
+                        {office.role}
+                      </Text>
+                      <SerifTitle
+                        level={4}
+                        style={{ margin: "2px 0 8px", fontSize: 20 }}
                       >
-                        <Input
-                          type="email"
-                          autoComplete="email"
-                          placeholder="name@company.com"
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col xs={24} sm={12}>
-                      <Form.Item
-                        name="phone"
-                        label="Phone / WhatsApp"
-                        rules={[
-                          {
-                            required: true,
-                            whitespace: true,
-                            message:
-                              "Please enter your phone or WhatsApp number",
-                          },
-                        ]}
-                      >
-                        <Input
-                          type="tel"
-                          autoComplete="tel"
-                          placeholder="+49 ..."
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col xs={24} sm={12}>
-                      <Form.Item
-                        name="country"
-                        label="Country"
-                        rules={[
-                          {
-                            required: true,
-                            whitespace: true,
-                            message: "Please enter your country",
-                          },
-                        ]}
-                      >
-                        <Input
-                          autoComplete="country-name"
-                          placeholder="Your country"
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col xs={24} sm={12}>
-                      <Form.Item
-                        name="interest"
-                        label="I'm Interested In"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please select what you are interested in",
-                          },
-                        ]}
-                      >
-                        <Select
-                          placeholder="Please select"
-                          options={INTERESTS}
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col span={24}>
-                      <Form.Item
-                        name="message"
-                        label="Message"
-                        rules={[
-                          {
-                            required: true,
-                            whitespace: true,
-                            message: "Please tell us what you need",
-                          },
-                        ]}
-                      >
-                        <Input.TextArea
-                          rows={4}
-                          placeholder="Tell us about the product, quantity, destination, specifications, or your business requirements..."
-                        />
-                      </Form.Item>
-                    </Col>
-                    <Col span={24}>
-                      <Form.Item
-                        name="consent"
-                        valuePropName="checked"
-                        rules={[
-                          {
-                            validator: (_, checked) =>
-                              checked
-                                ? Promise.resolve()
-                                : Promise.reject(
-                                    new Error(
-                                      "Please accept the Privacy Policy",
-                                    ),
-                                  ),
-                          },
-                        ]}
-                      >
-                        <Checkbox>
-                          I agree to the processing of my information in
-                          accordance with the{" "}
-                          <Typography.Link
-                            href="/privacy-policy"
-                            target="_blank"
-                            underline
+                        {office.name}
+                      </SerifTitle>
+                      <Flex vertical gap={2}>
+                        {office.address.map((line) => (
+                          <Text
+                            key={line}
+                            style={{ color: muted, fontSize: 13 }}
                           >
-                            Privacy Policy
-                          </Typography.Link>
-                          .
-                          <span
-                            aria-hidden="true"
-                            style={{ marginLeft: 4, color: colors.crimson }}
+                            {line}
+                          </Text>
+                        ))}
+                        <Typography.Link
+                          href={toTelHref(office.phone)}
+                          strong
+                          style={{ fontSize: 13, marginTop: 6 }}
+                        >
+                          {office.phone}
+                        </Typography.Link>
+                      </Flex>
+                    </div>
+                    <div className="clock">
+                      <LiveTime timeZone={office.timeZone} />
+                      <span>Local time</span>
+                    </div>
+                  </OfficeCard>
+                ))}
+              </Flex>
+            </Col>
+
+            <Col xs={24} lg={14}>
+              <ConfigProvider theme={formTheme}>
+                <motion.div {...reveal(0.1)}>
+                  <QuotePanel id="quote">
+                    <AnimatePresence mode="wait" initial={false}>
+                      {sent ? (
+                        <Sent
+                          key="sent"
+                          role="status"
+                          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.7, ease }}
+                        >
+                          <motion.span
+                            className="tick"
+                            initial={reduceMotion ? false : { scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 260,
+                              damping: 16,
+                              delay: 0.2,
+                            }}
                           >
-                            *
-                          </span>
-                        </Checkbox>
-                      </Form.Item>
-                    </Col>
-                  </Row>
-                  <Button type="primary" htmlType="submit" loading={submitting}>
-                    Submit Inquiry
-                  </Button>
-                </Form>
-              </QuotePanel>
-            </ConfigProvider>
-          </Col>
-        </Row>
+                            <CheckOutlined />
+                          </motion.span>
+                          <SerifTitle
+                            level={3}
+                            style={{ color: colors.softWhite, margin: 0 }}
+                          >
+                            Request received.
+                          </SerifTitle>
+                          <Paragraph
+                            style={{
+                              maxWidth: 420,
+                              color: "rgba(244, 246, 249, 0.82)",
+                              lineHeight: 1.65,
+                            }}
+                          >
+                            Thank you. Our team has your brief and will be in
+                            touch with a straight answer. Need it sooner? Reach
+                            us on WhatsApp.
+                          </Paragraph>
+                          <Flex gap={12} wrap style={{ marginTop: 8 }}>
+                            <Button
+                              type="primary"
+                              icon={<WhatsAppOutlined />}
+                              href={WHATSAPP_URL}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Chat on WhatsApp
+                            </Button>
+                            <Button
+                              ghost
+                              style={{
+                                color: colors.softWhite,
+                                borderColor: "rgba(244, 246, 249, 0.36)",
+                              }}
+                              onClick={() => setSent(false)}
+                            >
+                              Send another request
+                            </Button>
+                          </Flex>
+                        </Sent>
+                      ) : (
+                        <motion.div
+                          key="form"
+                          initial={reduceMotion ? false : { opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <SerifTitle
+                            level={4}
+                            style={{ marginBottom: 24, color: colors.softWhite }}
+                          >
+                            Request a Quote
+                          </SerifTitle>
+                          <Paragraph
+                            style={{
+                              color: colors.softWhite,
+                              marginTop: -12,
+                              marginBottom: 24,
+                            }}
+                          >
+                            Tell us what you&apos;re looking for, and our team
+                            will get back to you.
+                          </Paragraph>
+                          <Form
+                            form={form}
+                            layout="vertical"
+                            requiredMark={(label, { required }) => (
+                              <>
+                                {label}
+                                {required && (
+                                  <span
+                                    aria-hidden="true"
+                                    style={{
+                                      marginLeft: 4,
+                                      color: colors.crimson,
+                                    }}
+                                  >
+                                    *
+                                  </span>
+                                )}
+                              </>
+                            )}
+                            onFinish={onFinish}
+                            disabled={submitting}
+                          >
+                            <Row gutter={16}>
+                              <Col xs={24} sm={12}>
+                                <Form.Item
+                                  name="fullName"
+                                  label="Full Name"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      whitespace: true,
+                                      message: "Please enter your name",
+                                    },
+                                  ]}
+                                >
+                                  <Input
+                                    autoComplete="name"
+                                    placeholder="Your full name"
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col xs={24} sm={12}>
+                                <Form.Item
+                                  name="company"
+                                  label="Company Name"
+                                >
+                                  <Input
+                                    autoComplete="organization"
+                                    placeholder="Your company"
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col xs={24} sm={12}>
+                                <Form.Item
+                                  name="email"
+                                  label="Business Email"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message: "Please enter your email",
+                                    },
+                                    {
+                                      type: "email",
+                                      message: "Please enter a valid email",
+                                    },
+                                  ]}
+                                >
+                                  <Input
+                                    type="email"
+                                    autoComplete="email"
+                                    placeholder="name@company.com"
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col xs={24} sm={12}>
+                                <Form.Item
+                                  name="phone"
+                                  label="Phone / WhatsApp"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      whitespace: true,
+                                      message:
+                                        "Please enter your phone or WhatsApp number",
+                                    },
+                                  ]}
+                                >
+                                  <Input
+                                    type="tel"
+                                    autoComplete="tel"
+                                    placeholder="+49 ..."
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col xs={24} sm={12}>
+                                <Form.Item
+                                  name="country"
+                                  label="Country"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      whitespace: true,
+                                      message: "Please enter your country",
+                                    },
+                                  ]}
+                                >
+                                  <Input
+                                    autoComplete="country-name"
+                                    placeholder="Your country"
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col xs={24} sm={12}>
+                                <Form.Item
+                                  name="interest"
+                                  label="I'm Interested In"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message:
+                                        "Please select what you are interested in",
+                                    },
+                                  ]}
+                                >
+                                  <Select
+                                    placeholder="Please select"
+                                    options={INTERESTS}
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col span={24}>
+                                <Form.Item
+                                  name="message"
+                                  label="Message"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      whitespace: true,
+                                      message: "Please tell us what you need",
+                                    },
+                                  ]}
+                                >
+                                  <Input.TextArea
+                                    rows={4}
+                                    placeholder="Tell us about the product, quantity, destination, specifications, or your business requirements..."
+                                  />
+                                </Form.Item>
+                              </Col>
+                              <Col span={24}>
+                                <Form.Item
+                                  name="consent"
+                                  valuePropName="checked"
+                                  rules={[
+                                    {
+                                      validator: (_, checked) =>
+                                        checked
+                                          ? Promise.resolve()
+                                          : Promise.reject(
+                                              new Error(
+                                                "Please accept the Privacy Policy",
+                                              ),
+                                            ),
+                                    },
+                                  ]}
+                                >
+                                  <Checkbox>
+                                    I agree to the processing of my
+                                    information in accordance with the{" "}
+                                    <Typography.Link
+                                      href="/privacy-policy"
+                                      target="_blank"
+                                      underline
+                                    >
+                                      Privacy Policy
+                                    </Typography.Link>
+                                    .
+                                    <span
+                                      aria-hidden="true"
+                                      style={{
+                                        marginLeft: 4,
+                                        color: colors.crimson,
+                                      }}
+                                    >
+                                      *
+                                    </span>
+                                  </Checkbox>
+                                </Form.Item>
+                              </Col>
+                            </Row>
+                            <Button
+                              type="primary"
+                              htmlType="submit"
+                              loading={submitting}
+                            >
+                              Submit Inquiry
+                            </Button>
+                          </Form>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </QuotePanel>
+                </motion.div>
+              </ConfigProvider>
+            </Col>
+          </Row>
+        </Band>
       </Container>
-    </section>
+    </Section>
   );
 }
