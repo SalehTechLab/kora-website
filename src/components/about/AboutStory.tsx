@@ -55,26 +55,12 @@ const Sticky = styled.div`
   }
 `;
 
-const Origin = styled.span`
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 28px;
-  padding: 8px 16px;
-  border: 1px solid ${colors.steelGray};
-  border-radius: 999px;
-  background: ${colors.softWhite};
-  font-size: 13px;
-  font-weight: 600;
-  color: ${colors.deepNavy};
-
-  &::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: ${colors.crimson};
-    box-shadow: 0 0 0 4px rgba(181, 30, 50, 0.16);
+// Matches the display scale of the "Who we help" headline
+const StoryHeadline = styled(Headline)`
+  && {
+    font-size: clamp(2.2rem, 4.6vw, 3.75rem);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
   }
 `;
 
@@ -161,10 +147,10 @@ export default function AboutStory() {
         <Grid>
           <Sticky>
             <Eyebrow>Our Story</Eyebrow>
-            <Headline level={2} id="about-story-heading">
-              Built on one belief.
-            </Headline>
-            <Origin>Munich, Germany</Origin>
+            <StoryHeadline level={2} id="about-story-heading">
+              <span style={{ display: "block", whiteSpace: "nowrap" }}>Built on</span>
+              <span style={{ display: "block", whiteSpace: "nowrap" }}>one belief.</span>
+            </StoryHeadline>
           </Sticky>
 
           <Flow>

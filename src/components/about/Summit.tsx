@@ -1,20 +1,14 @@
 "use client";
 
+import { useRef } from "react";
 import styled, { keyframes } from "styled-components";
-import {
-  Button,
-  ConfigProvider,
-  Divider,
-  Flex,
-  Typography,
-  type ThemeConfig,
-} from "antd";
+import { Button, ConfigProvider, Typography, type ThemeConfig } from "antd";
 import { ArrowRightOutlined } from "@ant-design/icons";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { colors } from "@/theme/themeConfig";
-import { Container, Eyebrow, Headline, SERIF, ease, useReveal } from "./shared";
+import { Container, Eyebrow, Headline, ease, useReveal } from "./shared";
 
-const { Title, Paragraph, Text } = Typography;
+const { Title, Paragraph } = Typography;
 
 const OUTCOMES = [
   {
@@ -65,16 +59,54 @@ const Grid = styled.div`
   }
 `;
 
-const Index = styled(Text)`
-  && {
-    flex: none;
-    width: 40px;
-    font-family: ${SERIF};
-    font-size: 1.5rem;
-    line-height: 1.2;
-    font-style: italic;
-    color: ${colors.crimson};
+const Trail = styled.ol`
+  position: relative;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+`;
+
+// Track and progress share one rail, running through the centre of every node
+const Rail = styled.span`
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 5px;
+  width: 2px;
+  border-radius: 1px;
+  background: rgba(140, 155, 176, 0.3);
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 64px), transparent);
+`;
+
+const RailFill = styled(motion.span)`
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 1px;
+  background: ${colors.crimson};
+  transform-origin: top;
+`;
+
+const Step = styled.li`
+  position: relative;
+  padding: 0 0 36px 40px;
+
+  &:last-child {
+    padding-bottom: 0;
   }
+`;
+
+const Node = styled(motion.span)`
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid ${colors.steelGray};
+  background: ${colors.white};
+  box-shadow: 0 0 0 5px ${colors.white};
 `;
 
 const sway = keyframes`
@@ -260,6 +292,15 @@ function Illustration() {
 
 export default function Summit() {
   const reveal = useReveal();
+  const reduceMotion = useReducedMotion();
+  const trailRef = useRef<HTMLOListElement>(null);
+
+  // The rail draws as the list passes through the viewport
+  const { scrollYProgress } = useScroll({
+    target: trailRef,
+    offset: ["start 70%", "end 65%"],
+  });
+  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });
 
   return (
     <ConfigProvider theme={theme}>
@@ -287,27 +328,39 @@ export default function Summit() {
               </motion.div>
 
               <motion.div {...reveal(0.1)}>
-                <Flex vertical style={{ marginTop: 40 }}>
-                  {OUTCOMES.map((item, i) => (
-                    <div key={item.title}>
-                      {i > 0 && <Divider style={{ margin: "20px 0" }} />}
-                      <Flex gap={16} align="flex-start">
-                        <Index>{`0${i + 1}`}</Index>
-                        <div>
-                          <Title level={4} style={{ fontSize: "1.125rem" }}>
-                            {item.title}
-                          </Title>
-                          <Paragraph
-                            type="secondary"
-                            style={{ margin: "6px 0 0", lineHeight: 1.6 }}
-                          >
-                            {item.description}
-                          </Paragraph>
-                        </div>
-                      </Flex>
-                    </div>
+                <Trail ref={trailRef} aria-label="What you can expect">
+                  <Rail aria-hidden>
+                    <RailFill style={{ scaleY: reduceMotion ? 1 : fill }} />
+                  </Rail>
+                  {OUTCOMES.map((item) => (
+                    <Step key={item.title}>
+                      <Node
+                        aria-hidden
+                        {...(reduceMotion
+                          ? { style: { background: colors.crimson, borderColor: colors.crimson } }
+                          : {
+                              initial: false,
+                              whileInView: {
+                                background: colors.crimson,
+                                borderColor: colors.crimson,
+                                scale: [1, 1.5, 1],
+                              },
+                              viewport: { once: true, margin: "0px 0px -40% 0px" },
+                              transition: { duration: 0.6, ease },
+                            })}
+                      />
+                      <Title level={4} style={{ fontSize: "1.125rem" }}>
+                        {item.title}
+                      </Title>
+                      <Paragraph
+                        type="secondary"
+                        style={{ margin: "6px 0 0", lineHeight: 1.6 }}
+                      >
+                        {item.description}
+                      </Paragraph>
+                    </Step>
                   ))}
-                </Flex>
+                </Trail>
 
                 <Button
                   type="primary"
