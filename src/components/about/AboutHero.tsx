@@ -11,11 +11,16 @@ import {
   useTransform,
 } from "framer-motion";
 import { colors } from "@/theme/themeConfig";
-import { Container, Eyebrow, SERIF, ease } from "./shared";
+import { Container, SERIF, ease } from "./shared";
 
-const { Title, Paragraph, Text } = Typography;
+const { Paragraph, Text } = Typography;
 
-const LINES = ["Opportunities", "are everywhere.", "Trust is rare."];
+// Words rise one by one; the last line is the accent
+const LINES: { words: string[]; accent?: boolean }[] = [
+  { words: ["Opportunities"] },
+  { words: ["are", "everywhere."] },
+  { words: ["Trust is rare."], accent: true },
+];
 
 // All seven brand traits share the outer ring, evenly spaced and turning
 // together, so labels can never cross. The inner rings carry only planets.
@@ -42,8 +47,7 @@ const theme: ThemeConfig = {
     colorTextHeading: colors.softWhite,
     colorText: "rgba(244, 246, 249, 0.82)",
   },
-  components: { Typography: { titleMarginTop: 0, titleMarginBottom: 0 } },
-};
+  };
 
 const Banner = styled.section`
   position: relative;
@@ -88,25 +92,55 @@ const Grid = styled.div`
   }
 `;
 
-const Line = styled.span`
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.08em;
+const Eyebrow = styled(Text)`
+  && {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(244, 246, 249, 0.72);
+
+    &::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: ${colors.crimson};
+    }
+  }
 `;
 
-const Headline = styled(Title).attrs({ level: 1 })`
-  && {
-    font-family: ${SERIF};
-    font-size: clamp(2.25rem, 5.6vw, 4.5rem);
-    line-height: 1.04;
-    letter-spacing: -0.025em;
-  }
+const Headline = styled.h1`
+  margin: 0 0 24px;
+  font-family: ${SERIF};
+  font-size: clamp(2.3rem, 4.8vw, 4rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: ${colors.softWhite};
+`;
 
-  /* Last line carries the point, so it gets the accent */
-  ${Line}:last-child span {
-    font-style: italic;
-    color: #B51E32;
-  }
+const Line = styled.span`
+  display: block;
+`;
+
+// Each word sits in an overflow mask so it can rise into place
+const Mask = styled.span`
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.06em 0.12em 0.14em 0;
+  margin-right: 0.02em;
+  vertical-align: bottom;
+`;
+
+const Accent = styled(motion.span)`
+  display: inline-block;
+  font-style: italic;
+  background: linear-gradient(${colors.crimson}, ${colors.crimson}) no-repeat 0 92% /
+    100% 0.07em;
 `;
 
 // Sized as a container so labels scale with the stage (cqw units)
@@ -240,6 +274,7 @@ const Cue = styled(motion.div)`
 
 export default function AboutHero() {
   const reduceMotion = useReducedMotion();
+  let wordIndex = 0;
 
   // Pointer parallax: the mark drifts with the cursor, the rings counter-drift
   const px = useMotionValue(0);
@@ -256,15 +291,6 @@ export default function AboutHero() {
     px.set(((e.clientX - r.left) / r.width - 0.5) * 2);
     py.set(((e.clientY - r.top) / r.height - 0.5) * 2);
   };
-
-  const rise = (delay: number) =>
-    reduceMotion
-      ? {}
-      : {
-          initial: { y: "110%" },
-          animate: { y: 0 },
-          transition: { duration: 0.9, delay, ease },
-        };
 
   const fade = (delay: number) =>
     reduceMotion
@@ -289,27 +315,39 @@ export default function AboutHero() {
           <Grid>
             <div>
               <motion.div {...fade(0.1)}>
-                <Eyebrow $light>About Us</Eyebrow>
+                <Eyebrow>About Us</Eyebrow>
               </motion.div>
               <Headline id="about-heading">
-                {LINES.map((line, i) => (
-                  <Line key={line}>
-                    <motion.span
-                      style={{ display: "inline-block" }}
-                      {...rise(0.2 + i * 0.14)}
-                    >
-                      {line}
-                    </motion.span>
-                  </Line>
-                ))}
+                {LINES.map(({ words, accent }) =>
+                  (
+                    <Line key={words[0]}>
+                      {words.map((text) => {
+                        const delay = 0.15 + wordIndex++ * 0.09;
+                        const Word = accent ? Accent : motion.span;
+                        return (
+                          <Mask key={text}>
+                            <Word
+                              style={{ display: "inline-block" }}
+                              initial={reduceMotion ? false : { y: "110%" }}
+                              animate={{ y: 0 }}
+                              transition={{ duration: 0.9, delay, ease }}
+                            >
+                              {text}
+                            </Word>
+                          </Mask>
+                        );
+                      })}
+                    </Line>
+                  ),
+                )}
               </Headline>
               <motion.div {...fade(0.75)}>
                 <Paragraph
                   style={{
-                    maxWidth: 560,
-                    margin: "28px 0 0",
+                    maxWidth: 520,
+                    margin: 0,
                     fontSize: "clamp(1rem, 0.9rem + 0.4vw, 1.125rem)",
-                    lineHeight: 1.7,
+                    lineHeight: 1.65,
                   }}
                 >
                   Kora Traders started in Munich, Germany with a simple belief:

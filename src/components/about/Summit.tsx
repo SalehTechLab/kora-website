@@ -232,20 +232,74 @@ function Illustration() {
           transition={{ duration: 1, delay: 0.2, ease }}
         >
           {/* Legs and shoes */}
-          <path d="M274 262 L328 258 L338 394 L314 394 L302 316 L288 394 L262 394 Z" fill={colors.darkSlate} />
+          <path d="M274 262 L328 258 L338 394 L314 394 L302 316 L288 394 L262 394 Z" fill={colors.deepNavy} />
+          <path d="M283 300 L276 392 M322 300 L326 392" fill="none" stroke={colors.darkSlate} strokeOpacity={0.35} strokeWidth={2} />
           <rect x={254} y={392} width={38} height={9} rx={4.5} fill={colors.darkSlate} />
           <rect x={310} y={392} width={38} height={9} rx={4.5} fill={colors.darkSlate} />
 
-          {/* Briefcase arm */}
-          <path d="M270 170 L254 172 L246 252 L264 256 Z" fill={colors.deepNavy} />
-          <circle cx={255} cy={262} r={8} fill={SKIN} />
-          <path d="M249 270 V260 H271 V270" fill="none" stroke={colors.deepNavy} strokeWidth={3} />
-          <rect x={232} y={268} width={56} height={44} rx={4} fill={colors.steelGray} />
-          <path d="M232 292 H288 V308 a4 4 0 0 1 -4 4 H236 a4 4 0 0 1 -4 -4 Z" fill={CASE_SHADE} />
+          {/* Briefcase arm: rounded sleeve from the shoulder down to the hand */}
+          <path
+            d="M272 184 C263 208 258 232 258 254"
+            fill="none"
+            stroke={colors.deepNavy}
+            strokeWidth={15}
+            strokeLinecap="round"
+          />
+          <path
+            d="M268 192 C262 210 260 230 260 246"
+            fill="none"
+            stroke={colors.darkSlate}
+            strokeOpacity={0.35}
+            strokeWidth={3}
+            strokeLinecap="round"
+          />
+          <circle cx={257} cy={265} r={8.5} fill={SKIN} />
+          <path d="M250 272 V261 H272 V272" fill="none" stroke={colors.deepNavy} strokeWidth={3} strokeLinejoin="round" />
+          <rect x={232} y={270} width={56} height={44} rx={5} fill={colors.steelGray} />
+          <path d="M232 294 H288 V309 a5 5 0 0 1 -5 5 H237 a5 5 0 0 1 -5 -5 Z" fill={CASE_SHADE} />
 
-          {/* Torso */}
-          <path d="M268 168 Q302 156 337 164 L349 258 Q310 272 266 268 Z" fill={colors.deepNavy} />
-          <path d="M292 160 L314 160 L320 264 L296 266 Z" fill={colors.white} />
+          {/* Raised arm: sleeve bends at the elbow and ends in a fist around the trophy */}
+          <path
+            d="M334 180 C358 174 372 150 378 104"
+            fill="none"
+            stroke={colors.deepNavy}
+            strokeWidth={15}
+            strokeLinecap="round"
+          />
+          <path
+            d="M340 172 C358 166 368 146 374 112"
+            fill="none"
+            stroke={colors.darkSlate}
+            strokeOpacity={0.35}
+            strokeWidth={3}
+            strokeLinecap="round"
+          />
+          <circle cx={380} cy={91} r={9.5} fill={SKIN} />
+
+          {/* Shoulder caps close the gap where each sleeve meets the jacket */}
+          <circle cx={337} cy={182} r={11} fill={colors.deepNavy} />
+          <path d="M326 164 L352 160 L364 140 L346 150 Z" fill={colors.deepNavy} />
+          <circle cx={346} cy={168} r={11} fill={colors.deepNavy} />
+          <circle cx={332} cy={166} r={10} fill={colors.deepNavy} />
+          <circle cx={271} cy={184} r={11} fill={colors.deepNavy} />
+
+          {/* Torso: rounded shoulders, white shirt, lapels */}
+          <path
+            d="M262 186 C262 166 280 158 296 158 L312 158 C330 158 346 166 346 186 L350 262 Q308 276 264 266 Z"
+            fill={colors.deepNavy}
+          />
+          {/* Suit front: white shirt, crimson tie, notch lapels, button and pocket square */}
+          <path d="M288 160 L318 160 L304 240 Z" fill={colors.white} />
+          <path d="M283 164 L304 240 L296 270 M325 164 L304 240 L312 270" fill="none" stroke={colors.darkSlate} strokeOpacity={0.55} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+          <path d="M276 184 L298 236 L284 244 Z M332 184 L310 236 L324 244 Z" fill={colors.darkSlate} opacity={0.28} />
+          <path d="M291 157 L304 176 L287 184 Z" fill={colors.white} stroke={colors.steelGray} strokeOpacity={0.55} strokeWidth={1.3} strokeLinejoin="round" />
+          <path d="M317 157 L304 176 L321 184 Z" fill={colors.white} stroke={colors.steelGray} strokeOpacity={0.55} strokeWidth={1.3} strokeLinejoin="round" />
+          <path d="M298 174 L310 174 L308 186 L300 186 Z" fill={colors.crimson} />
+          <path d="M300 186 L308 186 L312 232 L304 244 L296 232 Z" fill={colors.crimson} />
+          <path d="M304 190 L304 238" stroke={colors.darkSlate} strokeOpacity={0.25} strokeWidth={1.4} />
+          <circle cx={304} cy={254} r={2.8} fill={colors.steelGray} />
+          <path d="M268 222 L280 219 L281 226 L269 229 Z" fill={colors.white} />
+          <path d="M264 266 Q308 277 350 262" fill="none" stroke={colors.darkSlate} strokeOpacity={0.45} strokeWidth={2} strokeLinecap="round" />
           <rect x={291} y={138} width={22} height={26} rx={6} fill={SKIN} />
 
           {/* Head */}
@@ -259,6 +313,7 @@ function Illustration() {
           <path d="M334 166 L354 162 L388 98 L368 88 Z" fill={colors.deepNavy} />
           <circle cx={382} cy={84} r={9} fill={SKIN} />
 
+          <g transform="translate(0 9)">
           <g className="trophy">
             <rect x={374} y={68} width={16} height={7} rx={1.5} fill={colors.darkSlate} />
             <rect x={380} y={54} width={4} height={15} fill={CROWN} />
@@ -272,6 +327,7 @@ function Illustration() {
             />
             <ellipse cx={374} cy={34} rx={3} ry={5} fill={colors.white} opacity={0.55} />
           </g>
+          </g>
 
           {/* Glints */}
           <g
@@ -283,6 +339,8 @@ function Illustration() {
             <path className="ray" d="M342 16 L354 22" />
             <path className="ray ray-2" d="M354 -2 L362 8" />
             <path className="ray ray-3" d="M384 -10 L383 2" />
+            <path className="ray ray-2" d="M424 16 L412 22" />
+            <path className="ray" d="M412 -2 L404 8" />
           </g>
         </motion.g>
       </g>
