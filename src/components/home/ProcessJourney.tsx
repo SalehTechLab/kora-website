@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
-import styled from "styled-components";
-import { Button, Flex, Typography } from "antd";
+import styled, { keyframes } from "styled-components";
+import { Button, ConfigProvider, Flex, Typography, type ThemeConfig } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import {
   AnimatePresence,
@@ -174,17 +174,44 @@ const Label = styled(motion.div)`
   cursor: pointer;
 `;
 
+const fillBar = keyframes`
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+`;
+
+const panelTheme: ThemeConfig = {
+  token: { colorTextHeading: colors.softWhite, colorText: "rgba(244, 246, 249, 0.8)" },
+  components: {
+    Button: {
+      defaultColor: colors.softWhite,
+      defaultBg: "transparent",
+      defaultBorderColor: "rgba(244, 246, 249, 0.36)",
+      defaultHoverColor: colors.deepNavy,
+      defaultHoverBg: colors.softWhite,
+      defaultHoverBorderColor: colors.softWhite,
+      defaultActiveColor: colors.deepNavy,
+      defaultActiveBg: colors.softWhite,
+      defaultActiveBorderColor: colors.softWhite,
+      defaultShadow: "none",
+      primaryShadow: "none",
+    },
+  },
+};
+
 const Panel = styled.div`
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 48px;
   max-width: 980px;
   margin: 0 auto;
-  padding: 36px 48px;
+  padding: 40px 48px 52px;
   border-radius: 24px;
-  background: ${colors.white};
-  box-shadow: 0 24px 60px -32px rgba(16, 41, 78, 0.35);
+  background: ${colors.deepNavy};
+  box-shadow: 0 28px 64px -28px rgba(16, 41, 78, 0.65);
 
   @media (max-width: 991px) {
     display: none;
@@ -195,21 +222,110 @@ const BigNumber = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 6px;
+  padding-right: 48px;
+  border-right: 1px solid rgba(244, 246, 249, 0.16);
 
   .eyebrow {
-    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: ${colors.steelGray};
+    color: rgba(244, 246, 249, 0.72);
+
+    &::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: ${colors.crimson};
+    }
   }
 
   .digits {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
     font-family: var(--font-serif), Georgia, "Times New Roman", serif;
-    font-size: 84px;
+    font-size: 88px;
     font-weight: 700;
     line-height: 1;
+    letter-spacing: -0.03em;
+    color: ${colors.softWhite};
+  }
+
+  .total {
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: ${colors.steelGray};
+  }
+`;
+
+// Segmented progress along the bottom edge: one segment per step
+const Segments = styled.div`
+  position: absolute;
+  left: 48px;
+  right: 48px;
+  bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(${STEPS.length}, 1fr);
+  gap: 8px;
+
+  button {
+    position: relative;
+    height: 16px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 6px;
+      height: 3px;
+      border-radius: 3px;
+    }
+
+    &::before {
+      background: rgba(244, 246, 249, 0.18);
+    }
+
+    &:focus-visible {
+      outline: 2px solid ${colors.softWhite};
+      outline-offset: 2px;
+    }
+  }
+
+  .fill::after {
+    background: ${colors.crimson};
+    transform-origin: left center;
+  }
+
+  .fill.done::after {
+    transform: scaleX(1);
+  }
+
+  .fill.run::after {
+    animation: ${fillBar} ${AUTOPLAY_MS}ms linear forwards;
+  }
+
+  .fill.idle::after {
+    transform: scaleX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fill.run::after {
+      animation: none;
+      transform: scaleX(1);
+    }
   }
 `;
 
@@ -572,57 +688,93 @@ export default function ProcessJourney() {
         })}
       </Canvas>
 
-      <Panel aria-live="polite">
-        <AnimatePresence mode="wait" initial={false}>
-          <BigNumber
-            key={`n-${active}`}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-            transition={{ duration: 0.4, ease }}
-          >
-            <span className="eyebrow">Step</span>
-            <span className="digits" style={{ color: step.accent }}>
-              {String(active + 1).padStart(2, "0")}
-            </span>
-          </BigNumber>
-        </AnimatePresence>
+      <ConfigProvider theme={panelTheme}>
+        <Panel aria-live="polite">
+          <AnimatePresence mode="wait" initial={false}>
+            <BigNumber
+              key={`n-${active}`}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -24 }}
+              transition={{ duration: 0.4, ease }}
+            >
+              <span className="eyebrow">Step</span>
+              <span className="digits">
+                {String(active + 1).padStart(2, "0")}
+                <span className="total">/{String(STEPS.length).padStart(2, "0")}</span>
+              </span>
+            </BigNumber>
+          </AnimatePresence>
 
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={`t-${active}`}
-            initial={{ opacity: 0, x: 24, filter: "blur(6px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, x: -24, filter: "blur(6px)" }}
-            transition={{ duration: 0.4, ease }}
-          >
-            <Title level={3} style={{ marginBottom: 8 }}>
-              {step.title}
-            </Title>
-            <Paragraph type="secondary" style={{ margin: 0, fontSize: 16, lineHeight: 1.6 }}>
-              {step.description}
-            </Paragraph>
-          </motion.div>
-        </AnimatePresence>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={`t-${active}`}
+              initial={{ opacity: 0, x: 24, filter: "blur(6px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, x: -24, filter: "blur(6px)" }}
+              transition={{ duration: 0.4, ease }}
+            >
+              <Title
+                level={3}
+                style={{
+                  marginBottom: 10,
+                  fontFamily: "var(--font-serif), Georgia, serif",
+                  fontSize: 28,
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {step.title}
+              </Title>
+              <Paragraph style={{ margin: 0, fontSize: 16, lineHeight: 1.65 }}>
+                {step.description}
+              </Paragraph>
+            </motion.div>
+          </AnimatePresence>
 
-        <Flex gap={12}>
-          <Button
-            shape="circle"
-            size="large"
-            icon={<ArrowLeftOutlined />}
-            aria-label="Previous step"
-            onClick={() => select(active - 1)}
-          />
-          <Button
-            type="primary"
-            shape="circle"
-            size="large"
-            icon={<ArrowRightOutlined />}
-            aria-label="Next step"
-            onClick={() => select(active + 1)}
-          />
-        </Flex>
-      </Panel>
+          <Flex gap={12}>
+            <Button
+              shape="circle"
+              size="large"
+              icon={<ArrowLeftOutlined />}
+              aria-label="Previous step"
+              onClick={() => select(active - 1)}
+            />
+            <Button
+              type="primary"
+              shape="circle"
+              size="large"
+              icon={<ArrowRightOutlined />}
+              aria-label="Next step"
+              onClick={() => select(active + 1)}
+            />
+          </Flex>
+
+          <Segments>
+            {STEPS.map((s, i) => {
+              const state =
+                i < active
+                  ? "done"
+                  : i > active
+                    ? "idle"
+                    : playing
+                      ? "run"
+                      : autoplay
+                        ? "idle"
+                        : "done";
+              return (
+                <button
+                  key={s.title}
+                  type="button"
+                  className={`fill ${state}`}
+                  aria-label={`Go to step ${i + 1}: ${s.title}`}
+                  aria-current={i === active ? "step" : undefined}
+                  onClick={() => select(i)}
+                />
+              );
+            })}
+          </Segments>
+        </Panel>
+      </ConfigProvider>
 
       <MobileList>
         <MobileTrack aria-hidden>
