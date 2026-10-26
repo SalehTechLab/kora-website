@@ -1,7 +1,7 @@
 .runway {
   position: relative;
-  color: var(--kora-soft-white);
-  background: var(--kora-deep-navy);
+  color: var(--kora-dark-slate);
+  background: var(--kora-soft-white);
 }
 
 .stage {
@@ -23,7 +23,7 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--kora-steel-gray);
+  color: var(--kora-burgundy);
 }
 
 .heading {
@@ -32,7 +32,7 @@
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--kora-white);
+  color: var(--kora-deep-navy);
 }
 
 .heading em {
@@ -58,7 +58,7 @@
   padding: 0;
   border: 0;
   text-align: left;
-  color: rgba(140, 155, 176, 0.9);
+  color: var(--kora-steel-gray);
   background: none;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -67,11 +67,11 @@
 .railItem:hover,
 .railActive,
 .railDone {
-  color: var(--kora-soft-white);
+  color: var(--kora-deep-navy);
 }
 
 .railItem:focus-visible {
-  outline: 2px solid var(--kora-white);
+  outline: 2px solid var(--kora-deep-navy);
   outline-offset: 6px;
   border-radius: 4px;
 }
@@ -81,7 +81,7 @@
   height: 2px;
   margin-bottom: 8px;
   overflow: hidden;
-  background: rgba(140, 155, 176, 0.3);
+  background: rgba(140, 155, 176, 0.4);
 }
 
 .railFill {
@@ -114,7 +114,7 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--kora-steel-gray);
+  color: var(--kora-dark-slate);
 }
 
 .num {
@@ -130,7 +130,7 @@
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.025em;
-  color: var(--kora-white);
+  color: var(--kora-deep-navy);
   text-wrap: balance;
 }
 
@@ -139,7 +139,7 @@
   margin-top: 20px;
   font-size: clamp(0.98rem, 0.92rem + 0.3vw, 1.08rem);
   line-height: 1.65;
-  color: rgba(244, 246, 249, 0.76);
+  color: var(--kora-dark-slate);
 }
 
 .points {
@@ -154,11 +154,11 @@
 .points li {
   position: relative;
   padding: 10px 0 0 18px;
-  border-top: 1px solid rgba(140, 155, 176, 0.25);
+  border-top: 1px solid rgba(140, 155, 176, 0.5);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
-  color: var(--kora-soft-white);
+  color: var(--kora-deep-navy);
 }
 
 .points li::before {
@@ -181,7 +181,7 @@
   font-size: 1.15rem;
   font-style: italic;
   line-height: 1.4;
-  color: var(--kora-white);
+  color: var(--kora-deep-navy);
 }
 
 .ask span {
@@ -205,7 +205,7 @@
   border-bottom: 2px solid var(--kora-burgundy);
   font-size: 15px;
   font-weight: 600;
-  color: var(--kora-white);
+  color: var(--kora-deep-navy);
   transition: gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -221,7 +221,7 @@
 
 .block {
   padding: 40px 0 48px;
-  border-top: 1px solid rgba(140, 155, 176, 0.25);
+  border-top: 1px solid rgba(140, 155, 176, 0.5);
 }
 
 .blockVisual {

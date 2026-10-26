@@ -308,51 +308,6 @@
   pointer-events: none;
 }
 
-/* ---------- Stats ---------- */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 0 20px;
-  border-top: 1px solid rgba(140, 155, 176, 0.28);
-}
-
-.stat {
-  padding: 28px 12px 32px 0;
-  border-bottom: 1px solid rgba(140, 155, 176, 0.18);
-}
-
-.statValue {
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: clamp(2.4rem, 6vw, 3.8rem);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.03em;
-  color: var(--kora-white);
-}
-
-.statLabel {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--kora-soft-white);
-}
-
-.statLabel span {
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--kora-steel-gray);
-}
-
 @media (min-width: 992px) {
   .inner {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -363,20 +318,5 @@
   .file {
     justify-self: end;
     margin-top: 0;
-  }
-
-  .stats {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding: 0 48px;
-  }
-
-  .stat {
-    padding: 36px 24px 44px 0;
-    border-bottom: 0;
-  }
-
-  .stat + .stat {
-    padding-left: 32px;
-    border-left: 1px solid rgba(140, 155, 176, 0.18);
   }
 }

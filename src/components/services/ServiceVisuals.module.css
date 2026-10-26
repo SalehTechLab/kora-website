@@ -5,11 +5,10 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  border: 1px solid rgba(140, 155, 176, 0.28);
   border-radius: 20px;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(244, 246, 249, 0.07), transparent 70%),
-    rgba(244, 246, 249, 0.03);
+    radial-gradient(ellipse 70% 60% at 50% 40%, rgba(244, 246, 249, 0.1), transparent 70%),
+    var(--kora-deep-navy);
 }
 
 .frame svg {

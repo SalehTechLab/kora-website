@@ -1,14 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import {
-  animate,
-  motion,
-  MotionConfig,
-  useInView,
-  useReducedMotion,
-} from "framer-motion";
+import { motion, MotionConfig, useReducedMotion } from "framer-motion";
 import { ArrowRightOutlined, CheckOutlined } from "@ant-design/icons";
 import styles from "./ServicesHero.module.css";
 
@@ -22,32 +16,6 @@ const STEPS = [
   "In transit",
   "Cleared & delivered",
 ];
-
-const STATS = [
-  { value: 2, label: "Offices", detail: "Munich · Lahore" },
-  { value: 7, label: "Product categories", detail: "And anything else" },
-  { value: 4, label: "Transport modes", detail: "Air · Sea · Rail · Road" },
-  { value: 1, label: "Point of contact", detail: "From brief to door" },
-];
-
-function CountUp({ to }: { to: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true });
-  const reduce = useReducedMotion();
-  const [n, setN] = useState(reduce ? to : 0);
-
-  useEffect(() => {
-    if (!inView || reduce) return;
-    const controls = animate(0, to, {
-      duration: 1.4,
-      ease,
-      onUpdate: (v) => setN(Math.round(v)),
-    });
-    return () => controls.stop();
-  }, [inView, reduce, to]);
-
-  return <span ref={ref}>{n}</span>;
-}
 
 // The deal file works through its stages, stamps itself, then starts over
 function DealFile() {
@@ -211,25 +179,6 @@ export default function ServicesHero() {
           <DealFile />
         </div>
 
-        <dl className={styles.stats}>
-          {STATS.map((s, i) => (
-            <motion.div
-              key={s.label}
-              className={styles.stat}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1 + i * 0.1, ease }}
-            >
-              <dt className={styles.statValue}>
-                <CountUp to={s.value} />
-              </dt>
-              <dd className={styles.statLabel}>
-                {s.label}
-                <span>{s.detail}</span>
-              </dd>
-            </motion.div>
-          ))}
-        </dl>
       </section>
     </MotionConfig>
   );
