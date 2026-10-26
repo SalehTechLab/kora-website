@@ -17,7 +17,7 @@ const sectionTheme: ThemeConfig = {
 
 const Section = styled.section`
   padding: 112px 0;
-  background: ${colors.mist};
+  background: ${colors.softWhite};
 
   @media (max-width: 767px) {
     padding: 72px 0;
