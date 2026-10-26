@@ -25,11 +25,11 @@ const Section = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1240px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 48px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     padding: 0 20px;
   }
 `;

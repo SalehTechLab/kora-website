@@ -1,0 +1,340 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: 88px 0;
+  color: var(--kora-soft-white);
+  background: var(--kora-deep-navy);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 48px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.eyebrow {
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--kora-steel-gray);
+}
+
+.heading {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--kora-white);
+}
+
+.mask {
+  display: block;
+  overflow: hidden;
+  padding: 0.04em 0 0.14em;
+  margin-bottom: -0.1em;
+}
+
+.line {
+  display: block;
+  text-wrap: balance;
+}
+
+/* Crimson is too dim for display type on navy: white italic with a crimson rule */
+.accent {
+  width: fit-content;
+  max-width: 100%;
+  font-style: italic;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--kora-burgundy);
+  text-decoration-thickness: 0.06em;
+  text-underline-offset: 0.14em;
+}
+
+.lead {
+  max-width: 540px;
+  margin: 24px 0 32px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(244, 246, 249, 0.78);
+}
+
+/* ---------- Demo request ---------- */
+
+.request {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 540px;
+  min-height: 60px;
+  margin-bottom: 28px;
+  padding: 0 16px 0 18px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--kora-steel-gray) 14%, var(--kora-deep-navy));
+  border: 1px solid rgba(140, 155, 176, 0.35);
+}
+
+.searchIcon {
+  font-size: 16px;
+  color: var(--kora-steel-gray);
+}
+
+.typed {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--kora-white);
+}
+
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  background: var(--kora-burgundy);
+  animation: blink 1s steps(1) infinite;
+}
+
+.caret[data-live="false"] {
+  opacity: 0;
+  animation: none;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--kora-steel-gray);
+  border: 1px solid rgba(140, 155, 176, 0.35);
+}
+
+.status[data-stage="found"] {
+  color: var(--kora-white);
+  background: var(--kora-burgundy);
+  border-color: var(--kora-burgundy);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--kora-burgundy);
+  animation: pulse 0.9s ease-in-out infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.7);
+    opacity: 0.4;
+  }
+}
+
+/* ---------- Network illustration ---------- */
+
+.art {
+  display: flex;
+  justify-content: center;
+}
+
+.map {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  overflow: visible;
+}
+
+.ring {
+  fill: none;
+  stroke: rgba(140, 155, 176, 0.28);
+  stroke-width: 1;
+  stroke-dasharray: 3 7;
+}
+
+.sweep {
+  transform-origin: 250px 250px;
+  animation: sweep 7s linear infinite;
+}
+
+.sweepLine {
+  stroke: rgba(244, 246, 249, 0.25);
+  stroke-width: 1;
+}
+
+.spoke {
+  stroke: rgba(140, 155, 176, 0.35);
+  stroke-width: 1;
+  transition: stroke 0.4s ease, stroke-width 0.4s ease;
+}
+
+.map[data-stage="searching"] .spoke {
+  animation: flash 1.4s ease-in-out infinite;
+}
+
+.map[data-stage="found"] .spoke {
+  stroke: rgba(140, 155, 176, 0.18);
+}
+
+.map[data-stage="found"] .spoke[data-hit="true"] {
+  stroke: var(--kora-burgundy);
+  stroke-width: 2.5;
+}
+
+@keyframes flash {
+  0%,
+  100% {
+    stroke: rgba(140, 155, 176, 0.35);
+  }
+  50% {
+    stroke: var(--kora-white);
+  }
+}
+
+.ping {
+  fill: none;
+  stroke: var(--kora-burgundy);
+  stroke-width: 2;
+  transform-origin: 250px 250px;
+  animation: ping 1.8s cubic-bezier(0, 0.4, 0.4, 1) infinite;
+}
+
+@keyframes ping {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(5.6);
+    opacity: 0;
+  }
+}
+
+.nodeDot {
+  fill: var(--kora-deep-navy);
+  stroke: var(--kora-steel-gray);
+  stroke-width: 2;
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.node[data-hit="true"] .nodeDot {
+  fill: var(--kora-burgundy);
+  stroke: var(--kora-white);
+  stroke-width: 2.5;
+}
+
+.hitHalo {
+  fill: rgba(181, 30, 50, 0.28);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: halo 1.6s ease-in-out infinite;
+}
+
+@keyframes halo {
+  50% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+}
+
+.nodeLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--kora-steel-gray);
+  paint-order: stroke;
+  stroke: var(--kora-deep-navy);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.node[data-hit="true"] .nodeLabel {
+  fill: var(--kora-white);
+}
+
+.tagGroup {
+  animation: tag-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes tag-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.tagBox {
+  fill: var(--kora-white);
+}
+
+.tagText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  fill: var(--kora-deep-navy);
+}
+
+.hub {
+  fill: var(--kora-burgundy);
+  stroke: rgba(244, 246, 249, 0.35);
+  stroke-width: 6;
+}
+
+.hubMark {
+  filter: brightness(0) invert(1);
+}
+
+@keyframes sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 992px) {
+  .section {
+    padding: 128px 0;
+  }
+
+  .container {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 72px;
+    padding: 0 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sweep,
+  .ping,
+  .hitHalo,
+  .dot,
+  .caret,
+  .map[data-stage="searching"] .spoke {
+    animation: none;
+  }
+}

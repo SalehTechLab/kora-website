@@ -190,7 +190,7 @@ export default function LogisticsHero() {
                   Explore our services
                   <DownOutlined />
                 </Button>
-                <Button size="large" href="/contact#quote">
+                <Button size="large" href="/contact-us#quote">
                   Request a quote
                   <ArrowRightOutlined />
                 </Button>

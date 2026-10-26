@@ -279,7 +279,7 @@ export default function SourcingDesk() {
   const submit = () => {
     const product = query.trim();
     router.push(
-      product ? `/contact?product=${encodeURIComponent(product)}` : "/contact",
+      product ? `/contact-us?product=${encodeURIComponent(product)}` : "/contact-us",
     );
   };
 

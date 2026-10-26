@@ -21,10 +21,10 @@ export default function AboutPage() {
       <Navbar />
       <AboutHero />
       <AboutStory />
+      <TaglineTicker />
       <MissionVision />
       <WhoWeHelp />
       <Summit />
-      <TaglineTicker />
       <Partnerships />
       <Footer />
     </main>

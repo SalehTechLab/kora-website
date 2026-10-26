@@ -64,7 +64,7 @@ export default function ShopCTA() {
               >
                 Visit the Kora shop
               </Button>
-              <Button size="large" href="/contact">
+              <Button size="large" href="/contact-us">
                 Talk to our team
                 <ArrowRightOutlined />
               </Button>

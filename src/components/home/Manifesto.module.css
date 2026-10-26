@@ -1,0 +1,200 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 0 64px;
+  background: var(--kora-soft-white);
+}
+
+.container {
+  position: relative;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.head {
+  margin-bottom: 32px;
+}
+
+.heading {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--kora-deep-navy);
+}
+
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.04em 0 0.14em;
+  margin: 0 0.28em -0.1em 0;
+  vertical-align: top;
+}
+
+.phrase {
+  display: block;
+}
+
+/* The last phrase carries the promise */
+.mask:last-child .phrase {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--kora-burgundy);
+}
+
+.rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 24px;
+  transform-origin: left;
+  background: rgba(140, 155, 176, 0.6);
+}
+
+.label {
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--kora-burgundy);
+}
+
+.statement {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(1.1rem, 4.4vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--kora-deep-navy);
+}
+
+.word {
+  display: inline-block;
+  margin-right: 0.26em;
+  will-change: opacity, transform;
+}
+
+.accent {
+  font-style: italic;
+  color: var(--kora-burgundy);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.textCol {
+  width: 100%;
+}
+
+.link {
+  margin-top: 32px;
+}
+
+/* Navy mission card, carried over from the old layout */
+.mission {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 36px;
+  padding: 32px 28px;
+  border-left: 3px solid var(--kora-burgundy);
+  border-radius: 0 12px 12px 0;
+  background: var(--kora-deep-navy);
+}
+
+.watermark {
+  position: absolute;
+  right: -18px;
+  bottom: -26px;
+  width: 150px;
+  opacity: 0.1;
+  rotate: -14deg;
+  pointer-events: none;
+  filter: brightness(0) invert(1);
+}
+
+.watermark img {
+  width: 100%;
+  height: auto;
+}
+
+.missionLabel {
+  position: relative;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--kora-burgundy);
+}
+
+.missionText {
+  position: relative;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--kora-soft-white);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  padding-bottom: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--kora-deep-navy);
+  border-bottom: 2px solid var(--kora-burgundy);
+  transition:
+    color 0.25s ease,
+    gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link:hover {
+  color: var(--kora-burgundy);
+  gap: 16px;
+}
+
+@media (min-width: 992px) {
+  .section {
+    padding: 80px 0 88px;
+  }
+
+  .container {
+    padding: 0 48px;
+  }
+
+  .head {
+    margin-bottom: 40px;
+  }
+
+  .statement {
+    font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+    line-height: 1.5;
+  }
+
+  .mission {
+    padding: 40px 44px;
+  }
+
+  .missionText {
+    font-size: 1.4rem;
+  }
+}

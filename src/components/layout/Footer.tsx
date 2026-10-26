@@ -31,6 +31,8 @@ const COMMODITIES = [
   { label: "Industrial Commodities", href: "/products#industrial" },
   { label: "Rice & Food Commodities", href: "/products#rice" },
   { label: "Textiles & Apparel", href: "/products#textiles" },
+  { label: "BOPP Rolls", href: "/products#bopp" },
+  { label: "Anything else", href: "/products#anything" },
 ];
 
 const LEGAL_LINKS = [

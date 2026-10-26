@@ -1,0 +1,207 @@
+.section {
+  position: relative;
+  background: var(--kora-white);
+}
+
+.pin {
+  padding: 96px 0 80px;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 1360px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.eyebrow {
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--kora-burgundy);
+}
+
+.heading {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--kora-deep-navy);
+}
+
+.heading em {
+  font-weight: 500;
+  color: var(--kora-burgundy);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--kora-deep-navy);
+  border-bottom: 2px solid var(--kora-burgundy);
+  transition:
+    color 0.25s ease,
+    gap 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link:hover {
+  color: var(--kora-burgundy);
+  gap: 16px;
+}
+
+/* Mobile / tablet: native horizontal swipe with snapping */
+.viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 20px;
+  scrollbar-width: none;
+  padding: 0 20px;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  list-style: none;
+}
+
+.card {
+  flex: 0 0 78vw;
+  max-width: 340px;
+  scroll-snap-align: start;
+}
+
+.cardLink {
+  display: block;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--kora-dark-slate);
+}
+
+.media img {
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cardLink:hover .media img {
+  transform: scale(1.07);
+}
+
+.name {
+  margin-top: 20px;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--kora-deep-navy);
+}
+
+.items {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--kora-dark-slate);
+  opacity: 0.75;
+}
+
+.progress {
+  display: none;
+}
+
+/* ---------- Desktop: pinned, scroll drives horizontal travel ---------- */
+
+@media (min-width: 992px) {
+  .section {
+    /* One viewport of pin plus however far the track has to travel */
+    height: calc(100svh + var(--travel, 0px));
+  }
+
+  .pin {
+    position: sticky;
+    top: 73px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: calc(100svh - 73px);
+    padding: 40px 0 56px;
+    overflow: hidden;
+  }
+
+  /* Content edge shared by the heading and the track so they line up on wide screens */
+  .pin {
+    --edge: max(48px, calc((100vw - 1360px) / 2 + 48px));
+  }
+
+  .head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+    max-width: none;
+    margin-bottom: 36px;
+    padding: 0 var(--edge);
+  }
+
+  .viewport {
+    overflow: visible;
+    scroll-snap-type: none;
+    scroll-padding: 0;
+    padding: 0 var(--edge);
+  }
+
+  .track {
+    gap: 28px;
+    will-change: transform;
+  }
+
+  .card {
+    flex: 0 0 auto;
+    width: clamp(260px, 21vw, 340px);
+    max-width: none;
+  }
+
+  /* Cards size to the available height so the whole pin always fits */
+  .media {
+    aspect-ratio: auto;
+    height: clamp(260px, 46svh, 480px);
+  }
+
+  .name {
+    font-size: 22px;
+  }
+
+  .progress {
+    display: block;
+    position: relative;
+    height: 2px;
+    margin: 32px var(--edge) 0;
+    background: rgba(140, 155, 176, 0.4);
+  }
+
+  .progressFill {
+    position: absolute;
+    inset: 0;
+    transform-origin: left;
+    background: var(--kora-burgundy);
+  }
+}

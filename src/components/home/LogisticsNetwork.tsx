@@ -63,6 +63,7 @@ const sectionTheme: ThemeConfig = {
     },
     Button: {
       controlHeight: 40,
+      borderRadius: 4,
       defaultShadow: "none",
       defaultColor: colors.darkSlate,
       defaultBg: colors.softWhite,
@@ -89,11 +90,11 @@ const Section = styled.section`
 `;
 
 const Container = styled.div`
-  max-width: 1240px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 48px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 991px) {
     padding: 0 20px;
   }
 `;
@@ -132,8 +133,7 @@ const Media = styled.div`
   transition: transform 0.5s ${ease};
 
   img {
-    width: auto;
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     object-fit: contain;
   }
@@ -175,7 +175,8 @@ const Card = styled.article`
   height: 400px;
   overflow: hidden;
   cursor: pointer;
-  background: transparent;
+  border-radius: 24px;
+  background: ${colors.softWhite};
   transition: background-color 0.4s ${ease};
 
   &:hover,

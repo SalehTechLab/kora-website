@@ -27,7 +27,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { colors } from "@/theme/themeConfig";
 import { Container, Eyebrow, SERIF, ease, useReveal } from "@/components/about/shared";
 import { WHATSAPP_URL } from "@/components/layout/WhatsAppFloat";
-import { submitQuoteRequest, type QuoteRequest } from "@/app/contact/actions";
+import { submitQuoteRequest, type QuoteRequest } from "@/app/contact-us/actions";
 import LiveTime from "./OfficeClock";
 
 const { Title, Paragraph, Text } = Typography;
@@ -347,7 +347,7 @@ export default function ContactSection() {
   const reveal = useReveal();
   const reduceMotion = useReducedMotion();
 
-  // Prefill from the Products page: /contact?product=Industrial%20valves
+  // Prefill from the Products page: /contact-us?product=Industrial%20valves
   useEffect(() => {
     const product = new URLSearchParams(window.location.search)
       .get("product")

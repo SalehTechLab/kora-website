@@ -423,7 +423,7 @@ export default function Summit() {
                 <Button
                   type="primary"
                   size="large"
-                  href="/contact"
+                  href="/contact-us"
                   icon={<ArrowRightOutlined />}
                   iconPlacement="end"
                   style={{ marginTop: 40 }}

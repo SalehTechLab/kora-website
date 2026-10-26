@@ -70,10 +70,10 @@ export default function LogisticsCTA() {
             for your business.
           </Paragraph>
           <Flex gap={16} justify="center" wrap>
-            <Button type="primary" size="large" href="/contact">
+            <Button type="primary" size="large" href="/contact-us">
               Get in Touch
             </Button>
-            <Button size="large" href="/contact">
+            <Button size="large" href="/contact-us">
               Partner With Us
             </Button>
           </Flex>

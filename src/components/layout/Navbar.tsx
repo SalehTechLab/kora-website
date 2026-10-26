@@ -20,7 +20,7 @@ const NAV_LINKS = [
   { label: "Services", href: "/services" },
   { label: "Products", href: "/products" },
   { label: "Logistics", href: "/logistics" },
-  { label: "Contact Us", href: "/contact" },
+  { label: "Contact Us", href: "/contact-us" },
 ];
 
 const BOOKING_MEETING_URL = "https://calendly.com/kora-traders-sales";

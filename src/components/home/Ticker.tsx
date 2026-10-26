@@ -28,9 +28,6 @@ export default function Ticker() {
           >
             {ITEMS.map((item) => (
               <li key={item} className={styles.item}>
-                <span className={styles.star} aria-hidden="true">
-                  ✦
-                </span>
                 {item}
               </li>
             ))}

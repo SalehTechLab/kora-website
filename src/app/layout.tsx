@@ -13,10 +13,11 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+// Variable font: full weight range plus a true italic for display accents
 const sourceSerif = Source_Serif_4({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {

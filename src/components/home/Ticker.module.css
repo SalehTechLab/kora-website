@@ -1,38 +1,16 @@
+/* Mirrors the About Us tagline band so the two tickers read as one family */
 .ticker {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: var(--kora-deep-navy);
-  border-bottom: 1px solid rgba(244, 246, 249, 0.08);
-  padding: 18px 0;
-}
-
-/* Soft navy fade at both edges */
-.ticker::before,
-.ticker::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  width: 6%;
-  pointer-events: none;
-}
-
-.ticker::before {
-  left: 0;
-  background: linear-gradient(to right, var(--kora-deep-navy), transparent);
-}
-
-.ticker::after {
-  right: 0;
-  background: linear-gradient(to left, var(--kora-deep-navy), transparent);
+  padding: 22px 0;
+  background: var(--kora-burgundy);
 }
 
 .track {
   display: flex;
   width: max-content;
-  animation: scroll 45s linear infinite;
+  animation: scroll 70s linear infinite;
 }
 
 .ticker:hover .track {
@@ -46,21 +24,28 @@
 }
 
 .item {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 28px;
-  padding-right: 28px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  gap: 32px;
+  padding-right: 32px;
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  font-size: clamp(1.05rem, 1.7vw, 1.5rem);
+  line-height: 1.1;
   white-space: nowrap;
-  color: var(--kora-soft-white);
+  color: var(--kora-white);
 }
 
-.star {
-  color: var(--kora-burgundy);
-  font-size: 12px;
+.item:nth-child(even) {
+  font-style: italic;
+}
+
+/* Navy diamond separator */
+.item::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+  background: var(--kora-deep-navy);
 }
 
 @keyframes scroll {
@@ -72,20 +57,8 @@
   }
 }
 
-@media (max-width: 479px) {
-  .ticker {
-    padding: 14px 0;
-  }
-
-  .item {
-    gap: 20px;
-    padding-right: 20px;
-    font-size: 12px;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .track {
-    animation-duration: 120s;
+    animation: none;
   }
 }

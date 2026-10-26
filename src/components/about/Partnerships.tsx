@@ -184,10 +184,10 @@ export default function Partnerships() {
           </Grid>
 
           <Flex gap={16} wrap style={{ marginTop: 56 }}>
-            <Button type="primary" size="large" href="/contact">
+            <Button type="primary" size="large" href="/contact-us">
               Become a Partner
             </Button>
-            <Button size="large" ghost href="/contact">
+            <Button size="large" ghost href="/contact-us">
               Discuss a Joint Venture
             </Button>
           </Flex>

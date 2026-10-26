@@ -43,11 +43,10 @@ const Item = styled.span`
   font-size: clamp(1.05rem, 1.7vw, 1.5rem);
   line-height: 1.1;
   white-space: nowrap;
-  color: ${colors.softWhite};
+  color: ${colors.white};
 
   &:nth-child(even) {
     font-style: italic;
-    color: rgba(244, 246, 249, 0.62);
   }
 
   &::after {
