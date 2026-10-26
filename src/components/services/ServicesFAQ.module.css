@@ -1,0 +1,123 @@
+.section {
+  padding: 80px 0;
+  background: var(--kora-soft-white);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.eyebrow {
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--kora-burgundy);
+}
+
+.heading {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--kora-deep-navy);
+}
+
+.heading em {
+  font-weight: 500;
+  color: var(--kora-burgundy);
+}
+
+.collapse {
+  border-top: 1px solid rgba(140, 155, 176, 0.5);
+}
+
+.q {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--kora-deep-navy);
+}
+
+.a {
+  max-width: 620px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--kora-dark-slate);
+}
+
+/* Plus drawn from two bars; the vertical bar collapses when the item opens */
+.icon {
+  position: relative;
+  display: block;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--kora-steel-gray);
+  border-radius: 50%;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  margin: -0.75px 0 0 -6px;
+  background: var(--kora-deep-navy);
+  transition:
+    background 0.3s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.icon::after {
+  transform: rotate(90deg);
+}
+
+:global(.ant-collapse-header:hover) .icon,
+:global(.ant-collapse-item-active) .icon {
+  border-color: var(--kora-burgundy);
+  background: var(--kora-burgundy);
+}
+
+:global(.ant-collapse-header:hover) .icon::before,
+:global(.ant-collapse-header:hover) .icon::after,
+:global(.ant-collapse-item-active) .icon::before,
+:global(.ant-collapse-item-active) .icon::after {
+  background: var(--kora-white);
+}
+
+:global(.ant-collapse-item-active) .icon::after {
+  transform: rotate(0deg);
+}
+
+@media (min-width: 992px) {
+  .section {
+    padding: 120px 0;
+  }
+
+  .container {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    gap: 80px;
+    padding: 0 48px;
+  }
+
+  .intro {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+}
