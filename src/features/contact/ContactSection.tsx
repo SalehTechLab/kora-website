@@ -10,6 +10,7 @@ import { ease, useReveal } from "@/lib/motion";
 import { WHATSAPP_URL } from "@/components/layout/WhatsAppFloat";
 import { submitQuoteRequest, type QuoteRequest } from "@/app/contact-us/actions";
 import LiveTime from "./OfficeClock";
+import { INTERESTS } from "./interests";
 
 const EMAIL = "info@koratraders.com";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -59,20 +60,11 @@ const OFFICES = [
   },
 ];
 
-const INTERESTS = [
-  "Buying Products",
-  "Supplying / Selling Products",
-  "Product Sourcing & Procurement",
-  "Logistics & Shipping",
-  "Business Partnership",
-  "Other Inquiry",
-];
-
 const toTelHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
 
 /* ---------- form state + validation ---------- */
 
-type Values = Omit<QuoteRequest, "consent"> & { consent: boolean };
+type Values = Omit<QuoteRequest, "website" | "startedAt">;
 type Errors = Partial<Record<keyof Values, string>>;
 
 const EMPTY: Values = {
@@ -169,10 +161,16 @@ export default function ContactSection() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const shownAt = useRef(0);
   const reveal = useReveal();
   const reduceMotion = useReducedMotion();
 
   const idOf = (name: keyof Values) => `${baseId}-${name}`;
+
+  // Bot check: the server rejects submissions made seconds after the form appears
+  useEffect(() => {
+    shownAt.current = Date.now();
+  }, [sent]);
 
   // Prefill from the Products page: /contact-us?product=Industrial%20valves
   useEffect(() => {
@@ -230,7 +228,11 @@ export default function ContactSection() {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const result = await submitQuoteRequest(values);
+      const result = await submitQuoteRequest({
+        ...values,
+        website: new FormData(formRef.current ?? undefined).get("website")?.toString(),
+        startedAt: shownAt.current,
+      });
       if (result.ok) {
         setValues(EMPTY);
         setErrors({});
@@ -413,6 +415,13 @@ export default function ContactSection() {
                       onSubmit={onSubmit}
                       aria-busy={submitting || undefined}
                     >
+                      {/* Honeypot: off-screen and skipped by keyboard/AT, so only bots fill it */}
+                      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                        <label>
+                          Website
+                          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+                        </label>
+                      </div>
                       <fieldset
                         disabled={submitting}
                         className="m-0 grid min-w-0 gap-x-4 gap-y-4.5 border-0 p-0 sm:grid-cols-2"

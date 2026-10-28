@@ -1,5 +1,9 @@
 "use server";
 
+import { headers } from "next/headers";
+import { INTERESTS } from "@/features/contact/interests";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
+
 export type QuoteRequest = {
   fullName: string;
   company?: string;
@@ -9,28 +13,71 @@ export type QuoteRequest = {
   interest: string;
   message: string;
   consent: boolean;
+  /** Honeypot: hidden from people, so any value means a bot filled it in. */
+  website?: string;
+  /** Epoch ms when the form was shown; instant submits are bots. */
+  startedAt?: number;
 };
 
 export type QuoteRequestResult = { ok: true } | { ok: false; error: string };
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// No whitespace, quotes, commas, angle brackets or extra "@"; needs a dotted domain
+const EMAIL_PATTERN = /^[^\s@<>(),;:"'\\]+@[^\s@<>(),;:"'\\]+\.[^\s@<>(),;:"'\\]+$/;
+const MIN_FILL_MS = 3_000;
+const PER_IP = { limit: 3, windowMs: 10 * 60_000 };
+const GLOBAL = { limit: 60, windowMs: 60 * 60_000 };
 
 const escapeHtml = (value: string) =>
   value
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+
+const CONTROL_CHARS = /[\u0000-\u0009\u000B-\u001F\u007F\u2028\u2029]/g; // keeps \n
+const SINGLE_LINE_BREAKS = /[\u000A\u2028\u2029]/g;
+
+/** Normalises text and strips control characters; single-line fields lose line breaks too. */
+const clean = (value: unknown, { multiline = false } = {}): string => {
+  if (typeof value !== "string") return "";
+  const text = value.normalize("NFKC").replace(/\r\n?/g, "\n");
+  return (multiline ? text : text.replace(SINGLE_LINE_BREAKS, " "))
+    .replace(CONTROL_CHARS, "")
+    .trim();
+};
+
+const GENERIC_ERROR = "We could not send your request. Please try again or email us.";
 
 export async function submitQuoteRequest(
   request: QuoteRequest,
 ): Promise<QuoteRequestResult> {
-  const fullName = request.fullName?.trim();
-  const email = request.email?.trim();
-  const phone = request.phone?.trim() || "";
-  const country = request.country?.trim() || "";
-  const interest = request.interest?.trim();
-  const message = request.message?.trim();
+  if (!request || typeof request !== "object") {
+    return { ok: false, error: "Please fill in all required fields." };
+  }
+
+  // Bots: filled honeypot or submitted faster than a human can type.
+  // Report success so they get no signal to adapt to.
+  const startedAt = typeof request.startedAt === "number" ? request.startedAt : 0;
+  if (clean(request.website) || Date.now() - startedAt < MIN_FILL_MS) {
+    return { ok: true };
+  }
+
+  const ip = clientIp(await headers());
+  if (!rateLimit(`ip:${ip}`, PER_IP) || !rateLimit("global", GLOBAL)) {
+    return {
+      ok: false,
+      error: "Too many requests. Please wait a few minutes or email us directly.",
+    };
+  }
+
+  const fullName = clean(request.fullName);
+  const company = clean(request.company);
+  const email = clean(request.email);
+  const phone = clean(request.phone);
+  const country = clean(request.country);
+  const interest = clean(request.interest);
+  const message = clean(request.message, { multiline: true });
 
   if (!fullName || !email || !interest || !message) {
     return { ok: false, error: "Please fill in all required fields." };
@@ -46,14 +93,16 @@ export async function submitQuoteRequest(
     email.length > 254 ||
     phone.length > 50 ||
     country.length > 100 ||
-    interest.length > 100 ||
-    message.length > 5000 ||
-    (request.company?.length ?? 0) > 200
+    company.length > 200 ||
+    message.length > 5000
   ) {
     return { ok: false, error: "One of the fields is too long." };
   }
   if (!EMAIL_PATTERN.test(email)) {
     return { ok: false, error: "Please enter a valid email address." };
+  }
+  if (!(INTERESTS as readonly string[]).includes(interest)) {
+    return { ok: false, error: "Please select what you are interested in." };
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -66,10 +115,9 @@ export async function submitQuoteRequest(
     };
   }
 
-  const company = request.company?.trim() || "-";
   const rows: [string, string][] = [
     ["Full Name", fullName],
-    ["Company Name", company],
+    ["Company Name", company || "-"],
     ["Business Email", email],
     ["Phone / WhatsApp", phone || "-"],
     ["Country", country || "-"],
@@ -112,6 +160,7 @@ export async function submitQuoteRequest(
         html,
         text,
       }),
+      signal: AbortSignal.timeout(10_000),
     });
     if (!response.ok) {
       console.error(
@@ -119,17 +168,11 @@ export async function submitQuoteRequest(
         response.status,
         await response.text(),
       );
-      return {
-        ok: false,
-        error: "We could not send your request. Please try again or email us.",
-      };
+      return { ok: false, error: GENERIC_ERROR };
     }
   } catch (error) {
     console.error("Contact form: send failed", error);
-    return {
-      ok: false,
-      error: "We could not send your request. Please try again or email us.",
-    };
+    return { ok: false, error: GENERIC_ERROR };
   }
 
   return { ok: true };
