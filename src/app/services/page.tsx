@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import ServicesHero from "@/components/services/ServicesHero";
-import ServiceStages from "@/components/services/ServiceStages";
-import EngagementModels from "@/components/services/EngagementModels";
-import OldWayNewWay from "@/components/services/OldWayNewWay";
-import ServicesFAQ from "@/components/services/ServicesFAQ";
-import ServicesCTA from "@/components/services/ServicesCTA";
-import { FAQS } from "@/components/services/servicesData";
+import ServicesHero from "@/features/services/ServicesHero";
+import ServiceStages from "@/features/services/ServiceStages";
+import EngagementModels from "@/features/services/EngagementModels";
+import OldWayNewWay from "@/features/services/OldWayNewWay";
+import ServicesFAQ from "@/features/services/ServicesFAQ";
+import ServicesCTA from "@/features/services/ServicesCTA";
+import { FAQS } from "@/features/services/servicesData";
 
 export const metadata: Metadata = {
   title: "Services | Kora Traders",
@@ -27,21 +25,19 @@ const faqJsonLd = {
 
 export default function ServicesPage() {
   return (
-    <main>
-      <Navbar />
+    <>
       <ServicesHero />
       <ServiceStages />
       <EngagementModels />
       <OldWayNewWay />
       <ServicesFAQ />
       <ServicesCTA />
-      <Footer />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-    </main>
+    </>
   );
 }

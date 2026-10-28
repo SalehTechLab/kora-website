@@ -1,18 +1,15 @@
-import Navbar from "@/components/layout/Navbar";
-import Hero from "@/components/home/Hero";
-import Ticker from "@/components/home/Ticker";
-import Manifesto from "@/components/home/Manifesto";
-import CommodityShowcase from "@/components/home/CommodityShowcase";
-import NotListed from "@/components/home/NotListed";
-import LogisticsNetwork from "@/components/home/LogisticsNetwork";
-import HowWeWork from "@/components/home/HowWeWork";
-import FinalCTA from "@/components/home/FinalCTA";
-import Footer from "@/components/layout/Footer";
+import Hero from "@/features/home/Hero";
+import Ticker from "@/features/home/Ticker";
+import Manifesto from "@/features/home/Manifesto";
+import CommodityShowcase from "@/features/home/CommodityShowcase";
+import NotListed from "@/features/home/NotListed";
+import LogisticsNetwork from "@/features/home/LogisticsNetwork";
+import HowWeWork from "@/features/home/HowWeWork";
+import FinalCTA from "@/features/home/FinalCTA";
 
 export default function Home() {
   return (
-    <main>
-      <Navbar />
+    <>
       <Hero />
       <Ticker />
       <Manifesto />
@@ -21,7 +18,6 @@ export default function Home() {
       <LogisticsNetwork />
       <HowWeWork />
       <FinalCTA />
-      <Footer />
-    </main>
+    </>
   );
 }

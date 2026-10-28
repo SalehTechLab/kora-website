@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import AboutHero from "@/components/about/AboutHero";
-import AboutStory from "@/components/about/AboutStory";
-import MissionVision from "@/components/about/MissionVision";
-import WhoWeHelp from "@/components/about/WhoWeHelp";
-import Summit from "@/components/about/Summit";
-import TaglineTicker from "@/components/about/TaglineTicker";
-import Partnerships from "@/components/about/Partnerships";
+import AboutHero from "@/features/about/AboutHero";
+import AboutStory from "@/features/about/AboutStory";
+import MissionVision from "@/features/about/MissionVision";
+import WhoWeHelp from "@/features/about/WhoWeHelp";
+import Summit from "@/features/about/Summit";
+import TaglineTicker from "@/features/about/TaglineTicker";
+import Partnerships from "@/features/about/Partnerships";
 
 export const metadata: Metadata = {
   title: "About Us | Kora Traders",
@@ -17,8 +15,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main>
-      <Navbar />
+    <>
       <AboutHero />
       <AboutStory />
       <TaglineTicker />
@@ -26,7 +23,6 @@ export default function AboutPage() {
       <WhoWeHelp />
       <Summit />
       <Partnerships />
-      <Footer />
-    </main>
+    </>
   );
 }

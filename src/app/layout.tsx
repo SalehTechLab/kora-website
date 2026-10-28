@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { ConfigProvider } from "antd";
-import themeConfig from "@/theme/themeConfig";
-import StyledComponentsRegistry from "@/lib/StyledComponentsRegistry";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import Preloader from "@/components/layout/Preloader";
+import CookiebotScript from "@/components/consent/CookiebotScript";
 import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import "./globals.css";
 
@@ -15,7 +14,7 @@ const inter = Inter({
 
 // Variable font: full weight range plus a true italic for display accents
 const sourceSerif = Source_Serif_4({
-  variable: "--font-serif",
+  variable: "--font-serif-display",
   subsets: ["latin"],
   style: ["normal", "italic"],
 });
@@ -36,16 +35,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`}>
+      <head>
+        <CookiebotScript />
+      </head>
       <body>
-        <StyledComponentsRegistry>
-          <AntdRegistry>
-            <ConfigProvider theme={themeConfig}>
-              <Preloader />
-              {children}
-              <WhatsAppFloat />
-            </ConfigProvider>
-          </AntdRegistry>
-        </StyledComponentsRegistry>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
+        <Preloader />
+        <Navbar />
+        <main id="main-content" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

@@ -32,6 +32,12 @@ Create a `.env.local` file with your Resend API key (needed for the contact form
 RESEND_API_KEY=your_resend_api_key
 ```
 
+Optional: add the Cookiebot Domain Group ID to show the cookie banner (see `docs/COMPLIANCE.md`):
+
+```bash
+NEXT_PUBLIC_COOKIEBOT_ID=your_domain_group_id
+```
+
 Run the dev server (http://localhost:3000):
 
 ```bash

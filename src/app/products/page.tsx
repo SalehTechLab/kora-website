@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import ProductsHero from "@/components/products/ProductsHero";
-import ProductCatalogue from "@/components/products/ProductCatalogue";
-import ShopCTA from "@/components/products/ShopCTA";
+import ProductsHero from "@/features/products/ProductsHero";
+import ProductCatalogue from "@/features/products/ProductCatalogue";
+import ShopCTA from "@/features/products/ShopCTA";
 
 export const metadata: Metadata = {
   title: "Products | Kora Traders",
@@ -13,12 +11,10 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <main>
-      <Navbar />
+    <>
       <ProductsHero />
       <ProductCatalogue />
       <ShopCTA />
-      <Footer />
-    </main>
+    </>
   );
 }

@@ -4,9 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Kora website — currently in initial setup with no framework or tooling chosen yet.
+Kora website — Next.js (App Router) + React 19 + Tailwind CSS 4 + framer-motion, bun.
 
-Update this file once the stack is decided and the project structure is in place.
+## Styling
+
+Theme-driven Tailwind. All design tokens (colours, fonts, type scale, radius, layout, motion) live in the `@theme` block of `src/app/globals.css`. Use `src/components/ui` primitives (Button, Container, Section, Eyebrow, Heading, Text) and token utilities; no raw hex, no antd/styled-components/CSS modules, inline `style` only for dynamic values. Full rules and the folder layout (`app/` routes, `features/<page>/` page sections, `components/` shared): `docs/STYLING.md`.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

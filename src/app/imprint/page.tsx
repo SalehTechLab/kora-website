@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/layout/Navbar";
 import PageHero from "@/components/layout/PageHero";
-import ImprintSection from "@/components/imprint/ImprintSection";
-import Footer from "@/components/layout/Footer";
+import ImprintSection from "@/features/legal/ImprintSection";
 
 export const metadata: Metadata = {
   title: "Imprint | Kora Traders",
@@ -12,8 +10,7 @@ export const metadata: Metadata = {
 
 export default function ImprintPage() {
   return (
-    <main>
-      <Navbar />
+    <>
       <PageHero
         id="imprint-heading"
         eyebrow="Legal"
@@ -21,7 +18,6 @@ export default function ImprintPage() {
         description="Provider identification in accordance with § 5 DDG."
       />
       <ImprintSection />
-      <Footer />
-    </main>
+    </>
   );
 }

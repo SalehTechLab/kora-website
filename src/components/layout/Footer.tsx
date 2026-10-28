@@ -2,27 +2,11 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import styled from "styled-components";
-import {
-  Button,
-  Col,
-  ConfigProvider,
-  Divider,
-  Flex,
-  Layout,
-  Row,
-  Typography,
-  type ThemeConfig,
-} from "antd";
-import {
-  ArrowUpOutlined,
-  FacebookFilled,
-  InstagramOutlined,
-  LinkedinFilled,
-} from "@ant-design/icons";
-import { colors } from "@/theme/themeConfig";
-
-const { Title, Text, Paragraph } = Typography;
+import { ArrowUp } from "lucide-react";
+import { Button, Container } from "@/components/ui";
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/icons/BrandIcons";
+import { COMPANY } from "@/lib/company";
+import CookieSettingsButton from "@/components/consent/CookieSettingsButton";
 
 const COMMODITIES = [
   { label: "Himalayan Salt Products", href: "/products#salt" },
@@ -40,6 +24,9 @@ const LEGAL_LINKS = [
   { label: "Imprint", href: "/imprint" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms" },
+  { label: "Refund & Cancellation", href: "/refund-policy" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
+  { label: "Licences & Credits", href: "/licenses" },
 ];
 
 // TODO: replace with the real Kora social profile URLs
@@ -47,17 +34,17 @@ const SOCIAL_LINKS = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/kora_traders",
-    icon: <LinkedinFilled />,
+    icon: <LinkedinIcon className="size-4" />,
   },
   {
     label: "Facebook",
     href: "https://www.facebook.com/kora.traders",
-    icon: <FacebookFilled />,
+    icon: <FacebookIcon className="size-4" />,
   },
   {
     label: "Instagram",
     href: "https://www.instagram.com/kora_traders",
-    icon: <InstagramOutlined />,
+    icon: <InstagramIcon className="size-4" />,
   },
 ];
 
@@ -76,205 +63,145 @@ const OFFICES = [
   },
 ];
 
-const textSoft = "rgba(244, 246, 249, 0.82)";
-const textMuted = "rgba(244, 246, 249, 0.62)";
-
-// Dark theme scoped to the footer so antd components render correctly on navy
-const footerTheme: ThemeConfig = {
-  token: {
-    colorText: textSoft,
-    colorTextHeading: colors.softWhite,
-    colorTextDescription: textMuted,
-    colorLink: textSoft,
-    colorLinkHover: colors.softWhite,
-    colorLinkActive: colors.softWhite,
-    colorSplit: "rgba(244, 246, 249, 0.12)",
-  },
-  components: {
-    Layout: {
-      footerBg: colors.darkSlate,
-      footerPadding: "72px 0 32px",
-    },
-    Typography: {
-      titleMarginTop: 0,
-      titleMarginBottom: 20,
-    },
-    Button: {
-      controlHeight: 36,
-      fontWeight: 600,
-      defaultShadow: "none",
-      defaultColor: colors.softWhite,
-      defaultBg: "rgba(244, 246, 249, 0.08)",
-      defaultBorderColor: "rgba(244, 246, 249, 0.16)",
-      defaultHoverColor: colors.softWhite,
-      defaultHoverBg: colors.crimson,
-      defaultHoverBorderColor: colors.crimson,
-      defaultActiveColor: colors.softWhite,
-      defaultActiveBg: colors.crimson,
-      defaultActiveBorderColor: colors.crimson,
-    },
-  },
-};
-
-const Container = styled.div`
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 32px;
-
-  @media (max-width: 767px) {
-    padding: 0 20px;
-  }
-`;
-
-const Slogan = styled(Text)`
-  && {
-    display: block;
-    margin: 10px 0;
-    font-family: var(--font-serif), Georgia, serif;
-    font-style: italic;
-    font-size: 17px;
-    font-weight: 600;
-    color: ${colors.softWhite};
-  }
-`;
-
-const ColumnTitle = styled(Title).attrs({ level: 5 })`
-  && {
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-`;
-
 const toTelHref = (phone: string) =>
   `tel:${phone.replace(/\(0\)/, "").replace(/[^\d+]/g, "")}`;
+
+const linkClass = "transition-colors hover:text-snow";
+
+function ColumnTitle({ children }: { children: string }) {
+  return (
+    <h2 className="mb-5 text-caption font-semibold tracking-caps text-snow uppercase">
+      {children}
+    </h2>
+  );
+}
 
 export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <ConfigProvider theme={footerTheme}>
-      {/* antd scopes Layout tokens to .ant-layout, so Footer needs this parent */}
-      <Layout>
-        <Layout.Footer style={{ borderTop: `4px solid ${colors.crimson}` }}>
-          <Container>
-            <Row gutter={[48, 40]}>
-              <Col xs={24} lg={6}>
-                <Link href="/" aria-label="Kora Traders home">
-                  <Image
-                    src="/images/logo/kora-logo2.webp"
-                    alt="Kora Traders"
-                    width={547}
-                    height={244}
-                    sizes="110px"
-                    style={{ width: 110, height: "auto" }}
-                  />
-                </Link>
-                <Slogan>Connect. Trade. Grow.</Slogan>
-                <Paragraph type="secondary" style={{ maxWidth: 340 }}>
-                  Kora Traders is a Germany-based international trading company
-                  sourcing, purchasing and delivering across global markets.
-                </Paragraph>
-                <Text type="secondary" style={{ fontSize: 12 }}>
-                  Registered: Amtsgericht München
-                  <br />
-                  USt-IdNr / VAT: DE 348 912 045
-                </Text>
-              </Col>
+    <footer className="on-dark border-t-4 border-crimson bg-ink pt-18 pb-8 text-snow/80">
+      <Container>
+        <div className="grid grid-cols-24 gap-x-12 gap-y-10">
+          <div className="col-span-24 lg:col-span-6">
+            <Link href="/" aria-label="Kora Traders home">
+              <Image
+                src="/images/logo/kora-logo2.webp"
+                alt="Kora Traders"
+                width={547}
+                height={244}
+                sizes="110px"
+                className="h-auto w-27.5"
+              />
+            </Link>
+            <p className="my-2.5 font-serif text-body-lg font-semibold text-snow italic">
+              Connect. Trade. Grow.
+            </p>
+            <p className="mb-4 max-w-85 text-snow/60">
+              Kora Traders is a Germany-based international trading company sourcing, purchasing and
+              delivering across global markets.
+            </p>
+            <p className="text-xs text-snow/60">
+              Registered: {COMPANY.registerCourt}, {COMPANY.register}
+              <br />
+              USt-IdNr / VAT: {COMPANY.vatId}
+            </p>
+          </div>
 
-              <Col xs={24} sm={12} lg={5}>
-                <ColumnTitle>Key Commodities</ColumnTitle>
-                <Flex vertical gap={12}>
-                  {COMMODITIES.map((item) => (
-                    <Typography.Link key={item.href} href={item.href}>
-                      {item.label}
-                    </Typography.Link>
-                  ))}
-                </Flex>
-              </Col>
+          <div className="col-span-24 sm:col-span-12 lg:col-span-5">
+            <ColumnTitle>Key Commodities</ColumnTitle>
+            <ul className="flex flex-col gap-3">
+              {COMMODITIES.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              <Col xs={12} sm={6} lg={4}>
-                <ColumnTitle>Legal</ColumnTitle>
-                <Flex vertical gap={12}>
-                  {LEGAL_LINKS.map((item) => (
-                    <Typography.Link key={item.href} href={item.href}>
-                      {item.label}
-                    </Typography.Link>
-                  ))}
-                </Flex>
-              </Col>
+          <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+            <ColumnTitle>Legal</ColumnTitle>
+            <ul className="flex flex-col gap-3">
+              {LEGAL_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li className="[&_button]:transition-colors [&_button]:hover:text-snow">
+                <CookieSettingsButton>Cookie settings</CookieSettingsButton>
+              </li>
+            </ul>
+          </div>
 
-              <Col xs={12} sm={6} lg={3}>
-                <ColumnTitle>Reach out</ColumnTitle>
-                <Flex vertical gap={12}>
-                  {SOCIAL_LINKS.map((item) => (
-                    <Typography.Link
-                      key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Flex gap={10} align="center">
-                        {item.icon}
-                        {item.label}
-                      </Flex>
-                    </Typography.Link>
-                  ))}
-                </Flex>
-              </Col>
+          <div className="col-span-12 sm:col-span-6 lg:col-span-3">
+            <ColumnTitle>Reach out</ColumnTitle>
+            <ul className="flex flex-col gap-3">
+              {SOCIAL_LINKS.map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${linkClass} flex items-center gap-2.5`}
+                  >
+                    {item.icon}
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              <Col xs={24} lg={6}>
-                <ColumnTitle>Global Offices</ColumnTitle>
-                <Flex vertical gap={20}>
-                  {OFFICES.map((office) => (
-                    <Flex key={office.name} vertical gap={4}>
-                      <Text strong style={{ color: colors.softWhite }}>
-                        {office.name}
-                      </Text>
-                      <Flex vertical>
-                        {office.address.map((line) => (
-                          <Text key={line} type="secondary">
-                            {line}
-                          </Text>
-                        ))}
-                      </Flex>
-                      <Text type="secondary">
-                        Email:{" "}
-                        <Typography.Link href={`mailto:${office.email}`}>
-                          {office.email}
-                        </Typography.Link>
-                      </Text>
-                      <Text type="secondary">
-                        Tel:{" "}
-                        <Typography.Link href={toTelHref(office.phone)}>
-                          {office.phone}
-                        </Typography.Link>
-                      </Text>
-                    </Flex>
-                  ))}
-                </Flex>
-              </Col>
-            </Row>
+          <div className="col-span-24 lg:col-span-6">
+            <ColumnTitle>Global Offices</ColumnTitle>
+            <div className="flex flex-col gap-5">
+              {OFFICES.map((office) => (
+                <div key={office.name} className="flex flex-col gap-1">
+                  <span className="font-semibold text-snow">{office.name}</span>
+                  <div className="flex flex-col text-snow/60">
+                    {office.address.map((line) => (
+                      <span key={line}>{line}</span>
+                    ))}
+                  </div>
+                  <span className="text-snow/60">
+                    Email:{" "}
+                    <a href={`mailto:${office.email}`} className={`${linkClass} text-snow/80`}>
+                      {office.email}
+                    </a>
+                  </span>
+                  <span className="text-snow/60">
+                    Tel:{" "}
+                    <a href={toTelHref(office.phone)} className={`${linkClass} text-snow/80`}>
+                      {office.phone}
+                    </a>
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-            <Divider style={{ margin: "56px 0 24px" }} />
+        <hr className="mt-14 mb-6 border-snow/12" />
 
-            <Flex justify="space-between" align="center" gap={16} wrap>
-              <Text type="secondary">
-                Copyright © {new Date().getFullYear()} Kora Traders. All rights
-                reserved.
-              </Text>
-              <Button
-                shape="round"
-                icon={<ArrowUpOutlined />}
-                iconPlacement="end"
-                onClick={scrollToTop}
-              >
-                Back to top
-              </Button>
-            </Flex>
-          </Container>
-        </Layout.Footer>
-      </Layout>
-    </ConfigProvider>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="text-snow/60">
+            Copyright © {new Date().getFullYear()} Kora Traders. All rights reserved.
+          </p>
+          <Button
+            variant="outline-light"
+            size="sm"
+            onClick={scrollToTop}
+            className="border-snow/15 bg-snow/8 hover:border-crimson hover:bg-crimson hover:text-white"
+          >
+            Back to top
+            <ArrowUp className="size-4" aria-hidden />
+          </Button>
+        </div>
+      </Container>
+    </footer>
   );
 }

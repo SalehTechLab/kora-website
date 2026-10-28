@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/layout/Navbar";
-import LogisticsHero from "@/components/logistics/LogisticsHero";
-import Footer from "@/components/layout/Footer";
-import LogisticsIntro from "@/components/logistics/LogisticsIntro";
-import LogisticsServices from "@/components/logistics/LogisticsServices";
-import KoraAdvantage from "@/components/logistics/KoraAdvantage";
-import LogisticsCTA from "@/components/logistics/LogisticsCTA";
+import LogisticsHero from "@/features/logistics/LogisticsHero";
+import LogisticsIntro from "@/features/logistics/LogisticsIntro";
+import LogisticsServices from "@/features/logistics/LogisticsServices";
+import KoraAdvantage from "@/features/logistics/KoraAdvantage";
+import LogisticsCTA from "@/features/logistics/LogisticsCTA";
 
 export const metadata: Metadata = {
   title: "Logistics | Kora Traders",
@@ -15,14 +13,12 @@ export const metadata: Metadata = {
 
 export default function LogisticsPage() {
   return (
-    <main>
-      <Navbar />
+    <>
       <LogisticsHero />
       <LogisticsIntro />
       <LogisticsServices />
       <KoraAdvantage />
       <LogisticsCTA />
-      <Footer />
-    </main>
+    </>
   );
 }

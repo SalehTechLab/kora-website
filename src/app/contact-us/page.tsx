@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { App } from "antd";
-import Navbar from "@/components/layout/Navbar";
-import ContactHero from "@/components/contact/ContactHero";
-import ContactSection from "@/components/contact/ContactSection";
-import Footer from "@/components/layout/Footer";
+import ContactHero from "@/features/contact/ContactHero";
+import ContactSection from "@/features/contact/ContactSection";
 
 export const metadata: Metadata = {
   title: "Contact Us | Kora Traders",
@@ -13,13 +10,9 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main>
-      <Navbar />
-      <App>
-        <ContactHero />
-        <ContactSection />
-      </App>
-      <Footer />
-    </main>
+    <>
+      <ContactHero />
+      <ContactSection />
+    </>
   );
 }
