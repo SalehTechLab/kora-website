@@ -186,7 +186,7 @@ function RailButton({
       <span
         className={cn(
           "flex gap-2 text-xs font-semibold tracking-caps uppercase transition-colors duration-300 hover:text-snow",
-          active ? "text-snow" : "text-snow/40",
+          active ? "text-snow" : "text-steel",
         )}
       >
         {String(index + 1).padStart(2, "0")}
@@ -253,7 +253,7 @@ export default function LogisticsServices() {
             <div className={CELL + " max-lg:order-2"}>
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div key={current.key} {...swap}>
-                  <span className="mb-3.5 flex items-center gap-3 text-xs font-semibold tracking-eyebrow text-crimson uppercase after:block after:h-px after:w-9 after:bg-current after:opacity-60 after:content-[''] max-lg:mb-2">
+                  <span className="mb-3.5 flex items-center gap-3 text-xs font-semibold tracking-eyebrow text-steel uppercase after:block after:h-px after:w-9 after:bg-current after:opacity-60 after:content-[''] max-lg:mb-2">
                     {String(active + 1).padStart(2, "0")} / {String(COUNT).padStart(2, "0")}
                   </span>
                   <h3 className="mb-3 font-serif text-[clamp(1.7rem,2.1vw,2.2rem)] leading-[1.12] font-semibold tracking-heading wrap-break-word text-snow max-lg:mb-2 max-lg:text-[1.4rem]">

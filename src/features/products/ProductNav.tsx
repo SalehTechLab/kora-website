@@ -71,7 +71,7 @@ export default function ProductNav() {
             onClick={(e) => go(e, id)}
             className={cn(
               "relative flex flex-none items-baseline gap-2 px-3.5 py-4 text-caption font-semibold whitespace-nowrap transition-colors duration-250 hover:text-crimson",
-              active === id ? "text-navy" : "text-ink/60",
+              active === id ? "text-navy" : "text-steel-text",
             )}
           >
             {label}

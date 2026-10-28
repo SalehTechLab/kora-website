@@ -150,7 +150,7 @@ export default function SourcingDesk() {
                   submit();
                 }}
               >
-                <label className="flex h-13 min-w-0 flex-[1_1_260px] items-center gap-2.5 rounded-pill bg-white px-5.5 text-ink focus-within:outline-3 focus-within:outline-offset-3 focus-within:outline-white">
+                <label className="flex h-13 min-w-0 flex-[1_1_260px] items-center gap-2.5 rounded-sm bg-white px-5.5 text-ink focus-within:outline-3 focus-within:outline-offset-3 focus-within:outline-white">
                   <Search className="size-4 flex-none text-steel-text" aria-hidden="true" />
                   <input
                     value={query}

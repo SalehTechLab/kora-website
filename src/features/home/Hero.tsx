@@ -102,15 +102,10 @@ export default function Hero() {
             className="relative z-2 pt-14 pb-10 lg:py-18"
             style={{ y: copyY, opacity: copyOpacity }}
           >
-            <motion.p
-              className="mb-7 flex items-center gap-3.5 text-eyebrow font-semibold tracking-eyebrow text-steel uppercase"
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease }}
-            >
+            <p className="mb-7 flex animate-fade-up items-center gap-3.5 text-eyebrow font-semibold tracking-eyebrow text-steel uppercase [animation-delay:0.05s]">
               <span className="block h-0.5 w-11 bg-crimson" aria-hidden="true" />
               Global Markets. One Trusted Partner.
-            </motion.p>
+            </p>
 
             <h1
               id="hero-heading"
@@ -132,7 +127,7 @@ export default function Hero() {
                     )}
                     initial={{ y: "115%", rotate: 4 }}
                     animate={{ y: "0%", rotate: 0 }}
-                    transition={{ duration: 1, delay: 0.25 + i * 0.14, ease }}
+                    transition={{ duration: 0.8, delay: 0.1 + i * 0.08, ease }}
                   >
                     {line}
                   </motion.span>
@@ -140,22 +135,19 @@ export default function Hero() {
               ))}
             </h1>
 
-            <motion.p
-              className="mt-8 max-w-130 text-body-lg leading-body text-snow/75"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.85, ease }}
-            >
+            {/* CSS entrance, not framer-motion: this paragraph is the LCP element, and a JS
+                entrance keeps it at opacity 0 until the whole page has hydrated */}
+            <p className="mt-8 max-w-130 animate-fade-up text-body-lg leading-body text-snow/75 [animation-delay:0.2s]">
               KORA connects businesses to global opportunities, suppliers and
               markets, with end-to-end sourcing, procurement and logistics,
               from the first order to final delivery.
-            </motion.p>
+            </p>
 
             <motion.div
               className="mt-9 flex flex-wrap gap-3.5"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1, ease }}
+              transition={{ duration: 0.6, delay: 0.4, ease }}
             >
               <Button
                 href="/contact-us"

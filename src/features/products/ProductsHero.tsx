@@ -115,7 +115,6 @@ export default function ProductsHero() {
               <motion.a
                 key={product.id}
                 href={`#${product.id}`}
-                aria-label={`Jump to ${product.name}`}
                 className="absolute bottom-[6%] left-[28%] block w-[44%] origin-[50%_130%] cursor-pointer rounded-md shadow-[0_18px_40px_-12px] shadow-ink/55 focus-visible:outline-offset-4"
                 style={{ zIndex: 20 - Math.round(Math.abs(t) * 2) }}
                 initial={

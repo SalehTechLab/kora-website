@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 const base =
-  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-pill border font-semibold whitespace-nowrap transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm border font-semibold whitespace-nowrap transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants = {
   primary: "border-crimson bg-crimson text-white hover:border-navy hover:bg-navy",

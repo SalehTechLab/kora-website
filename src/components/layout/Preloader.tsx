@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { animate, AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
 import { cn } from "@/lib/cn";
 
-const MIN_DURATION_MS = 1000;
+// Short on purpose: the splash sits on top of the LCP content, so every ms here is an ms of LCP
+const MIN_DURATION_MS = 350;
+const MAX_WAIT_MS = 800;
 const EASE = [0.76, 0, 0.24, 1] as const;
 
 function Curve({ className }: { className: string }) {
@@ -20,13 +22,12 @@ function Curve({ className }: { className: string }) {
   );
 }
 
+// Wait for fonts only, never for window "load": on slow networks "load" waits for
+// every hero photo, which would keep the splash (and the LCP content under it) up.
 function pageReady(): Promise<void> {
-  const loaded =
-    document.readyState === "complete"
-      ? Promise.resolve()
-      : new Promise<void>((resolve) => window.addEventListener("load", () => resolve(), { once: true }));
   const fonts = document.fonts?.ready ?? Promise.resolve();
-  return Promise.all([loaded, fonts]).then(() => undefined);
+  const cap = new Promise<void>((resolve) => setTimeout(resolve, MAX_WAIT_MS));
+  return Promise.race([fonts.then(() => undefined), cap]);
 }
 
 export default function Preloader() {
@@ -55,7 +56,7 @@ export default function Preloader() {
     Promise.all([minimum, pageReady()]).then(() => {
       if (cancelled) return;
       trickle.stop();
-      animate(progress, 100, { duration: 0.35, ease: "easeOut" }).then(() => {
+      animate(progress, 100, { duration: 0.15, ease: "easeOut" }).then(() => {
         if (!cancelled) setLeaving(true);
       });
     });
@@ -79,7 +80,7 @@ export default function Preloader() {
           <motion.div
             initial={{ y: 0 }}
             animate={{ y: leaving ? "-100%" : 0 }}
-            transition={{ duration: 0.9, ease: EASE, delay: leaving ? 0.12 : 0 }}
+            transition={{ duration: 0.5, ease: EASE, delay: leaving ? 0.06 : 0 }}
             className="absolute inset-0 bg-crimson"
           >
             <Curve className="fill-crimson" />
@@ -89,7 +90,7 @@ export default function Preloader() {
           <motion.div
             initial={{ y: 0 }}
             animate={{ y: leaving ? "-100%" : 0 }}
-            transition={{ duration: 0.9, ease: EASE }}
+            transition={{ duration: 0.5, ease: EASE }}
             onAnimationComplete={() => {
               if (leaving) setVisible(false);
             }}
@@ -97,7 +98,7 @@ export default function Preloader() {
           >
             <motion.div
               animate={leaving ? { opacity: 0, y: -40 } : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: EASE }}
+              transition={{ duration: 0.3, ease: EASE }}
               className="flex flex-col items-center gap-8"
             >
               <div className="overflow-hidden p-1">
@@ -106,7 +107,9 @@ export default function Preloader() {
                   alt="Kora Traders"
                   initial={{ y: "110%", opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
+                  transition={{ duration: 0.5, ease: EASE, delay: 0.05 }}
+                  width={547}
+                  height={244}
                   className="block h-auto w-[min(260px,60vw)]"
                 />
               </div>
@@ -114,7 +117,7 @@ export default function Preloader() {
               <motion.div
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ duration: 0.6, ease: EASE, delay: 0.4 }}
+                transition={{ duration: 0.4, ease: EASE, delay: 0.1 }}
                 className="h-0.5 w-[min(260px,60vw)] origin-left overflow-hidden bg-steel"
               >
                 <motion.div className="h-full origin-left bg-crimson" style={{ scaleX: barScale }} />
@@ -124,7 +127,7 @@ export default function Preloader() {
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: leaving ? 0 : 1 }}
-              transition={{ duration: 0.4, delay: leaving ? 0 : 0.5 }}
+              transition={{ duration: 0.3, delay: leaving ? 0 : 0.15 }}
               className="absolute end-8 bottom-6 font-serif text-[clamp(48px,9vw,120px)] leading-none font-bold text-navy tabular-nums"
             >
               <motion.span>{counter}</motion.span>
