@@ -10,6 +10,10 @@ Kora website — Next.js (App Router) + React 19 + Tailwind CSS 4 + framer-motio
 
 Theme-driven Tailwind. All design tokens (colours, fonts, type scale, radius, layout, motion) live in the `@theme` block of `src/app/globals.css`. Use `src/components/ui` primitives (Button, Container, Section, Eyebrow, Heading, Text) and token utilities; no raw hex, no antd/styled-components/CSS modules, inline `style` only for dynamic values. Full rules and the folder layout (`app/` routes, `features/<page>/` page sections, `components/` shared): `docs/STYLING.md`.
 
+## SEO
+
+Per-page metadata goes through `pageMetadata()` in `src/lib/seo.ts`; new routes must also be added to `PAGES` there (sitemap). Wiring, Search Console steps and the backlink plan: `docs/SEO.md`.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

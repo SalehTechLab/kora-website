@@ -87,11 +87,9 @@ export default function ProductSpread({ product, index }: ProductSpreadProps) {
                 <Button
                   variant="outline"
                   size="lg"
-                  href={product.catalogue}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`/contact-us?product=${encodeURIComponent(product.name)}`}
                 >
-                  View catalogue
+                  Request catalogue
                 </Button>
               </div>
             </motion.div>

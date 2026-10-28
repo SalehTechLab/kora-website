@@ -8,37 +8,37 @@ import { Button, Container, Eyebrow, Heading, Section } from "@/components/ui";
 const MODES = [
   {
     title: "Road Freight",
-    image: "/images/services/road-freight-small.png",
+    image: "/images/services/road-freight-small.webp",
     width: 1000,
     height: 920,
-    href: "/services/road-freight",
+    href: "/logistics",
     description:
       "Flexible FTL and LTL trucking solutions for domestic and cross-border shipments, including first-mile pickup and last-mile delivery.",
   },
   {
     title: "Rail Freight",
-    image: "/images/services/rail-freight-small.png",
+    image: "/images/services/rail-freight-small.webp",
     width: 1000,
     height: 920,
-    href: "/services/rail-freight",
+    href: "/logistics",
     description:
       "Cost-effective rail transportation for bulk cargo and long-distance shipments across major trade corridors.",
   },
   {
     title: "Sea Freight",
-    image: "/images/services/sea-freight-small.png",
+    image: "/images/services/sea-freight-small.webp",
     width: 1000,
     height: 920,
-    href: "/services/sea-freight",
+    href: "/logistics",
     description:
       "Reliable FCL and LCL ocean freight solutions for international shipments, containerized cargo, and bulk goods.",
   },
   {
     title: "Air Freight",
-    image: "/images/services/air-freight-small.png",
+    image: "/images/services/air-freight-small.webp",
     width: 1000,
     height: 920,
-    href: "/services/air-freight",
+    href: "/logistics",
     description:
       "Fast and flexible air cargo solutions for urgent, high-value, and time-sensitive international shipments.",
   },
@@ -97,6 +97,7 @@ export default function LogisticsNetwork() {
                 <p className="mb-6 text-ui leading-body text-snow">{mode.description}</p>
                 <Button
                   href={mode.href}
+                  aria-label={`${mode.title}: more details`}
                   variant="light"
                   size="sm"
                   className="h-10 border-snow bg-snow text-ink hover:border-snow hover:bg-snow hover:text-crimson"

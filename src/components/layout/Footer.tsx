@@ -82,7 +82,8 @@ export default function Footer() {
   return (
     <footer className="on-dark border-t-4 border-crimson bg-ink pt-18 pb-8 text-snow/80">
       <Container>
-        <div className="grid grid-cols-24 gap-x-12 gap-y-10">
+        {/* 24 tracks need a gap that scales: a fixed 48px gap is 1,104px wide across 23 gaps, which overflowed every screen below xl */}
+        <div className="grid grid-cols-24 gap-x-[2%] gap-y-10 xl:gap-x-12">
           <div className="col-span-24 lg:col-span-6">
             <Link href="/" aria-label="Kora Traders home">
               <Image

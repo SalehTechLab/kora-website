@@ -88,7 +88,7 @@ export default function CommodityShowcase() {
                   <div className="relative aspect-4/5 overflow-hidden rounded-3xl bg-ink lg:aspect-auto lg:h-[clamp(260px,46svh,480px)]">
                     <Image
                       src={c.image!}
-                      alt={c.name}
+                      alt={`Photo of ${c.name.toLowerCase()}`}
                       fill
                       sizes="(max-width: 991px) 78vw, 30vw"
                       className="object-cover transition-transform duration-1000 ease-expo group-hover:scale-107"

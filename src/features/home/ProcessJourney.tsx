@@ -438,7 +438,7 @@ export default function ProcessJourney() {
                 >
                   Step {String(i + 1).padStart(2, "0")}
                 </span>
-                <h4 className="m-0 text-lg leading-[1.3] font-semibold">{s.title}</h4>
+                <p className="m-0 text-lg leading-[1.3] font-semibold">{s.title}</p>
               </motion.div>
             </div>
           );
@@ -586,7 +586,7 @@ export default function ProcessJourney() {
                 >
                   Step {String(i + 1).padStart(2, "0")}
                 </span>
-                <h4 className="mt-1 mb-1.5 text-lg font-semibold">{s.title}</h4>
+                <h3 className="mt-1 mb-1.5 text-lg font-semibold">{s.title}</h3>
                 <p className="m-0 text-ui leading-body text-steel-text">{s.description}</p>
               </div>
             </motion.li>

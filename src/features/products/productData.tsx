@@ -17,11 +17,7 @@ type ProductCopy = {
   cover?: string;
 };
 
-export type Product = Commodity &
-  ProductCopy & {
-    /** Catalogue PDF opened by "View catalogue": /public/catalogues/<id>.pdf */
-    catalogue: string;
-  };
+export type Product = Commodity & ProductCopy;
 
 const COPY: Record<string, ProductCopy> = {
   salt: {
@@ -114,5 +110,4 @@ const COPY: Record<string, ProductCopy> = {
 export const PRODUCTS: Product[] = COMMODITIES.map((commodity) => ({
   ...commodity,
   ...COPY[commodity.id],
-  catalogue: `/catalogues/${commodity.id}.pdf`,
 }));

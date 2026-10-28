@@ -256,7 +256,7 @@ export default function Summit() {
                             transition: { duration: 0.6, ease },
                           })}
                     />
-                    <h4 className="text-lg leading-[1.4] font-semibold">{item.title}</h4>
+                    <h3 className="text-lg leading-[1.4] font-semibold">{item.title}</h3>
                     <p className="mt-1.5 text-sm leading-body text-steel-text">
                       {item.description}
                     </p>
