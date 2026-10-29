@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import { ArrowRight, BookOpen, Check } from "lucide-react";
 import {
   motion,
   useReducedMotion,
@@ -11,7 +12,12 @@ import {
 import { Button, Container, Section } from "@/components/ui";
 import { useReveal } from "@/lib/motion";
 import CatalogueCover from "./CatalogueCover";
+import { useViewerOpen } from "./flipbook/viewerState";
 import { SHOP_URL, type Product } from "./productData";
+
+// three.js + pdf.js only download once a visitor opens (or points at) a catalogue
+const loadViewer = () => import("./flipbook/CatalogueViewer");
+const CatalogueViewer = dynamic(loadViewer, { ssr: false });
 
 type ProductSpreadProps = { product: Product; index: number };
 
@@ -19,6 +25,9 @@ export default function ProductSpread({ product, index }: ProductSpreadProps) {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const reveal = useReveal();
+  const viewerActive = useViewerOpen();
+  const [viewerOpen, setViewerOpen] = useState(false);
+  const closeViewer = useCallback(() => setViewerOpen(false), []);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -112,15 +121,35 @@ export default function ProductSpread({ product, index }: ProductSpreadProps) {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.div
-                animate={reduceMotion ? undefined : { y: [0, -10, 0] }}
+                animate={reduceMotion || viewerActive ? undefined : { y: [0, -10, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               >
-                <CatalogueCover product={product} index={index} />
+                {product.pdf ? (
+                  <button
+                    type="button"
+                    onClick={() => setViewerOpen(true)}
+                    onPointerEnter={loadViewer}
+                    onFocus={loadViewer}
+                    aria-label={`Open the ${product.name} catalogue`}
+                    className="group relative block w-full cursor-pointer rounded-sm text-left"
+                  >
+                    <CatalogueCover product={product} index={index} />
+                    <span className="pointer-events-none absolute bottom-[6%] left-1/2 inline-flex -translate-x-1/2 items-center gap-2 rounded-pill bg-navy/90 px-4 py-2 text-xs font-semibold tracking-caps whitespace-nowrap text-white uppercase opacity-100 shadow-lift backdrop-blur-sm transition duration-300 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 md:group-focus-visible:translate-y-0 md:group-focus-visible:opacity-100">
+                      <BookOpen className="size-3.5" aria-hidden="true" />
+                      Flip through
+                    </span>
+                  </button>
+                ) : (
+                  <CatalogueCover product={product} index={index} />
+                )}
               </motion.div>
             </motion.div>
           </div>
         </div>
       </Container>
+      {viewerOpen && product.pdf && (
+        <CatalogueViewer name={product.name} pdf={product.pdf} onClose={closeViewer} />
+      )}
     </Section>
   );
 }

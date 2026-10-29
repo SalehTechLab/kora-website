@@ -16,6 +16,8 @@ const csp = [
   "style-src 'self' 'unsafe-inline'",
   `img-src 'self' data: blob: https://imgsct.cookiebot.com ${COOKIEBOT}`,
   "font-src 'self' data:",
+  // pdf.js parses catalogues in a same-origin web worker
+  "worker-src 'self' blob:",
   `connect-src 'self' ${COOKIEBOT}${isDev ? " ws: wss:" : ""}`,
   `frame-src ${COOKIEBOT}`,
   "object-src 'none'",
