@@ -100,7 +100,7 @@ export default function CatalogueCover({
       <motion.div
         className={cn(
           "relative w-full [transform-style:preserve-3d]",
-          product.cover ? "aspect-[2/3]" : "aspect-[3/4]",
+          product.cover ? "aspect-[870/1278]" : "aspect-[3/4]",
         )}
         style={interactive ? { rotateX, rotateY } : { rotateY: restRotateY }}
       >
