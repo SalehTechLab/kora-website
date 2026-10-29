@@ -21,6 +21,7 @@ export type Product = Commodity & ProductCopy;
 
 const COPY: Record<string, ProductCopy> = {
   salt: {
+    cover: "/catalogues/salt.jpg",
     tagline: "Crystal-pure, mineral-rich, hand-selected.",
     description:
       "Himalayan rock salt mined in Pakistan and graded for table, spa and décor use. We coordinate selection, packing and export so every pallet arrives uniform, clean and ready for your shelves.",

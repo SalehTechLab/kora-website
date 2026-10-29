@@ -98,34 +98,53 @@ export default function CatalogueCover({
       className="w-full [container-type:inline-size] [perspective:1500px]"
     >
       <motion.div
-        className="relative aspect-[3/4] w-full [transform-style:preserve-3d]"
+        className={cn(
+          "relative w-full [transform-style:preserve-3d]",
+          product.cover ? "aspect-[2/3]" : "aspect-[3/4]",
+        )}
         style={interactive ? { rotateX, rotateY } : { rotateY: restRotateY }}
       >
         {!flat && (
-          <div
-            className={cn(
-              "absolute inset-0 rounded-[1cqw_3cqw_3cqw_1cqw] shadow-[0_5cqw_9cqw_-2cqw] shadow-navy/45 [transform:translateZ(-3.4cqw)]",
-              tone.back,
-            )}
-          />
-        )}
-        {!flat && (
-          <div className="absolute top-[0.8cqw] right-0 bottom-[0.8cqw] w-[3.4cqw] origin-right [transform:rotateY(-90deg)] bg-[repeating-linear-gradient(180deg,var(--color-white)_0_0.35cqw,var(--color-steel)_0.35cqw_0.5cqw)]" />
+          <>
+            {/* Back board, ground shadow and the three visible edges of the block */}
+            <div
+              className={cn(
+                "absolute inset-0 rounded-[1cqw_3cqw_3cqw_1cqw] shadow-[0_6cqw_9cqw_-3cqw] shadow-navy/50 [transform:translateZ(-4cqw)]",
+                tone.back,
+              )}
+            />
+            {/* Spine: rounded-looking crimson binding, hinged on the left edge */}
+            <div
+              className="absolute inset-y-0 left-0 w-[4cqw] origin-left rounded-l-[1cqw] bg-[linear-gradient(90deg,color-mix(in_srgb,var(--color-ink)_45%,var(--color-crimson)),var(--color-crimson)_45%,color-mix(in_srgb,var(--color-white)_22%,var(--color-crimson))_60%,color-mix(in_srgb,var(--color-ink)_35%,var(--color-crimson)))] outline-1 outline-transparent [transform:rotateY(90deg)]"
+            />
+            {/* Page block: fine paper lines running with the depth of the book */}
+            <div className="absolute top-[0.8cqw] right-0 bottom-[0.8cqw] w-[4cqw] origin-right bg-[linear-gradient(90deg,var(--color-steel),var(--color-snow)_18%,var(--color-snow)_82%,var(--color-steel)),repeating-linear-gradient(90deg,transparent_0_0.3cqw,color-mix(in_srgb,var(--color-steel)_55%,transparent)_0.3cqw_0.4cqw)] bg-blend-multiply outline-1 outline-transparent [transform:rotateY(-90deg)]" />
+            <div className="absolute top-0 right-[0.6cqw] left-[0.6cqw] h-[4cqw] origin-top bg-[linear-gradient(180deg,var(--color-steel),var(--color-snow)_20%,var(--color-snow)_80%,var(--color-steel)),repeating-linear-gradient(180deg,transparent_0_0.3cqw,color-mix(in_srgb,var(--color-steel)_55%,transparent)_0.3cqw_0.4cqw)] bg-blend-multiply outline-1 outline-transparent [transform:rotateX(-90deg)]" />
+            <div className="absolute right-[0.6cqw] bottom-0 left-[0.6cqw] h-[4cqw] origin-bottom bg-[linear-gradient(180deg,var(--color-steel),var(--color-snow)_20%,var(--color-snow)_80%,var(--color-steel)),repeating-linear-gradient(180deg,transparent_0_0.3cqw,color-mix(in_srgb,var(--color-steel)_55%,transparent)_0.3cqw_0.4cqw)] bg-blend-multiply outline-1 outline-transparent [transform:rotateX(90deg)]" />
+          </>
         )}
         <div
           className={cn(
-            "absolute inset-0 flex flex-col overflow-hidden rounded-[1cqw_3cqw_3cqw_1cqw] pt-[7cqw] pr-[7cqw] pb-[6.5cqw] pl-[11.5cqw] [backface-visibility:hidden] [transform-style:preserve-3d]",
+            "absolute inset-0 flex flex-col overflow-hidden rounded-[1cqw_3cqw_3cqw_1cqw] pt-[7cqw] pr-[7cqw] pb-[6.5cqw] pl-[11.5cqw] outline-1 outline-transparent [backface-visibility:hidden]",
+            // preserve-3d flattens clipping, which is what makes rounded edges jag
+            !product.cover && "[transform-style:preserve-3d]",
             tone.face,
           )}
         >
           {product.cover ? (
-            <Image
-              src={product.cover}
-              alt={`${product.name} catalogue cover`}
-              fill
-              sizes="(max-width: 767px) 80vw, 440px"
-              className="object-cover"
-            />
+            <>
+              <Image
+                src={product.cover}
+                alt={`${product.name} catalogue cover`}
+                fill
+                sizes="(max-width: 767px) 80vw, 440px"
+                className="object-cover"
+              />
+              {/* Hardcover hinge: dark groove, bright crease, soft falloff */}
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--color-ink)_35%,transparent)_0,transparent_1.4%,color-mix(in_srgb,var(--color-white)_38%,transparent)_2.6%,transparent_4%,color-mix(in_srgb,var(--color-ink)_14%,transparent)_5.5%,transparent_10%)]" />
+              {/* Faint edge light so the board reads as a physical object */}
+              <div className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_0.3cqw] shadow-white/25" />
+            </>
           ) : (
             <>
               {/* Hinge + crimson binding band down the left edge */}
