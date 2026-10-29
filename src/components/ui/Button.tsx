@@ -39,7 +39,8 @@ export function Button(props: ButtonProps | LinkProps) {
 
   if ("href" in rest && rest.href !== undefined) {
     const { href, ...anchor } = rest as Omit<LinkProps, keyof Common>;
-    const external = /^(https?:|mailto:|tel:|#)/.test(href);
+    // .pdf files are static assets, not routes, so skip next/link
+    const external = /^(https?:|mailto:|tel:|#)|\.pdf$/.test(href);
     return external ? (
       <a href={href} className={classes} {...anchor} />
     ) : (

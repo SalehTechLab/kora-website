@@ -87,9 +87,16 @@ export default function ProductSpread({ product, index }: ProductSpreadProps) {
                 <Button
                   variant="outline"
                   size="lg"
-                  href={`/contact-us?product=${encodeURIComponent(product.name)}`}
+                  href={
+                    product.pdf ??
+                    `/contact-us?product=${encodeURIComponent(product.name)}`
+                  }
+                  {...(product.pdf && {
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  })}
                 >
-                  Request catalogue
+                  {product.pdf ? "Download catalogue" : "Request catalogue"}
                 </Button>
               </div>
             </motion.div>
