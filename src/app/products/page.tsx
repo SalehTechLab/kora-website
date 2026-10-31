@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import RelatedLinks from "@/components/layout/RelatedLinks";
-import { breadcrumbJsonLd, pageMetadata, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMetadata, productsItemListJsonLd, webPageJsonLd } from "@/lib/seo";
 import ProductsHero from "@/features/products/ProductsHero";
 import ProductCatalogue from "@/features/products/ProductCatalogue";
 import ShopCTA from "@/features/products/ShopCTA";
@@ -23,6 +23,7 @@ export default function ProductsPage() {
         data={[
           webPageJsonLd("CollectionPage", TITLE, DESCRIPTION, "/products"),
           breadcrumbJsonLd("Products", "/products"),
+          productsItemListJsonLd,
         ]}
       />
       <ProductsHero />

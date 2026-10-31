@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -33,7 +33,12 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   // Set GOOGLE_SITE_VERIFICATION to the token from Search Console (HTML tag method).
   verification: process.env.GOOGLE_SITE_VERIFICATION
@@ -47,12 +52,24 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
   icons: {
     icon: [
-      { url: "/images/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/images/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      {
+        url: "/images/favicon/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/images/favicon/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
     ],
     apple: [{ url: "/images/favicon/apple-touch-icon.png", sizes: "180x180" }],
   },
   manifest: "/site.webmanifest",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#B51E32",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -1,6 +1,6 @@
 # SEO
 
-Last reviewed: 2026-10-28. Canonical origin: `https://koratraders.com` (apex, https). `www` and `http` already 301 to it at the host (Netlify).
+Last reviewed: 2026-10-31. Canonical origin: `https://koratraders.com` (apex, https). `www` and `http` already 301 to it at the host (Netlify).
 
 ## How it is wired
 
@@ -11,7 +11,7 @@ Last reviewed: 2026-10-28. Canonical origin: `https://koratraders.com` (apex, ht
 | Per-page title, description, canonical, Open Graph, Twitter | `pageMetadata()` called from each `src/app/*/page.tsx` |
 | `sitemap.xml`, `robots.txt` | `src/app/sitemap.ts`, `src/app/robots.ts` (generated from `PAGES` in `seo.ts`) |
 | Share image (1200x630) | `src/app/opengraph-image.tsx`, reused by `twitter-image.tsx` |
-| Structured data | `src/components/seo/JsonLd.tsx`: Organization + WebSite (home), WebPage-type + BreadcrumbList (every inner page), FAQPage (services) |
+| Structured data | `src/components/seo/JsonLd.tsx`: Organization + WebSite (home), WebPage-type + BreadcrumbList (every inner page), FAQPage + Service (services), Service (logistics), ItemList of commodity categories (products) |
 | Contextual internal links | `src/components/layout/RelatedLinks.tsx` |
 
 ### Adding a page
@@ -57,7 +57,7 @@ Google ranks a new B2B site largely on who links to it. Everything below is earn
 
 ### Phase 3: content that people cite (month 2 onward)
 
-Links follow useful pages, and the site currently has none that answer a buyer's research questions. Suggested first pieces (needs an `/insights` section, not built yet):
+Links follow useful pages, and the site currently has none that answer a buyer's research questions. Topic ideas:
 
 - A buyer's guide to Himalayan salt grades and what to ask a supplier.
 - Importing surgical instruments into the EU: what documents and conformity evidence a buyer should expect.
@@ -84,9 +84,11 @@ Keep a sheet with: site, link URL, date, how it was earned, status. Check Search
 
 ## Known open items
 
-- Catalogue PDFs do not exist. The Products "View catalogue" button is now "Request catalogue" (contact form with the product prefilled). If PDFs are produced, put them in `public/catalogues/<id>.pdf` and point the button at them.
+- Only the Himalayan salt catalogue PDF exists. `pdf` is unset for the other six products in `productData.tsx` so their cards show "Request catalogue" instead of a link that 404s. When a PDF is produced, drop it in `public/catalogues/pdf/kora_traders_<product>_catalogue.pdf` and add the `pdf` field back (and check `curl -I` returns 200).
 - The home page freight cards link to `/logistics`. If dedicated `/services/<mode>-freight` pages are wanted, they need building (and adding to `PAGES`).
 - Unreferenced heavy files remain in `public/images` and can be deleted: `hero/hero-logistics-hub-network-1.png` (2.2 MB), `hero/hero-logistics-hub-network-3.png` (1.2 MB), `services/*-freight-hd.png` (about 1.5-1.9 MB each), `services/*-freight-2.png`, `logo/kora_logo.png` (309 KB). They are not served to visitors but bloat the repo.
-- `sitemap.xml` omits `lastmod` deliberately. Add real per-page dates if content starts changing regularly.
+- `sitemap.xml` has `lastmod` only for the legal pages (from `LEGAL_LAST_UPDATED` in `company.ts`, so bump it when a document changes). Other pages omit it deliberately; add real dates if content starts changing regularly.
+- The language switcher in the navbar lists Deutsch but only toggles local state; there are no German pages and no hreflang. Remove the German option or build `/de` before promoting it.
+- Content, not code: the home h1 ("We Source. We Procure. We Deliver.") carries no search term. Keyword copy (sourcing from Pakistan, Himalayan salt, EU importers) lives in the lower sections.
 - The Preloader holds every first load for at least 1 second. Content is in the HTML so Google is unaffected, but it adds a second before visitors see the page; shorten `MIN_DURATION_MS` in `src/components/layout/Preloader.tsx` if that matters.
 - `netlify.toml` and `vercel.json` both exist; the live site is served by Netlify.

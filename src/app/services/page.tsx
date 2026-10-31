@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import RelatedLinks from "@/components/layout/RelatedLinks";
-import { breadcrumbJsonLd, pageMetadata, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMetadata, serviceJsonLd, webPageJsonLd } from "@/lib/seo";
 import ServicesHero from "@/features/services/ServicesHero";
 import ServiceStages from "@/features/services/ServiceStages";
 import EngagementModels from "@/features/services/EngagementModels";
@@ -37,6 +37,7 @@ export default function ServicesPage() {
         data={[
           webPageJsonLd("WebPage", TITLE, DESCRIPTION, "/services"),
           breadcrumbJsonLd("Services", "/services"),
+          serviceJsonLd("Sourcing and procurement", "Commodity sourcing and procurement", DESCRIPTION, "/services"),
           faqJsonLd,
         ]}
       />

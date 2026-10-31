@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import RelatedLinks from "@/components/layout/RelatedLinks";
-import { breadcrumbJsonLd, pageMetadata, webPageJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMetadata, serviceJsonLd, webPageJsonLd } from "@/lib/seo";
 import LogisticsHero from "@/features/logistics/LogisticsHero";
 import LogisticsIntro from "@/features/logistics/LogisticsIntro";
 import LogisticsServices from "@/features/logistics/LogisticsServices";
@@ -25,6 +25,7 @@ export default function LogisticsPage() {
         data={[
           webPageJsonLd("WebPage", TITLE, DESCRIPTION, "/logistics"),
           breadcrumbJsonLd("Logistics", "/logistics"),
+          serviceJsonLd("International freight and logistics", "Freight forwarding", DESCRIPTION, "/logistics"),
         ]}
       />
       <LogisticsHero />

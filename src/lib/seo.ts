@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { COMPANY } from "./company";
+import { COMMODITIES } from "@/features/home/commodities";
 
 /** Canonical origin. Apex domain, https only (www already 301s to it at the host). */
 export const SITE_URL = `https://${COMPANY.domain}`;
@@ -7,21 +8,28 @@ export const SITE_NAME = COMPANY.name;
 export const SITE_DESCRIPTION =
   "Kora Traders sources, procures and delivers commodities worldwide, from Himalayan salt to surgical instruments, with logistics handled end to end.";
 
-/** Every indexable route. Drives the sitemap, so add new pages here. */
-export const PAGES = [
+/**
+ * Every indexable route. Drives the sitemap, so add new pages here.
+ * `legal` pages take their sitemap lastmod from LEGAL_LAST_UPDATED, a real date bumped on each edit.
+ */
+export const PAGES: readonly {
+  path: string;
+  priority: number;
+  legal?: boolean;
+}[] = [
   { path: "/", priority: 1 },
   { path: "/services", priority: 0.9 },
   { path: "/products", priority: 0.9 },
   { path: "/logistics", priority: 0.8 },
   { path: "/about-us", priority: 0.7 },
   { path: "/contact-us", priority: 0.7 },
-  { path: "/imprint", priority: 0.3 },
-  { path: "/privacy-policy", priority: 0.3 },
-  { path: "/terms", priority: 0.3 },
-  { path: "/refund-policy", priority: 0.3 },
-  { path: "/cookie-policy", priority: 0.3 },
+  { path: "/imprint", priority: 0.3, legal: true },
+  { path: "/privacy-policy", priority: 0.3, legal: true },
+  { path: "/terms", priority: 0.3, legal: true },
+  { path: "/refund-policy", priority: 0.3, legal: true },
+  { path: "/cookie-policy", priority: 0.3, legal: true },
   { path: "/licenses", priority: 0.3 },
-] as const;
+];
 
 // Per-page openGraph/twitter replace the root ones wholesale, so each carries the share image.
 const OG_IMAGE = {
@@ -42,7 +50,12 @@ type PageMetaInput = {
 };
 
 /** Title, description, canonical, Open Graph and Twitter tags for one page. */
-export function pageMetadata({ title, description, path, absoluteTitle }: PageMetaInput): Metadata {
+export function pageMetadata({
+  title,
+  description,
+  path,
+  absoluteTitle,
+}: PageMetaInput): Metadata {
   const fullTitle = absoluteTitle ? title : `${title} | ${SITE_NAME}`;
   return {
     title: absoluteTitle ? { absolute: title } : title,
@@ -61,7 +74,9 @@ export function pageMetadata({ title, description, path, absoluteTitle }: PageMe
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [{ url: "/twitter-image", width: 1200, height: 630, alt: OG_IMAGE.alt }],
+      images: [
+        { url: "/twitter-image", width: 1200, height: 630, alt: OG_IMAGE.alt },
+      ],
     },
   };
 }
@@ -98,13 +113,51 @@ export function webPageJsonLd(
   };
 }
 
+/** Service node offered by the organisation (services and logistics pages). */
+export function serviceJsonLd(
+  name: string,
+  serviceType: string,
+  description: string,
+  path: string,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    serviceType,
+    description,
+    url: abs(path),
+    areaServed: "Worldwide",
+    provider: { "@id": `${SITE_URL}/#organization` },
+  };
+}
+
+/** The commodity categories on /products, each pointing at its anchored section. */
+export const productsItemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Commodities sourced by Kora Traders",
+  itemListElement: COMMODITIES.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: c.name,
+    url: `${abs("/products")}#${c.id}`,
+  })),
+};
+
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
   name: COMPANY.name,
   url: SITE_URL,
-  logo: `${SITE_URL}/images/favicon/android-chrome-512x512.png`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/images/favicon/android-chrome-512x512.png`,
+    width: 512,
+    height: 512,
+  },
+  areaServed: "Worldwide",
   description: SITE_DESCRIPTION,
   email: COMPANY.email,
   telephone: COMPANY.phone,

@@ -11,7 +11,7 @@ import LogisticsNetwork from "@/features/home/LogisticsNetwork";
 import HowWeWork from "@/features/home/HowWeWork";
 import FinalCTA from "@/features/home/FinalCTA";
 
-const TITLE = "Kora Traders | International Sourcing, Trading & Logistics";
+const TITLE = "Kora Traders | International Sourcing & Logistics";
 
 export const metadata: Metadata = pageMetadata({
   title: TITLE,

@@ -4,7 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUp } from "lucide-react";
 import { Button, Container } from "@/components/ui";
-import { FacebookIcon, InstagramIcon, LinkedinIcon } from "@/components/icons/BrandIcons";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+} from "@/components/icons/BrandIcons";
 import { COMPANY } from "@/lib/company";
 import CookieSettingsButton from "@/components/consent/CookieSettingsButton";
 
@@ -99,8 +103,8 @@ export default function Footer() {
               Connect. Trade. Grow.
             </p>
             <p className="mb-4 max-w-85 text-snow/60">
-              Kora Traders is a Germany-based international trading company sourcing, purchasing and
-              delivering across global markets.
+              Kora Traders is a Germany-based international trading company
+              sourcing, purchasing and delivering across global markets.
             </p>
             <p className="text-xs text-snow/60">
               Registered: {COMPANY.registerCourt}, {COMPANY.register}
@@ -170,13 +174,19 @@ export default function Footer() {
                   </div>
                   <span className="text-snow/60">
                     Email:{" "}
-                    <a href={`mailto:${office.email}`} className={`${linkClass} text-snow/80`}>
+                    <a
+                      href={`mailto:${office.email}`}
+                      className={`${linkClass} text-snow/80`}
+                    >
                       {office.email}
                     </a>
                   </span>
                   <span className="text-snow/60">
                     Tel:{" "}
-                    <a href={toTelHref(office.phone)} className={`${linkClass} text-snow/80`}>
+                    <a
+                      href={toTelHref(office.phone)}
+                      className={`${linkClass} text-snow/80`}
+                    >
                       {office.phone}
                     </a>
                   </span>
@@ -190,7 +200,8 @@ export default function Footer() {
 
         <div className="flex flex-wrap items-center justify-between gap-4">
           <p className="text-snow/60">
-            Copyright © {new Date().getFullYear()} Kora Traders. All rights reserved.
+            Copyright © {new Date().getFullYear()} Kora Traders. All rights
+            reserved.
           </p>
           <Button
             variant="outline-light"

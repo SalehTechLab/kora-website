@@ -6,7 +6,7 @@ import TermsContent from "@/features/legal/TermsContent";
 
 const TITLE = "Terms & Conditions";
 const DESCRIPTION =
-  "Terms and conditions for using the Kora Traders website and for our trade and sourcing services.";
+  "Terms and conditions for using the Kora Traders website and for our international trade, sourcing and logistics services, including orders and liability.";
 
 export const metadata: Metadata = pageMetadata({
   title: TITLE,

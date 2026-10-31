@@ -6,7 +6,7 @@ import CookieContent from "@/features/legal/CookieContent";
 
 const TITLE = "Cookie Policy";
 const DESCRIPTION =
-  "Which cookies Kora Traders uses, why, and how to manage or withdraw your cookie consent at any time.";
+  "Which cookies Kora Traders uses on koratraders.com, why we use them, and how to manage or withdraw your cookie consent at any time.";
 
 export const metadata: Metadata = pageMetadata({
   title: TITLE,

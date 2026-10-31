@@ -15,7 +15,10 @@ type ProductCopy = {
    * When set it replaces the generated cover everywhere.
    */
   cover?: string;
-  /** Optional catalogue PDF in /public/catalogues/pdf, opened in a new tab */
+  /**
+   * Optional catalogue PDF in /public/catalogues/pdf, opened in a new tab. Only set it once the
+   * file exists: a missing file is a crawlable 404. Without it the card offers "Request catalogue".
+   */
   pdf?: string;
 };
 
@@ -37,7 +40,6 @@ const COPY: Record<string, ProductCopy> = {
     models: ["Bulk", "Private label", "Retail-ready packs"],
   },
   surgical: {
-    pdf: "/catalogues/pdf/kora_traders_surgical_instruments_catalogue.pdf",
     tagline: "Precision steel, consistent quality.",
     description:
       "Stainless-steel surgical and dental instruments sourced from established manufacturers in Pakistan. We handle supplier checks, sample approval and consolidated shipping so every batch matches the last.",
@@ -50,7 +52,6 @@ const COPY: Record<string, ProductCopy> = {
     models: ["OEM & private label", "Custom kits", "Sample orders"],
   },
   tyres: {
-    pdf: "/catalogues/pdf/kora_traders_tyres_catalogue.pdf",
     tagline: "Rolling from the factory to your fleet.",
     description:
       "Passenger, SUV and truck tyres plus wheels and automotive parts from trusted brands and distributors across Europe. Competitive container pricing, with documentation and delivery managed end to end.",
@@ -63,7 +64,6 @@ const COPY: Record<string, ProductCopy> = {
     models: ["Container loads", "Mixed pallets", "Fleet supply"],
   },
   industrial: {
-    pdf: "/catalogues/pdf/kora_traders_industrial_supplies_catalogue.pdf",
     tagline: "The components that keep industry moving.",
     description:
       "Machinery parts, components and raw materials for manufacturers and distributors. Give us the specification and we will find, vet and procure it from our network at a price that makes sense.",
@@ -76,7 +76,6 @@ const COPY: Record<string, ProductCopy> = {
     models: ["Spec-driven sourcing", "Repeat supply", "Spot buys"],
   },
   rice: {
-    pdf: "/catalogues/pdf/kora_traders_rice_catalogue.pdf",
     tagline: "Staples that travel well.",
     description:
       "Premium basmati and long-grain rice alongside staple food commodities, sourced from trusted mills and exporters. We coordinate quality checks, packing and food-grade freight so your shipment arrives fresh.",
@@ -89,7 +88,6 @@ const COPY: Record<string, ProductCopy> = {
     models: ["Bulk bags", "Private label packs", "Container loads"],
   },
   textiles: {
-    pdf: "/catalogues/pdf/kora_traders_textiles_catalogue.pdf",
     tagline: "Woven to your spec.",
     description:
       "Fabrics, home textiles and ready-made garments from Pakistan's mills and manufacturers. From a single sample run to full production, we manage sourcing, paperwork and delivery.",
@@ -102,7 +100,6 @@ const COPY: Record<string, ProductCopy> = {
     models: ["Private label", "Sample to production", "Bulk orders"],
   },
   bopp: {
-    pdf: "/catalogues/pdf/kora_traders_bopp_film_catalogue.pdf",
     tagline: "Film that wraps the world's products.",
     description:
       "Biaxially oriented polypropylene film in packaging, printing and lamination grades. We source from reliable producers and deliver rolls in the widths, gauges and finishes your converting line needs.",
