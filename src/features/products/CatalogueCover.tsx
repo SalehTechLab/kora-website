@@ -139,6 +139,8 @@ export default function CatalogueCover({
                 fill
                 sizes="(max-width: 767px) 80vw, 440px"
                 className="object-cover"
+                // flat covers are the hero thumbnails, above the fold
+                loading={flat ? "eager" : undefined}
               />
               {/* Hardcover hinge: dark groove, bright crease, soft falloff */}
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--color-ink)_35%,transparent)_0,transparent_1.4%,color-mix(in_srgb,var(--color-white)_38%,transparent)_2.6%,transparent_4%,color-mix(in_srgb,var(--color-ink)_14%,transparent)_5.5%,transparent_10%)]" />
