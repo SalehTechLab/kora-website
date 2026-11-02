@@ -40,6 +40,7 @@ const COPY: Record<string, ProductCopy> = {
     models: ["Bulk", "Private label", "Retail-ready packs"],
   },
   surgical: {
+    cover: "/catalogues/cover/kora_traders_surgical_instruments_catalogue_cover.webp",
     tagline: "Precision steel, consistent quality.",
     description:
       "Stainless-steel surgical and dental instruments sourced from established manufacturers in Pakistan. We handle supplier checks, sample approval and consolidated shipping so every batch matches the last.",
