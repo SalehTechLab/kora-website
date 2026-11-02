@@ -55,9 +55,9 @@ const SOCIAL_LINKS = [
 const OFFICES = [
   {
     name: "Germany (Headquarters)",
-    address: ["Franz-Wolter-Straße", "81925 Munich", "Germany"],
+    address: ["Franz-Wolter-Straße 13", "81925 Munich", "Germany"],
     email: "info@koratraders.com",
-    phone: "+49 176 68257323",
+    phone: "+49 1521 4181175",
   },
   {
     name: "Pakistan (Regional Office)",

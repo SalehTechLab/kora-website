@@ -37,9 +37,9 @@ const CHANNELS = [
     key: "phone",
     icon: <Phone className="size-5" />,
     label: "Call Munich HQ",
-    value: "+49 176 68257323",
+    value: "+49 1521 4181175",
     note: "Speak to a person directly",
-    href: "tel:+4917668257323",
+    href: "tel:+4915214181175",
   },
 ];
 
@@ -47,8 +47,8 @@ const OFFICES = [
   {
     name: "Germany",
     role: "Headquarters",
-    address: ["Franz-Wolter-Straße", "81925 Munich"],
-    phone: "+49 176 68257323",
+    address: ["Franz-Wolter-Straße 13", "81925 Munich"],
+    phone: "+49 1521 4181175",
     timeZone: "Europe/Berlin",
   },
   {

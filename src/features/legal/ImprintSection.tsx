@@ -9,9 +9,9 @@ const SECTIONS: LegalSectionData[] = [
     heading: "Company",
     content: (
       <address className="not-italic">
-        Kora Traders
+        Kora Traders (Einzelunternehmen)
         <br />
-        Franz-Wolter-Straße
+        Franz-Wolter-Straße 13
         <br />
         81925 Munich
         <br />
@@ -19,12 +19,12 @@ const SECTIONS: LegalSectionData[] = [
       </address>
     ),
   },
-  { heading: "Commercial Register", content: "HRA 207145" },
+  { heading: "Commercial Register", content: "HRA XXXXXX" },
   {
     heading: "Register Court",
     content: "Local Court of Munich (Amtsgericht München)",
   },
-  { heading: "VAT ID No.", content: "DE282283433" },
+  { heading: "VAT ID No.", content: "DEXXXXXXXXX" },
   { heading: "Represented by", content: "Amna Sehar" },
   {
     heading: "Contact",

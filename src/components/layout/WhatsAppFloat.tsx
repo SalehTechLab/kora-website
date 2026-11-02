@@ -1,7 +1,7 @@
 import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 
 export const WHATSAPP_URL =
-  "https://wa.me/4917668257323?text=Hi%2C%20I%20have%20a%20query%20regarding%20your%20import%2Fexport%20services.%20Could%20you%20please%20assist%20me%3F";
+  "https://wa.me/4915214181175?text=Hi%2C%20I%20have%20a%20query%20regarding%20your%20import%2Fexport%20services.%20Could%20you%20please%20assist%20me%3F";
 
 export default function WhatsAppFloat() {
   return (
