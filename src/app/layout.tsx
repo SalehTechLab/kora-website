@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
+import ConstructionBanner from "@/components/layout/ConstructionBanner";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Preloader from "@/components/layout/Preloader";
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to main content
         </a>
         <Preloader />
+        <ConstructionBanner />
         <Navbar />
         <main id="main-content" tabIndex={-1}>
           {children}

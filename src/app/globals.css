@@ -17,6 +17,9 @@
   --color-steel: #8c9bb0;
   --color-snow: #f4f6f9; /* soft white */
   --color-white: #ffffff;
+  /* Hazard tape: the only off-palette colours, used solely by <ConstructionBanner> (temporary) */
+  --color-hazard: #ffc20e;
+  --color-hazard-black: #111111;
   /* Derived: steel darkened toward ink — readable steel TEXT on light (4.9:1 on mist) */
   --color-steel-text: color-mix(in srgb, #8c9bb0 45%, #242c38);
   /* Derived: steel tint over snow — the alternate light band between sections */
@@ -463,6 +466,15 @@
 
 /* ── Reusable patterns that need more than one utility ── */
 @layer components {
+  /* Diagonal yellow/black caution stripes (construction tape edges) */
+  .hazard-stripes {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--color-hazard-black) 0 10px,
+      var(--color-hazard) 10px 20px
+    );
+  }
+
   .skip-link {
     @apply fixed top-2 left-2 z-[10000] -translate-y-[200%] rounded-md bg-navy px-5 py-3 font-semibold text-white focus:translate-y-0;
   }
