@@ -161,7 +161,6 @@ export const organizationJsonLd = {
   description: SITE_DESCRIPTION,
   email: COMPANY.email,
   telephone: COMPANY.phone,
-  vatID: COMPANY.vatId,
   address: {
     "@type": "PostalAddress",
     streetAddress: COMPANY.street,
