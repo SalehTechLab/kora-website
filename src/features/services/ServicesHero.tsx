@@ -152,7 +152,7 @@ export default function ServicesHero() {
               transition={{ duration: 0.6, ease }}
             >
               <span className="h-0.5 w-11 bg-crimson" />
-              Services
+              Sourcing &amp; Procurement Services
             </motion.p>
 
             <motion.h1

@@ -12,14 +12,15 @@ Last reviewed: 2026-10-31. Canonical origin: `https://koratraders.com` (apex, ht
 | `sitemap.xml`, `robots.txt` | `src/app/sitemap.ts`, `src/app/robots.ts` (generated from `PAGES` in `seo.ts`) |
 | Share image (1200x630) | `src/app/opengraph-image.tsx`, reused by `twitter-image.tsx` |
 | Structured data | `src/components/seo/JsonLd.tsx`: Organization + WebSite (home), WebPage-type + BreadcrumbList (every inner page), FAQPage + Service (services), Service (logistics), ItemList of commodity categories (products) |
-| Contextual internal links | `src/components/layout/RelatedLinks.tsx` |
+| Contextual internal links | `src/components/layout/RelatedLinks.tsx` (every main page ends with one; add new targets to its `LINKS`) |
+| Site-wide internal links | Navbar `NAV_LINKS` and the footer "Explore" column: Home, About Us, Services, Products, Logistics, Contact Us, with the same labels everywhere |
 
 ### Adding a page
 
 1. Create the route, export `metadata = pageMetadata({ title, description, path })` (title without the brand; keep it under about 50 characters, description 120-160).
 2. Add the path to `PAGES` in `src/lib/seo.ts` so it lands in the sitemap.
 3. Render `<JsonLd data={[webPageJsonLd(...), breadcrumbJsonLd(...)]} />`.
-4. One `<h1>` per page, then `h2`, `h3` without skipping levels.
+4. Hero eyebrow names the page in plain words (e.g. "International Freight & Logistics"); sitelinks lean on title, headings and anchor text, so keep slogans out of the title. One `<h1>` per page, then `h2`, `h3` without skipping levels.
 5. Decorative images get `alt=""`; images that carry meaning get a short, specific description.
 
 ## Search Console (needs the owner's Google account)

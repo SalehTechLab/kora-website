@@ -36,7 +36,7 @@ export default function AboutPage() {
       <WhoWeHelp />
       <Summit />
       <Partnerships />
-      <RelatedLinks items={["services", "products", "logistics"]} />
+      <RelatedLinks items={["services", "products", "contact"]} />
     </>
   );
 }

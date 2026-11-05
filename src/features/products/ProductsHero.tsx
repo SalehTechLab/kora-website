@@ -39,7 +39,7 @@ export default function ProductsHero() {
             transition={{ duration: 0.6, ease }}
           >
             <Eyebrow light rule className="text-snow/70">
-              Products &amp; Sourcing
+              Products &amp; Commodities We Source
             </Eyebrow>
           </motion.div>
 

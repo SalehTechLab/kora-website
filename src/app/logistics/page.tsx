@@ -33,7 +33,7 @@ export default function LogisticsPage() {
       <LogisticsServices />
       <KoraAdvantage />
       <LogisticsCTA />
-      <RelatedLinks items={["services", "products", "about"]} />
+      <RelatedLinks items={["services", "products", "contact"]} />
     </>
   );
 }

@@ -47,7 +47,7 @@ export default function ServicesPage() {
       <OldWayNewWay />
       <ServicesFAQ />
       <ServicesCTA />
-      <RelatedLinks items={["products", "logistics", "about"]} />
+      <RelatedLinks items={["products", "logistics", "contact"]} />
     </>
   );
 }

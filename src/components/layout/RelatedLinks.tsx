@@ -24,6 +24,11 @@ const LINKS = {
     title: "About Kora Traders",
     text: "Our story, mission and the partnerships behind a Munich-based trading company.",
   },
+  contact: {
+    href: "/contact-us",
+    title: "Contact us & request a quote",
+    text: "Tell us what you need sourced or shipped. Our Munich and Lahore offices reply with a straight answer.",
+  },
 } as const;
 
 export type RelatedKey = keyof typeof LINKS;

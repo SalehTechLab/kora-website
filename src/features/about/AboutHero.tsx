@@ -84,7 +84,7 @@ export default function AboutHero() {
           <div>
             <motion.div {...fade(0.1)}>
               <Eyebrow light rule className="text-snow/70">
-                About Us
+                About Kora Traders, Munich
               </Eyebrow>
             </motion.div>
             <h1

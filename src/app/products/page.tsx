@@ -29,7 +29,7 @@ export default function ProductsPage() {
       <ProductsHero />
       <ProductCatalogue />
       <ShopCTA />
-      <RelatedLinks items={["services", "logistics", "about"]} />
+      <RelatedLinks items={["services", "logistics", "contact"]} />
     </>
   );
 }

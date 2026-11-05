@@ -6,7 +6,7 @@ import { COMMODITIES } from "@/features/home/commodities";
 export const SITE_URL = `https://${COMPANY.domain}`;
 export const SITE_NAME = COMPANY.name;
 export const SITE_DESCRIPTION =
-  "Kora Traders sources, procures and delivers commodities worldwide, from Himalayan salt to surgical instruments, with logistics handled end to end.";
+  "Kora Traders is a Germany-based international trading company specializing in global sourcing, procurement and commodity trade, with reliable logistics support.";
 
 /**
  * Every indexable route. Drives the sitemap, so add new pages here.

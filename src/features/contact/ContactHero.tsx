@@ -34,7 +34,7 @@ export default function ContactHero() {
             transition={{ duration: 0.6, ease }}
           >
             <Eyebrow light rule className="text-snow/70">
-              Contact Us
+              Contact Us &amp; Request a Quote
             </Eyebrow>
           </motion.div>
 
@@ -77,8 +77,8 @@ export default function ContactHero() {
             transition={{ duration: 0.8, delay: 0.7, ease }}
           >
             <p className="mb-8 max-w-130 text-lead leading-body text-snow/80">
-              Sourcing a product, arranging freight, or exploring a partnership,
-              we will reply with a straight answer.
+              Sourcing a product, arranging freight, or exploring a partnership with
+              Kora Traders in Munich or Lahore, we will reply with a straight answer.
             </p>
 
             <div className="flex flex-wrap gap-3">

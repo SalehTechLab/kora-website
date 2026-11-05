@@ -104,7 +104,7 @@ export default function Hero() {
           >
             <p className="mb-7 flex animate-fade-up items-center gap-3.5 text-eyebrow font-semibold tracking-eyebrow text-steel uppercase [animation-delay:0.05s]">
               <span className="block h-0.5 w-11 bg-crimson" aria-hidden="true" />
-              Global Markets. One Trusted Partner.
+              International Trading &amp; Global Sourcing
             </p>
 
             <h1
@@ -138,7 +138,7 @@ export default function Hero() {
             {/* CSS entrance, not framer-motion: this paragraph is the LCP element, and a JS
                 entrance keeps it at opacity 0 until the whole page has hydrated */}
             <p className="mt-8 max-w-130 animate-fade-up text-body-lg leading-body text-snow/75 [animation-delay:0.2s]">
-              KORA connects businesses to global opportunities, suppliers and
+              Kora Traders, a Germany-based trading company, connects businesses to global opportunities, suppliers and
               markets, with end-to-end sourcing, procurement and logistics,
               from the first order to final delivery.
             </p>

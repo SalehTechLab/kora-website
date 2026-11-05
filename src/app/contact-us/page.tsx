@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import RelatedLinks from "@/components/layout/RelatedLinks";
 import { breadcrumbJsonLd, pageMetadata, webPageJsonLd } from "@/lib/seo";
 import ContactHero from "@/features/contact/ContactHero";
 import ContactSection from "@/features/contact/ContactSection";
@@ -25,6 +26,7 @@ export default function ContactPage() {
       />
       <ContactHero />
       <ContactSection />
+      <RelatedLinks items={["services", "products", "logistics"]} />
     </>
   );
 }

@@ -36,7 +36,7 @@ export default function LogisticsHero() {
             transition={{ duration: 0.6, ease }}
           >
             <Eyebrow light rule className="text-snow/70">
-              Logistics
+              International Freight &amp; Logistics
             </Eyebrow>
           </motion.div>
 

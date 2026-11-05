@@ -12,6 +12,15 @@ import {
 import { COMPANY } from "@/lib/company";
 import CookieSettingsButton from "@/components/consent/CookieSettingsButton";
 
+const EXPLORE_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Services", href: "/services" },
+  { label: "Products", href: "/products" },
+  { label: "Logistics", href: "/logistics" },
+  { label: "Contact Us", href: "/contact-us" },
+];
+
 const COMMODITIES = [
   { label: "Himalayan Salt Products", href: "/products#salt" },
   { label: "Surgical Instruments", href: "/products#surgical" },
@@ -24,7 +33,6 @@ const COMMODITIES = [
 ];
 
 const LEGAL_LINKS = [
-  { label: "About us", href: "/about-us" },
   { label: "Imprint", href: "/imprint" },
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Terms & Conditions", href: "/terms" },
@@ -88,7 +96,7 @@ export default function Footer() {
       <Container>
         {/* 24 tracks need a gap that scales: a fixed 48px gap is 1,104px wide across 23 gaps, which overflowed every screen below xl */}
         <div className="grid grid-cols-24 gap-x-[2%] gap-y-10 xl:gap-x-12">
-          <div className="col-span-24 lg:col-span-6">
+          <div className="col-span-24 lg:col-span-5">
             <Link href="/" aria-label="Kora Traders home">
               <Image
                 src="/images/logo/kora-logo2.webp"
@@ -113,7 +121,20 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="col-span-24 sm:col-span-12 lg:col-span-5">
+          <div className="col-span-12 sm:col-span-6 lg:col-span-3">
+            <ColumnTitle>Explore</ColumnTitle>
+            <ul className="flex flex-col gap-3">
+              {EXPLORE_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-24 sm:col-span-12 lg:col-span-4">
             <ColumnTitle>Key Commodities</ColumnTitle>
             <ul className="flex flex-col gap-3">
               {COMMODITIES.map((item) => (
@@ -161,7 +182,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-24 lg:col-span-6">
+          <div className="col-span-24 lg:col-span-5">
             <ColumnTitle>Global Offices</ColumnTitle>
             <div className="flex flex-col gap-5">
               {OFFICES.map((office) => (
